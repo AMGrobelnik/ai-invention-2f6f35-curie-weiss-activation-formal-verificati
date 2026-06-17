@@ -1,0 +1,181 @@
+{
+  "input_data": {
+    "ift_benchmark": {
+      "metadata": {
+        "sub_exp_a": {
+          "description": "IFT synthetic benchmark J_raw=+4.0",
+          "ift_confirmed": true,
+          "GELU_peak_MB": 0.18798828125,
+          "IFT_peak_MB": 1.046875,
+          "unrolled_peak_MB": 1.046875,
+          "IFT_ratio_vs_GELU": 1.046875,
+          "IFT_ratio_vs_unrolled_inverse": 1.0
+        },
+        "sub_exp_b": {
+          "description": "5000-step char-GPT cosine LR, 2 seeds",
+          "CWA_final_J_mean": [0.5217009286085764, 0.5147042870521545],
+          "CWA_final_J_s_bar": [0.20449538777271906, 0.20480758820970854]
+        }
+      }
+    },
+    "shift_ablation": {
+      "metadata": {
+        "summary": {
+          "sub_exp_B": {
+            "accuracy_by_condition": {
+              "cwa_full": {"mean": 0.4685333333333333, "std": 0.003572580766523473, "n": 3},
+              "cwa_shift_only": {"mean": 0.46856666666666663, "std": 0.004636090306856982, "n": 3},
+              "pure_tanh": {"mean": 0.4731, "std": 0.0009848857801796175, "n": 3}
+            },
+            "pairwise_ttests": {
+              "cwa_full_vs_shift_only": {"t_stat": -0.022959706631911457, "p_val": 0.9837671748814217, "n_pairs": 3},
+              "cwa_shift_only_vs_pure_tanh": {"t_stat": -2.0967789711173705, "p_val": 0.17094744991261676, "n_pairs": 3},
+              "cwa_full_vs_pure_tanh": {"t_stat": -2.5405243748165462, "p_val": 0.12625347634794126, "n_pairs": 3}
+            }
+          }
+        }
+      }
+    },
+    "depth_sweep": {
+      "metadata": {
+        "summary_tables": {
+          "gradient_ratio_by_depth_activation": {
+            "depth6": {
+              "cwa":         {"mean": 0.3047, "std": 0.0262, "n": 3},
+              "relu":        {"mean": 0.7796, "std": 0.0472, "n": 3},
+              "gelu":        {"mean": 0.7119, "std": 0.1149, "n": 3},
+              "selu":        {"mean": 1.089,  "std": 0.0394, "n": 3},
+              "competing_nl":{"mean": 0.68,   "std": 0.0678, "n": 3},
+              "gelu_ln":     {"mean": 0.3696, "std": 0.0664, "n": 3}
+            },
+            "depth10": {
+              "cwa":         {"mean": 0.3473, "std": 0.0978, "n": 3},
+              "relu":        {"mean": 0.5115, "std": 0.0872, "n": 3},
+              "gelu":        {"mean": 0.7345, "std": 0.145,  "n": 3},
+              "selu":        {"mean": 1.1291, "std": 0.0819, "n": 3},
+              "competing_nl":{"mean": 0.5175, "std": 0.1913, "n": 3},
+              "gelu_ln":     {"mean": 0.3577, "std": 0.0508, "n": 3}
+            },
+            "depth20": {
+              "cwa":         {"mean": 11.0173, "std": 2.1703, "n": 3},
+              "relu":        {"mean": 3.3143,  "std": 1.657,  "n": 3},
+              "gelu":        {"mean": 2.7614,  "std": 1.6599, "n": 3},
+              "selu":        {"mean": 1.4711,  "std": 0.9684, "n": 3},
+              "competing_nl":{"mean": 1.5647,  "std": 0.5881, "n": 3},
+              "gelu_ln":     {"mean": 9.661,   "std": 1.0381, "n": 3}
+            }
+          }
+        }
+      }
+    }
+  },
+  "expected_output": {
+    "metrics_agg": {
+      "n_fixes_applied": 6,
+      "fix1_ratio_bug_corrected": 5.5688,
+      "fix1_stored_bug_value": 1.046875,
+      "fix1_ratio_error_magnitude": 4.522,
+      "fix2_ift_unrolled_ratio": 1.0,
+      "fix2_activation_unrolled_large_mb": 0.78,
+      "fix3_gelu_ln_second_worst_n_depths": 3,
+      "fix3_gelu_ln_second_worst_all_depths": 1.0,
+      "fix3_n_depth_activation_rows": 18.0,
+      "fix4_pure_tanh_best": 1.0,
+      "fix4_p_full_vs_shift": 0.983767,
+      "fix4_p_full_vs_tanh": 0.126253,
+      "fix4_p_shift_vs_tanh": 0.170947,
+      "fix4_any_pair_significant": 0.0,
+      "fix5_scope_items_defined": 12.0,
+      "fix6_warmstart_bias_correct_pct": 0.857126,
+      "fix6_warmstart_bias_incorrect_pct": 13.915499,
+      "fix6_ratio_overestimate": 16.2351,
+      "all_fixes_confirmed": 1.0
+    },
+    "datasets": [
+      {
+        "dataset": "CWA_Reviewer_Corrections",
+        "examples": [
+          {
+            "metadata_id": "fix_1_ift_ratio",
+            "metadata_correction_label": "IFT_GELU_ratio",
+            "input": "Compute corrected IFT/GELU peak memory ratio from stored benchmark values",
+            "output": "Corrected IFT/GELU ratio = 5.569x (was erroneously stored as 1.047x)",
+            "metadata_ift_gelu_ratio_bug": 1.046875,
+            "metadata_ift_gelu_ratio_corrected": 5.5688,
+            "metadata_gelu_peak_mb": 0.18798828125,
+            "metadata_ift_peak_mb": 1.046875,
+            "metadata_meets_2x_criterion": false,
+            "eval_ratio_error": 4.521956168831169,
+            "eval_ratio_factor_overestimate": 5.3195
+          },
+          {
+            "metadata_id": "fix_2_ift_unrolled",
+            "metadata_correction_label": "IFT_unrolled_explanation",
+            "input": "Explain IFT/unrolled peak memory ratio = 1.0 in benchmark",
+            "output": "Ratio=1.0 is a measurement artifact: benchmark is model-parameter-dominated (0.188 MB params >> 0.0479 MB activation diff at n=256,K=50)",
+            "metadata_ift_unrolled_ratio": 1.0,
+            "metadata_activation_memory_unrolled_large_mb": 0.78,
+            "metadata_activation_memory_ift_large_mb": 0.0156,
+            "eval_ratio_vs_expected": 0.0
+          },
+          {
+            "metadata_id": "fix_4_shift_ablation",
+            "metadata_correction_label": "shift_ablation_null",
+            "input": "Reinterpret shift ablation results: CWA-Full vs CWA-ShiftOnly vs Pure-Tanh",
+            "output": "Full null result: Pure-Tanh (0.4731) > CWA-Full (0.4685) ≈ CWA-ShiftOnly (0.4686); all pairwise p > 0.05",
+            "metadata_cwa_full_acc": 0.4685333333333333,
+            "metadata_pure_tanh_acc": 0.4731,
+            "metadata_any_significant": false,
+            "eval_acc_delta_full_vs_tanh": -0.004567
+          }
+        ]
+      },
+      {
+        "dataset": "CWA_GELU_LN_AbsDev_Table",
+        "examples": [
+          {
+            "metadata_id": "fix_3_gelu_ln_depth6_cwa",
+            "metadata_correction_label": "GELU_LN_all_depths",
+            "input": "Compute abs_dev of gradient ratio for activation=cwa at depth=6",
+            "output": "abs_dev=0.6953, rank=1 (1=worst) at depth=6",
+            "metadata_depth": 6,
+            "metadata_activation": "cwa",
+            "metadata_raw_ratio_mean": 0.3047,
+            "metadata_abs_dev": 0.6953,
+            "metadata_rank_worst_first": 1,
+            "eval_abs_dev": 0.6953,
+            "eval_rank": 1.0
+          },
+          {
+            "metadata_id": "fix_3_gelu_ln_depth6_gelu_ln",
+            "metadata_correction_label": "GELU_LN_all_depths",
+            "input": "Compute abs_dev of gradient ratio for activation=gelu_ln at depth=6",
+            "output": "abs_dev=0.6304, rank=2 (1=worst) at depth=6",
+            "metadata_depth": 6,
+            "metadata_activation": "gelu_ln",
+            "metadata_raw_ratio_mean": 0.3696,
+            "metadata_abs_dev": 0.6304,
+            "metadata_rank_worst_first": 2,
+            "metadata_gelu_ln_is_second_worst": true,
+            "eval_abs_dev": 0.6304,
+            "eval_rank": 2.0
+          },
+          {
+            "metadata_id": "fix_3_gelu_ln_depth20_gelu_ln",
+            "metadata_correction_label": "GELU_LN_all_depths",
+            "input": "Compute abs_dev of gradient ratio for activation=gelu_ln at depth=20",
+            "output": "abs_dev=8.661, rank=2 (1=worst) at depth=20",
+            "metadata_depth": 20,
+            "metadata_activation": "gelu_ln",
+            "metadata_raw_ratio_mean": 9.661,
+            "metadata_abs_dev": 8.661,
+            "metadata_rank_worst_first": 2,
+            "metadata_gelu_ln_is_second_worst": true,
+            "eval_abs_dev": 8.661,
+            "eval_rank": 2.0
+          }
+        ]
+      }
+    ]
+  }
+}

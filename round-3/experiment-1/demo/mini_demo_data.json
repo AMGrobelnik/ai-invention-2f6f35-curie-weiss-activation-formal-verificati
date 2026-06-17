@@ -1,0 +1,785 @@
+{
+  "metadata": {
+    "title": "CWA Mechanistic Sub-Experiments: Small-Init (Sub-Exp A) and Shift Ablation (Sub-Exp B)",
+    "summary": {
+      "sub_exp_A": {
+        "accuracy_by_condition": {
+          "cwa_small_init": {
+            "mean": 0.42263333333333336,
+            "std": 0.011300589955101149,
+            "ci_95": [
+              0.3945611116608396,
+              0.4507055550058271
+            ],
+            "n": 3
+          },
+          "gelu_small_init": {
+            "mean": 0.5033666666666666,
+            "std": 0.0053594153910042795,
+            "ci_95": [
+              0.49005314078093776,
+              0.5166801925523955
+            ],
+            "n": 3
+          },
+          "cwa_kaiming_init": {
+            "mean": 0.4685333333333333,
+            "std": 0.003572580766523473,
+            "ci_95": [
+              0.45965855072293843,
+              0.4774081159437282
+            ],
+            "n": 3
+          }
+        },
+        "max_j_s_bar_by_condition": {
+          "cwa_small_init": {
+            "mean": 0.41161166666666665,
+            "std": 0.004173709660881226,
+            "ci_95": [
+              0.40124359710017493,
+              0.4219797362331584
+            ],
+            "n": 3
+          },
+          "gelu_small_init": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci_95": [
+              0.0,
+              0.0
+            ],
+            "n": 3
+          },
+          "cwa_kaiming_init": {
+            "mean": 0.37435899999999994,
+            "std": 0.002065774189014843,
+            "ci_95": [
+              0.36922733243310774,
+              0.37949066756689215
+            ],
+            "n": 3
+          }
+        },
+        "verdict": "init_does_not_help",
+        "description": "Small-init (\u03c3=0.01) does not push J\u00b7s\u0304 above 0.7 (criticality); max J\u00b7s\u0304\u22480.41 vs 0.37 for Kaiming."
+      },
+      "sub_exp_B": {
+        "accuracy_by_condition": {
+          "cwa_full": {
+            "mean": 0.4685333333333333,
+            "std": 0.003572580766523473,
+            "ci_95": [
+              0.45965855072293843,
+              0.4774081159437282
+            ],
+            "n": 3
+          },
+          "cwa_shift_only": {
+            "mean": 0.46856666666666663,
+            "std": 0.004636090306856982,
+            "ci_95": [
+              0.45704997990032303,
+              0.48008335343301023
+            ],
+            "n": 3
+          },
+          "pure_tanh": {
+            "mean": 0.4731,
+            "std": 0.0009848857801796175,
+            "ci_95": [
+              0.4706534080916892,
+              0.47554659190831083
+            ],
+            "n": 3
+          }
+        },
+        "grad_ratio_abs_deviation": {
+          "cwa_full": {
+            "mean": 3.5145163333333334,
+            "std": 0.36399650509357,
+            "ci_95": [
+              2.610298888085075,
+              4.418733778581592
+            ],
+            "n": 3
+          },
+          "cwa_shift_only": {
+            "mean": 3.9470349999999996,
+            "std": 0.24118141585951436,
+            "ci_95": [
+              3.347907149490041,
+              4.546162850509958
+            ],
+            "n": 3
+          },
+          "pure_tanh": {
+            "mean": 3.6881573333333333,
+            "std": 0.4043163769009777,
+            "ci_95": [
+              2.6837797739953544,
+              4.692534892671312
+            ],
+            "n": 3
+          }
+        },
+        "pairwise_ttests": {
+          "cwa_full_vs_shift_only": {
+            "t_stat": -0.022959706631911457,
+            "p_val": 0.9837671748814217,
+            "n_pairs": 3
+          },
+          "cwa_shift_only_vs_pure_tanh": {
+            "t_stat": -2.0967789711173705,
+            "p_val": 0.17094744991261676,
+            "n_pairs": 3
+          },
+          "cwa_full_vs_pure_tanh": {
+            "t_stat": -2.5405243748165462,
+            "p_val": 0.12625347634794126,
+            "n_pairs": 3
+          }
+        },
+        "verdict": "bias_dominant",
+        "verdict_description": "Coupling loss is entirely from mean shift; fixed-point adds no value."
+      },
+      "mechanistic_interpretation": "bias_dominant",
+      "mechanistic_description": "Coupling loss is entirely from mean shift; fixed-point adds no value.",
+      "cwa_full_final_acc_mean": 0.4685333333333333,
+      "cwa_shift_only_final_acc_mean": 0.46856666666666663,
+      "pure_tanh_final_acc_mean": 0.4731
+    },
+    "n_epochs": 25,
+    "n_seeds": 3,
+    "architecture": "10-layer unnormalized MLP hidden=256 CIFAR-10 no-BN",
+    "optimizer": "AdamW lr=1e-3 wd=1e-4 cosine-annealing"
+  },
+  "datasets": [
+    {
+      "dataset": "CIFAR-10",
+      "examples": [
+        {
+          "input": "sub_exp=A_small_weight_init epoch=1 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_kaiming_init best_test_acc=0.3616",
+          "metadata_epoch": "1",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.1968",
+          "predict_gelu_small_init": "0.1915",
+          "predict_cwa_kaiming_init": "0.3616",
+          "metadata_j_s_bar_cwa_small_init": "0.4069",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.3759"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=2 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_kaiming_init best_test_acc=0.3892",
+          "metadata_epoch": "2",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.2102",
+          "predict_gelu_small_init": "0.2695",
+          "predict_cwa_kaiming_init": "0.3892",
+          "metadata_j_s_bar_cwa_small_init": "0.4048",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.3473"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=3 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_kaiming_init best_test_acc=0.4079",
+          "metadata_epoch": "3",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.2631",
+          "predict_gelu_small_init": "0.3708",
+          "predict_cwa_kaiming_init": "0.4079",
+          "metadata_j_s_bar_cwa_small_init": "0.3865",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.3196"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=4 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_kaiming_init best_test_acc=0.4316",
+          "metadata_epoch": "4",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.2842",
+          "predict_gelu_small_init": "0.4221",
+          "predict_cwa_kaiming_init": "0.4316",
+          "metadata_j_s_bar_cwa_small_init": "0.3755",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2962"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=5 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.4687",
+          "metadata_epoch": "5",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.3205",
+          "predict_gelu_small_init": "0.4687",
+          "predict_cwa_kaiming_init": "0.4316",
+          "metadata_j_s_bar_cwa_small_init": "0.3703",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2793"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=6 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.4780",
+          "metadata_epoch": "6",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.3307",
+          "predict_gelu_small_init": "0.4780",
+          "predict_cwa_kaiming_init": "0.4333",
+          "metadata_j_s_bar_cwa_small_init": "0.3694",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2647"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=7 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.4962",
+          "metadata_epoch": "7",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.3547",
+          "predict_gelu_small_init": "0.4962",
+          "predict_cwa_kaiming_init": "0.4415",
+          "metadata_j_s_bar_cwa_small_init": "0.3592",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2528"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=8 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.4982",
+          "metadata_epoch": "8",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.3766",
+          "predict_gelu_small_init": "0.4982",
+          "predict_cwa_kaiming_init": "0.4538",
+          "metadata_j_s_bar_cwa_small_init": "0.3538",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2450"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=9 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5019",
+          "metadata_epoch": "9",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.3897",
+          "predict_gelu_small_init": "0.5019",
+          "predict_cwa_kaiming_init": "0.4701",
+          "metadata_j_s_bar_cwa_small_init": "0.3500",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2341"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=10 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5102",
+          "metadata_epoch": "10",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.3918",
+          "predict_gelu_small_init": "0.5102",
+          "predict_cwa_kaiming_init": "0.4628",
+          "metadata_j_s_bar_cwa_small_init": "0.3476",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2303"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=11 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5135",
+          "metadata_epoch": "11",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4103",
+          "predict_gelu_small_init": "0.5135",
+          "predict_cwa_kaiming_init": "0.4710",
+          "metadata_j_s_bar_cwa_small_init": "0.3456",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2258"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=12 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5066",
+          "metadata_epoch": "12",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4115",
+          "predict_gelu_small_init": "0.5066",
+          "predict_cwa_kaiming_init": "0.4813",
+          "metadata_j_s_bar_cwa_small_init": "0.3424",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2205"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=13 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5153",
+          "metadata_epoch": "13",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4200",
+          "predict_gelu_small_init": "0.5153",
+          "predict_cwa_kaiming_init": "0.4813",
+          "metadata_j_s_bar_cwa_small_init": "0.3407",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2182"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=14 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5104",
+          "metadata_epoch": "14",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4224",
+          "predict_gelu_small_init": "0.5104",
+          "predict_cwa_kaiming_init": "0.4731",
+          "metadata_j_s_bar_cwa_small_init": "0.3401",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2165"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=15 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5173",
+          "metadata_epoch": "15",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4270",
+          "predict_gelu_small_init": "0.5173",
+          "predict_cwa_kaiming_init": "0.4843",
+          "metadata_j_s_bar_cwa_small_init": "0.3384",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2162"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=16 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5146",
+          "metadata_epoch": "16",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4245",
+          "predict_gelu_small_init": "0.5146",
+          "predict_cwa_kaiming_init": "0.4750",
+          "metadata_j_s_bar_cwa_small_init": "0.3343",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2145"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=17 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5133",
+          "metadata_epoch": "17",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4264",
+          "predict_gelu_small_init": "0.5133",
+          "predict_cwa_kaiming_init": "0.4766",
+          "metadata_j_s_bar_cwa_small_init": "0.3350",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2145"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=18 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5171",
+          "metadata_epoch": "18",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4301",
+          "predict_gelu_small_init": "0.5171",
+          "predict_cwa_kaiming_init": "0.4780",
+          "metadata_j_s_bar_cwa_small_init": "0.3318",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2126"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=19 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5167",
+          "metadata_epoch": "19",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4282",
+          "predict_gelu_small_init": "0.5167",
+          "predict_cwa_kaiming_init": "0.4761",
+          "metadata_j_s_bar_cwa_small_init": "0.3321",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2136"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=20 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5115",
+          "metadata_epoch": "20",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4317",
+          "predict_gelu_small_init": "0.5115",
+          "predict_cwa_kaiming_init": "0.4762",
+          "metadata_j_s_bar_cwa_small_init": "0.3296",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2127"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=21 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5137",
+          "metadata_epoch": "21",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4282",
+          "predict_gelu_small_init": "0.5137",
+          "predict_cwa_kaiming_init": "0.4774",
+          "metadata_j_s_bar_cwa_small_init": "0.3286",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2128"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=22 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5090",
+          "metadata_epoch": "22",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4303",
+          "predict_gelu_small_init": "0.5090",
+          "predict_cwa_kaiming_init": "0.4721",
+          "metadata_j_s_bar_cwa_small_init": "0.3276",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2138"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=23 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5097",
+          "metadata_epoch": "23",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4272",
+          "predict_gelu_small_init": "0.5097",
+          "predict_cwa_kaiming_init": "0.4727",
+          "metadata_j_s_bar_cwa_small_init": "0.3273",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2129"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=24 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5086",
+          "metadata_epoch": "24",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4308",
+          "predict_gelu_small_init": "0.5086",
+          "predict_cwa_kaiming_init": "0.4725",
+          "metadata_j_s_bar_cwa_small_init": "0.3258",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2137"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=25 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5089",
+          "metadata_epoch": "25",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4276",
+          "predict_gelu_small_init": "0.5089",
+          "predict_cwa_kaiming_init": "0.4726",
+          "metadata_j_s_bar_cwa_small_init": "0.3267",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2126"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=25 seed=123 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.4982",
+          "metadata_epoch": "25",
+          "metadata_seed": "123",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4306",
+          "predict_gelu_small_init": "0.4982",
+          "predict_cwa_kaiming_init": "0.4659",
+          "metadata_j_s_bar_cwa_small_init": "0.3322",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2011"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=25 seed=777 dataset=CIFAR-10",
+          "output": "best_condition=gelu_small_init best_test_acc=0.5030",
+          "metadata_epoch": "25",
+          "metadata_seed": "777",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.4097",
+          "predict_gelu_small_init": "0.5030",
+          "predict_cwa_kaiming_init": "0.4671",
+          "metadata_j_s_bar_cwa_small_init": "0.3382",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.2092"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=1 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.3616",
+          "metadata_epoch": "1",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.3616",
+          "predict_cwa_shift_only": "0.3608",
+          "predict_pure_tanh": "0.3516",
+          "metadata_j_s_bar_cwa_full": "0.3759"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=2 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.3892",
+          "metadata_epoch": "2",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.3892",
+          "predict_cwa_shift_only": "0.3831",
+          "predict_pure_tanh": "0.3843",
+          "metadata_j_s_bar_cwa_full": "0.3473"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=3 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_shift_only best_test_acc=0.4092",
+          "metadata_epoch": "3",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4079",
+          "predict_cwa_shift_only": "0.4092",
+          "predict_pure_tanh": "0.3958",
+          "metadata_j_s_bar_cwa_full": "0.3196"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=4 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.4316",
+          "metadata_epoch": "4",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4316",
+          "predict_cwa_shift_only": "0.4266",
+          "predict_pure_tanh": "0.4234",
+          "metadata_j_s_bar_cwa_full": "0.2962"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=5 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4402",
+          "metadata_epoch": "5",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4316",
+          "predict_cwa_shift_only": "0.4339",
+          "predict_pure_tanh": "0.4402",
+          "metadata_j_s_bar_cwa_full": "0.2793"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=6 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.4333",
+          "metadata_epoch": "6",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4333",
+          "predict_cwa_shift_only": "0.4315",
+          "predict_pure_tanh": "0.4317",
+          "metadata_j_s_bar_cwa_full": "0.2647"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=7 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4532",
+          "metadata_epoch": "7",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4415",
+          "predict_cwa_shift_only": "0.4432",
+          "predict_pure_tanh": "0.4532",
+          "metadata_j_s_bar_cwa_full": "0.2528"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=8 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4608",
+          "metadata_epoch": "8",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4538",
+          "predict_cwa_shift_only": "0.4530",
+          "predict_pure_tanh": "0.4608",
+          "metadata_j_s_bar_cwa_full": "0.2450"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=9 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.4701",
+          "metadata_epoch": "9",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4701",
+          "predict_cwa_shift_only": "0.4560",
+          "predict_pure_tanh": "0.4656",
+          "metadata_j_s_bar_cwa_full": "0.2341"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=10 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_shift_only best_test_acc=0.4672",
+          "metadata_epoch": "10",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4628",
+          "predict_cwa_shift_only": "0.4672",
+          "predict_pure_tanh": "0.4646",
+          "metadata_j_s_bar_cwa_full": "0.2303"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=11 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_shift_only best_test_acc=0.4727",
+          "metadata_epoch": "11",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4710",
+          "predict_cwa_shift_only": "0.4727",
+          "predict_pure_tanh": "0.4716",
+          "metadata_j_s_bar_cwa_full": "0.2258"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=12 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.4813",
+          "metadata_epoch": "12",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4813",
+          "predict_cwa_shift_only": "0.4745",
+          "predict_pure_tanh": "0.4765",
+          "metadata_j_s_bar_cwa_full": "0.2205"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=13 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.4813",
+          "metadata_epoch": "13",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4813",
+          "predict_cwa_shift_only": "0.4767",
+          "predict_pure_tanh": "0.4787",
+          "metadata_j_s_bar_cwa_full": "0.2182"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=14 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4746",
+          "metadata_epoch": "14",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4731",
+          "predict_cwa_shift_only": "0.4726",
+          "predict_pure_tanh": "0.4746",
+          "metadata_j_s_bar_cwa_full": "0.2165"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=15 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.4843",
+          "metadata_epoch": "15",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4843",
+          "predict_cwa_shift_only": "0.4762",
+          "predict_pure_tanh": "0.4788",
+          "metadata_j_s_bar_cwa_full": "0.2162"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=16 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4797",
+          "metadata_epoch": "16",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4750",
+          "predict_cwa_shift_only": "0.4788",
+          "predict_pure_tanh": "0.4797",
+          "metadata_j_s_bar_cwa_full": "0.2145"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=17 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_shift_only best_test_acc=0.4782",
+          "metadata_epoch": "17",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4766",
+          "predict_cwa_shift_only": "0.4782",
+          "predict_pure_tanh": "0.4778",
+          "metadata_j_s_bar_cwa_full": "0.2145"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=18 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_shift_only best_test_acc=0.4791",
+          "metadata_epoch": "18",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4780",
+          "predict_cwa_shift_only": "0.4791",
+          "predict_pure_tanh": "0.4785",
+          "metadata_j_s_bar_cwa_full": "0.2126"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=19 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4784",
+          "metadata_epoch": "19",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4761",
+          "predict_cwa_shift_only": "0.4759",
+          "predict_pure_tanh": "0.4784",
+          "metadata_j_s_bar_cwa_full": "0.2136"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=20 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4768",
+          "metadata_epoch": "20",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4762",
+          "predict_cwa_shift_only": "0.4726",
+          "predict_pure_tanh": "0.4768",
+          "metadata_j_s_bar_cwa_full": "0.2127"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=21 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_full best_test_acc=0.4774",
+          "metadata_epoch": "21",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4774",
+          "predict_cwa_shift_only": "0.4716",
+          "predict_pure_tanh": "0.4761",
+          "metadata_j_s_bar_cwa_full": "0.2128"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=22 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4754",
+          "metadata_epoch": "22",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4721",
+          "predict_cwa_shift_only": "0.4729",
+          "predict_pure_tanh": "0.4754",
+          "metadata_j_s_bar_cwa_full": "0.2138"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=23 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4753",
+          "metadata_epoch": "23",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4727",
+          "predict_cwa_shift_only": "0.4721",
+          "predict_pure_tanh": "0.4753",
+          "metadata_j_s_bar_cwa_full": "0.2129"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=24 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4759",
+          "metadata_epoch": "24",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4725",
+          "predict_cwa_shift_only": "0.4732",
+          "predict_pure_tanh": "0.4759",
+          "metadata_j_s_bar_cwa_full": "0.2137"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=25 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4739",
+          "metadata_epoch": "25",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4726",
+          "predict_cwa_shift_only": "0.4735",
+          "predict_pure_tanh": "0.4739",
+          "metadata_j_s_bar_cwa_full": "0.2126"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=25 seed=123 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4734",
+          "metadata_epoch": "25",
+          "metadata_seed": "123",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4659",
+          "predict_cwa_shift_only": "0.4679",
+          "predict_pure_tanh": "0.4734",
+          "metadata_j_s_bar_cwa_full": "0.2011"
+        },
+        {
+          "input": "sub_exp=B_shift_ablation epoch=25 seed=777 dataset=CIFAR-10",
+          "output": "best_condition=pure_tanh best_test_acc=0.4720",
+          "metadata_epoch": "25",
+          "metadata_seed": "777",
+          "metadata_sub_exp": "B_shift_ablation",
+          "predict_cwa_full": "0.4671",
+          "predict_cwa_shift_only": "0.4643",
+          "predict_pure_tanh": "0.4720",
+          "metadata_j_s_bar_cwa_full": "0.2092"
+        }
+      ]
+    }
+  ]
+}

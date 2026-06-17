@@ -1,0 +1,657 @@
+{
+  "lm_data": {
+    "shakespeare_bpc": {
+      "gelu": {
+        "mean": 3.2252450715271874,
+        "std": 0.009753319084885793,
+        "per_seed": [
+          3.2293590570529664,
+          3.2345897098790837,
+          3.2117864476495117
+        ]
+      },
+      "gelu+ln": {
+        "mean": 3.260416766489922,
+        "std": 0.0018300403101225073,
+        "per_seed": [
+          3.262419722303911,
+          3.2608346889177224,
+          3.2579958882481326
+        ]
+      },
+      "selu": {
+        "mean": 3.3514590756186386,
+        "std": 0.0010407082653683345,
+        "per_seed": [
+          3.3514208129184744,
+          3.352752378273821,
+          3.3502040356636202
+        ]
+      },
+      "tanh_swish": {
+        "mean": 3.3371464867932663,
+        "std": 0.002093143723628238,
+        "per_seed": [
+          3.338893080681675,
+          3.338342956336707,
+          3.3342034233614175
+        ]
+      },
+      "cwa": {
+        "mean": 3.351850349907963,
+        "std": 0.004222720089646927,
+        "per_seed": [
+          3.3576810158064108,
+          3.350052849154899,
+          3.3478171847625795
+        ]
+      }
+    },
+    "wikitext2_ppl": {
+      "gelu": {
+        "mean": 738.7480346569839,
+        "std": 7.017439422271366,
+        "per_seed": [
+          745.7654740792553,
+          731.7305952347126
+        ]
+      },
+      "gelu+ln": {
+        "mean": 744.4728609707167,
+        "std": 7.315545722321815,
+        "per_seed": [
+          751.7884066930386,
+          737.157315248395
+        ]
+      },
+      "selu": {
+        "mean": 756.3024270148571,
+        "std": 6.798223262272302,
+        "per_seed": [
+          763.1006502771295,
+          749.5042037525849
+        ]
+      },
+      "tanh_swish": {
+        "mean": 761.6275704913164,
+        "std": 7.8091697583769815,
+        "per_seed": [
+          769.4367402496935,
+          753.8184007329395
+        ]
+      },
+      "cwa": {
+        "mean": 767.4166611828086,
+        "std": 6.799365428971839,
+        "per_seed": [
+          774.2160266117805,
+          760.6172957538369
+        ]
+      }
+    },
+    "J_s_bar_trajectory_per_layer": {
+      "shakespeare": {
+        "seed_42": {
+          "layer_0": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.456989,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.499536,
+              "J_s_bar": 0.448887,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.499059,
+              "J_s_bar": 0.443841,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.499137,
+              "J_s_bar": 0.441952,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.499038,
+              "J_s_bar": 0.441164,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ],
+          "layer_1": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.457232,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.501251,
+              "J_s_bar": 0.449411,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.500972,
+              "J_s_bar": 0.449103,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.500712,
+              "J_s_bar": 0.449579,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.500627,
+              "J_s_bar": 0.450202,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ]
+        },
+        "seed_123": {
+          "layer_0": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.457011,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.500283,
+              "J_s_bar": 0.449275,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.500315,
+              "J_s_bar": 0.444435,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.500379,
+              "J_s_bar": 0.442544,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.500346,
+              "J_s_bar": 0.442055,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ],
+          "layer_1": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.457222,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.500074,
+              "J_s_bar": 0.448111,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.499612,
+              "J_s_bar": 0.44792,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.499509,
+              "J_s_bar": 0.44868,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.499489,
+              "J_s_bar": 0.449805,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ]
+        },
+        "seed_7": {
+          "layer_0": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.457557,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.499592,
+              "J_s_bar": 0.44884,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.4992,
+              "J_s_bar": 0.443972,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.499007,
+              "J_s_bar": 0.441582,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.498898,
+              "J_s_bar": 0.441188,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ],
+          "layer_1": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.456316,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.49971,
+              "J_s_bar": 0.447545,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.499558,
+              "J_s_bar": 0.448158,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.499239,
+              "J_s_bar": 0.448367,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.499087,
+              "J_s_bar": 0.449316,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ]
+        }
+      },
+      "wikitext2": {
+        "seed_42": {
+          "layer_0": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.45712,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.500223,
+              "J_s_bar": 0.453147,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.500147,
+              "J_s_bar": 0.448764,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.499697,
+              "J_s_bar": 0.446321,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.499504,
+              "J_s_bar": 0.446137,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ],
+          "layer_1": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.456671,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.500366,
+              "J_s_bar": 0.443604,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.500333,
+              "J_s_bar": 0.437989,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.500166,
+              "J_s_bar": 0.438134,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.5,
+              "J_s_bar": 0.438966,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ]
+        },
+        "seed_123": {
+          "layer_0": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.456984,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.50087,
+              "J_s_bar": 0.453788,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.500708,
+              "J_s_bar": 0.449741,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.500544,
+              "J_s_bar": 0.447576,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.500713,
+              "J_s_bar": 0.447447,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ],
+          "layer_1": [
+            {
+              "step": 0,
+              "J": 0.5,
+              "J_s_bar": 0.456878,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 100,
+              "J": 0.500375,
+              "J_s_bar": 0.443344,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 200,
+              "J": 0.500945,
+              "J_s_bar": 0.437881,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 300,
+              "J": 0.501205,
+              "J_s_bar": 0.437165,
+              "K": 5,
+              "mode": "unrolled"
+            },
+            {
+              "step": 400,
+              "J": 0.501265,
+              "J_s_bar": 0.438294,
+              "K": 5,
+              "mode": "unrolled"
+            }
+          ]
+        }
+      }
+    },
+    "hyperparameters": {
+      "gpt": {
+        "n_layer": 6,
+        "n_head": 8,
+        "n_embd": 256,
+        "dropout": 0.1
+      },
+      "shakespeare": {
+        "seeds": [
+          42,
+          123,
+          7
+        ]
+      },
+      "wikitext2": {
+        "seq_len": 128,
+        "batch_size": 32,
+        "max_steps": 500,
+        "lr": 0.0003,
+        "warmup_steps": 50,
+        "grad_clip": 1.0,
+        "eval_every": 100,
+        "log_every": 100,
+        "eval_n_batches": 15,
+        "seeds": [
+          42,
+          123
+        ]
+      },
+      "cwa": {
+        "J_raw_init": 0.0,
+        "J_init": 0.5,
+        "K_max": 5,
+        "unrolled_warm_steps": 3,
+        "ift_threshold": 0.8
+      }
+    },
+    "training_notes": [
+      "Steps=500 (K_max=5 for CWA speed). Each eval checkpoint=one schema example.",
+      "Shakespeare: 90 examples from 5 acts \u00d7 3 seeds \u00d7 6 checkpoints.",
+      "WikiText-2: 60 examples from 5 acts \u00d7 2 seeds \u00d7 6 checkpoints."
+    ]
+  },
+  "mlp_data": {
+    "metadata": {
+      "method_name": "CWA (Coupled-Weight Activation)",
+      "description": "CWA uses mean-field fixed-point iteration with learnable coupling J. Hybrid IFT/unrolled backprop. Tested against 8 baselines across depths 6/10/20 on CIFAR-10 (Exp1) and fixed-J ablation (Exp4). NOTE: Experiment in progress - partial results shown.",
+      "hypothesis_verdict": "INCONCLUSIVE",
+      "depths": [
+        6,
+        10,
+        20
+      ],
+      "hidden_dim": 256,
+      "num_seeds": 3,
+      "num_epochs": 25,
+      "batch_size": 256,
+      "lr": 0.001,
+      "activations": [
+        "relu",
+        "gelu",
+        "swish",
+        "tanh",
+        "selu",
+        "tanh_ln",
+        "gelu_ln",
+        "competing",
+        "cwa"
+      ],
+      "datasets": [
+        "cifar10"
+      ],
+      "status": "experiment_in_progress",
+      "completed_configs": {
+        "depth_6": [
+          "relu",
+          "gelu"
+        ]
+      },
+      "gradient_stability_results": {},
+      "accuracy_improvements_vs_gelu": {},
+      "soc_finding": {}
+    },
+    "datasets": [
+      {
+        "dataset": "cifar10_gradient_stability",
+        "examples": [
+          {
+            "input": "Train 6-layer unnormalized MLP with relu activation on CIFAR-10 (hidden_dim=256, batch=256, epochs=25, seeds=3). Measure gradient ratio and test accuracy.",
+            "output": "CWA hypothesis: gradient ratio < 2.0 (stable) vs GELU > 5.0 (vanishing/exploding), competitive accuracy within 5pp of GELU.",
+            "predict_accuracy": "0.5217",
+            "predict_gradient_ratio": "0.4579",
+            "metadata_depth": 6,
+            "metadata_activation": "relu",
+            "metadata_dataset": "cifar10",
+            "metadata_num_seeds": 3,
+            "metadata_accuracy_vs_gelu_delta": "0.0092"
+          },
+          {
+            "input": "Train 6-layer unnormalized MLP with gelu activation on CIFAR-10 (hidden_dim=256, batch=256, epochs=25, seeds=3). Measure gradient ratio and test accuracy.",
+            "output": "CWA hypothesis: gradient ratio < 2.0 (stable) vs GELU > 5.0 (vanishing/exploding), competitive accuracy within 5pp of GELU.",
+            "predict_accuracy": "0.5125",
+            "predict_gradient_ratio": "1.685",
+            "metadata_depth": 6,
+            "metadata_activation": "gelu",
+            "metadata_dataset": "cifar10",
+            "metadata_num_seeds": 3,
+            "metadata_accuracy_vs_gelu_delta": "0.0"
+          },
+          {
+            "input": "Train 6-layer unnormalized MLP with swish activation on CIFAR-10 (hidden_dim=256, batch=256, epochs=25, seeds=3). Measure gradient ratio and test accuracy.",
+            "output": "CWA hypothesis: gradient ratio < 2.0 (stable) vs GELU > 5.0 (vanishing/exploding), competitive accuracy within 5pp of GELU.",
+            "predict_accuracy": "None",
+            "predict_gradient_ratio": "None",
+            "metadata_depth": 6,
+            "metadata_activation": "swish",
+            "metadata_dataset": "cifar10",
+            "metadata_num_seeds": 3,
+            "metadata_accuracy_vs_gelu_delta": "-0.5125"
+          }
+        ]
+      }
+    ]
+  },
+  "rn_data": {
+    "metadata": {
+      "method_name": "CWA (Curie-Weiss Activation)",
+      "description": "ResNet-20 CIFAR-100 width analysis + overhead benchmark (interim)",
+      "timestamp": "2026-06-16T18:53:25.016341",
+      "verdict": {
+        "memory_within_2x": null,
+        "cwa_vs_gelu_no_bn_significant": false,
+        "soc_observed": false,
+        "mean_final_J_s_bar": 0.30578322721243323,
+        "width_positive_correlation": null,
+        "cwa_acc_standard_no_bn": 0.1401,
+        "gelu_acc_standard_no_bn": 0.1893,
+        "note": "interim result \u2014 experiment still running"
+      },
+      "n_examples": 56
+    },
+    "datasets": [
+      {
+        "dataset": "CIFAR-100+synthetic-overhead",
+        "examples": [
+          {
+            "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=0/9.",
+            "output": "test_acc=0.0689 at epoch 0. Final acc=0.1401.",
+            "metadata_experiment": "exp2_cifar100_per_epoch",
+            "metadata_config": "standard_no_bn",
+            "metadata_activation": "CWA",
+            "metadata_seed": "0",
+            "metadata_epoch": "0",
+            "predict_cwa": "acc=0.0689"
+          },
+          {
+            "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=1/9.",
+            "output": "test_acc=0.0887 at epoch 1. Final acc=0.1401.",
+            "metadata_experiment": "exp2_cifar100_per_epoch",
+            "metadata_config": "standard_no_bn",
+            "metadata_activation": "CWA",
+            "metadata_seed": "0",
+            "metadata_epoch": "1",
+            "predict_cwa": "acc=0.0887"
+          },
+          {
+            "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=2/9.",
+            "output": "test_acc=0.1015 at epoch 2. Final acc=0.1401.",
+            "metadata_experiment": "exp2_cifar100_per_epoch",
+            "metadata_config": "standard_no_bn",
+            "metadata_activation": "CWA",
+            "metadata_seed": "0",
+            "metadata_epoch": "2",
+            "predict_cwa": "acc=0.1015"
+          }
+        ]
+      }
+    ]
+  }
+}

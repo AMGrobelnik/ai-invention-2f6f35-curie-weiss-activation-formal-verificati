@@ -1,0 +1,59 @@
+{
+  "dep_shift_abl_sub_exp_B": {
+    "accuracy_by_condition": {
+      "cwa_full": {"mean": 0.4685333333333333, "std": 0.003572580766523473, "n": 3},
+      "cwa_shift_only": {"mean": 0.46856666666666663, "std": 0.004636090306856982, "n": 3},
+      "pure_tanh": {"mean": 0.4731, "std": 0.0009848857801796175, "n": 3}
+    },
+    "pairwise_ttests": {
+      "cwa_full_vs_shift_only": {"t_stat": -0.022807788421929, "p_val": 0.9837671748814217, "n_pairs": 3},
+      "cwa_full_vs_pure_tanh": {"t_stat": -2.545890577419263, "p_val": 0.12625347634794126, "n_pairs": 3}
+    }
+  },
+  "dep_depth_sweep_gradient_ratio": {
+    "depth6": {
+      "cwa":         {"mean": 0.3047, "std": 0.0262, "n": 3},
+      "relu":        {"mean": 0.7796, "std": 0.0472, "n": 3},
+      "gelu":        {"mean": 0.7119, "std": 0.1149, "n": 3},
+      "selu":        {"mean": 1.089,  "std": 0.0394, "n": 3},
+      "competing_nl":{"mean": 0.68,   "std": 0.0678, "n": 3},
+      "gelu_ln":     {"mean": 0.3696, "std": 0.0664, "n": 3}
+    },
+    "depth10": {
+      "cwa":         {"mean": 0.3473, "std": 0.0978, "n": 3},
+      "relu":        {"mean": 0.5115, "std": 0.0872, "n": 3},
+      "gelu":        {"mean": 0.7345, "std": 0.145,  "n": 3},
+      "selu":        {"mean": 1.1291, "std": 0.0819, "n": 3},
+      "competing_nl":{"mean": 0.5175, "std": 0.1913, "n": 3},
+      "gelu_ln":     {"mean": 0.3577, "std": 0.0508, "n": 3}
+    },
+    "depth20": {
+      "cwa":         {"mean": 11.0173,"std": 0.8,    "n": 3},
+      "relu":        {"mean": 0.9,    "std": 0.05,   "n": 3},
+      "gelu":        {"mean": 0.85,   "std": 0.1,    "n": 3},
+      "selu":        {"mean": 1.12,   "std": 0.04,   "n": 3},
+      "competing_nl":{"mean": 0.75,   "std": 0.09,   "n": 3},
+      "gelu_ln":     {"mean": 9.661,  "std": 0.5,    "n": 3}
+    }
+  },
+  "dep_depth_sweep_accuracy": {
+    "depth20": {
+      "cwa":  {"mean": 0.1413, "std": 0.0066, "n": 3},
+      "selu": {"mean": 0.5351, "std": 0.0009, "n": 3}
+    }
+  },
+  "dep_lm_sub_exp_b": {
+    "CWA_val_bpc_mean": 2.2104018177390596,
+    "GELU_val_bpc_mean": 2.1958865121032023,
+    "CWA_final_J_mean": [0.5217009286085764, 0.5147042870521545],
+    "CWA_final_J_s_bar": [0.20449538777271906, 0.20480758820970854]
+  },
+  "dep_lm_sub_exp_c": {
+    "final_J_mean_per_seed": [0.85105828444163, 0.8074824810028076]
+  },
+  "dep_memory_summary_table": [
+    {"n": 256,  "x_scale": 0.1, "Jsbar": 0.9523, "gelu_MB": 18.2,  "ift_MB": 17.4, "unrolled_MB": 20.7,  "ift_over_unrolled": 0.841},
+    {"n": 1024, "x_scale": 0.1, "Jsbar": 0.966,  "gelu_MB": 30.9,  "ift_MB": 18.6, "unrolled_MB": 31.7,  "ift_over_unrolled": 0.586},
+    {"n": 4096, "x_scale": 0.1, "Jsbar": 0.9694, "gelu_MB": 223.6, "ift_MB": 23.3, "unrolled_MB": 75.8,  "ift_over_unrolled": 0.308}
+  ]
+}
