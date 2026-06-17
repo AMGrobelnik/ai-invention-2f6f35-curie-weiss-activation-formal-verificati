@@ -1,0 +1,484 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1504" height="1218"
+  viewBox="0 0 1504 1218" role="img" aria-label="Artifact workflow">
+  <style>
+    a { cursor: pointer; }
+    a:hover rect.card { stroke-width: 2; }
+  </style>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" flood-color="rgba(0,0,0,0.45)"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+      orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#8b949e"/>
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0d1117"/>
+<g><title></title><path d="M 641.0 994.0 C 641.0 1032.7, 784.0 1041.3, 784.0 1080.0" fill="none" stroke="#8b949e" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title></title><path d="M 927.0 994.0 C 927.0 1032.7, 784.0 1041.3, 784.0 1080.0" fill="none" stroke="#8b949e" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title></title><path d="M 784.0 74.0 C 784.0 112.7, 212.0 121.3, 212.0 160.0" fill="none" stroke="#8b949e" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title></title><path d="M 784.0 74.0 C 784.0 112.7, 498.0 121.3, 498.0 160.0" fill="none" stroke="#8b949e" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title></title><path d="M 784.0 74.0 C 784.0 112.7, 784.0 121.3, 784.0 160.0" fill="none" stroke="#8b949e" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title></title><path d="M 784.0 74.0 C 784.0 112.7, 1070.0 121.3, 1070.0 160.0" fill="none" stroke="#8b949e" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title></title><path d="M 784.0 74.0 C 784.0 112.7, 1356.0 121.3, 1356.0 160.0" fill="none" stroke="#8b949e" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: IFT-implementation-guide</title><path d="M 212.0 258.0 C 212.0 296.7, 355.0 305.3, 355.0 344.0" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>background: IFT-formulas</title><path d="M 212.0 258.0 C 212.0 296.7, 641.0 305.3, 641.0 344.0" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>background: mathematical-background</title><path d="M 212.0 258.0 C 212.0 296.7, 927.0 305.3, 927.0 344.0" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: MLP-experiment-results</title><path d="M 498.0 258.0 C 498.0 296.7, 1213.0 305.3, 1213.0 344.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: LM-experiment-results</title><path d="M 1070.0 258.0 C 1070.0 296.7, 1213.0 305.3, 1213.0 344.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: ResNet-experiment-results</title><path d="M 784.0 258.0 C 784.0 296.7, 1213.0 305.3, 1213.0 344.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: depth-sweep-results</title><path d="M 355.0 442.0 C 355.0 480.7, 1070.0 489.3, 1070.0 528.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: ift-lm-results</title><path d="M 641.0 442.0 C 641.0 480.7, 1070.0 489.3, 1070.0 528.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: resnet-results</title><path d="M 784.0 258.0 C 784.0 379.5, 1070.0 406.5, 1070.0 528.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: original-mlp-results</title><path d="M 498.0 258.0 C 498.0 379.5, 1070.0 406.5, 1070.0 528.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: original-lm-results</title><path d="M 1070.0 258.0 C 1070.0 379.5, 1070.0 406.5, 1070.0 528.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>background: ift-formulas</title><path d="M 212.0 258.0 C 212.0 379.5, 498.0 406.5, 498.0 528.0" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>background: mathematical-background</title><path d="M 212.0 258.0 C 212.0 379.5, 784.0 406.5, 784.0 528.0" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: ift-formulas</title><path d="M 212.0 258.0 C 212.0 462.3, 641.0 507.7, 641.0 712.0" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: ift-benchmark-source</title><path d="M 641.0 442.0 C 641.0 563.5, 927.0 590.5, 927.0 712.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: shift-ablation-source</title><path d="M 498.0 626.0 C 498.0 664.7, 927.0 673.3, 927.0 712.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: depth-sweep-source</title><path d="M 355.0 442.0 C 355.0 563.5, 927.0 590.5, 927.0 712.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: original-mlp-source</title><path d="M 498.0 258.0 C 498.0 462.3, 927.0 507.7, 927.0 712.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>background: cwa-ift-methodology</title><path d="M 212.0 258.0 C 212.0 545.1, 641.0 608.9, 641.0 896.0" fill="none" stroke="#3b82f6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: shift-ablation</title><path d="M 498.0 626.0 C 498.0 747.5, 927.0 774.5, 927.0 896.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: depth-sweep</title><path d="M 355.0 442.0 C 355.0 646.3, 927.0 691.7, 927.0 896.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: memory-benchmark</title><path d="M 641.0 810.0 C 641.0 848.7, 927.0 857.3, 927.0 896.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: cwa-lm-results</title><path d="M 641.0 442.0 C 641.0 646.3, 927.0 691.7, 927.0 896.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<g><title>uses: mlp-experiment</title><path d="M 498.0 258.0 C 498.0 545.1, 927.0 608.9, 927.0 896.0" fill="none" stroke="#8b5cf6" stroke-width="1.6" stroke-opacity="0.8" marker-end="url(#arrow)"/></g>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati" target="_top">
+  <g class="node">
+    <rect class="card" x="699.0" y="22.0" width="170" height="52" rx="26"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <text x="784.0" y="44.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13">&#128161;</text>
+    <text x="784.0" y="60.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10.5"
+      font-weight="600" fill="#e6edf3">Hypothesis</text>
+  </g>
+</a>
+<text x="22" y="214.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8b949e">R1</text>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-1/research-1" target="_top">
+  <g class="node">
+    <title>CWA: DEQ IFT Backward, p_c Derivation, SELU, 2025-2026 Survey</title>
+    <rect class="card" x="86.0" y="162.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="86.0" y="162.0" width="4" height="96" rx="2" fill="#3b82f6"/>
+    <rect x="98.0" y="173.0" width="68" height="17" rx="8.5" fill="#3b82f6"/>
+    <text x="131.8" y="185.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">RESEARCH</text>
+    <text x="173.6" y="185.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-1/research-1</text>
+    <text x="100.0" y="210.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="100.0" dy="0">CWA: DEQ IFT Backward, p_c Derivation,</tspan><tspan x="100.0" dy="14">SELU, 2025-2026 Survey</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-1/experiment-1" target="_top">
+  <g class="node">
+    <title>CWA Activation: Gradient Stability &amp; Fixed-J Ablation (Exp 1 + Exp 4)</title>
+    <rect class="card" x="372.0" y="162.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="372.0" y="162.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="384.0" y="173.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="424.0" y="185.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="472.0" y="185.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-1/experiment-1</text>
+    <text x="386.0" y="210.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="386.0" dy="0">CWA Activation: Gradient Stability &amp;</tspan><tspan x="386.0" dy="14">Fixed-J Ablation (Exp 1 + Exp 4)</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-1/experiment-2" target="_top">
+  <g class="node">
+    <title>CWA ResNet-20 CIFAR-100 Width Analysis + Overhead Benchmark</title>
+    <rect class="card" x="658.0" y="162.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="658.0" y="162.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="670.0" y="173.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="710.0" y="185.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="758.0" y="185.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-1/experiment-2</text>
+    <text x="672.0" y="210.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="672.0" dy="0">CWA ResNet-20 CIFAR-100 Width Analysis</tspan><tspan x="672.0" dy="14">+ Overhead Benchmark</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-1/experiment-3" target="_top">
+  <g class="node">
+    <title>CWA Activation vs GELU/SELU/tanh-Swish in 6-Layer GPT Language Model</title>
+    <rect class="card" x="944.0" y="162.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="944.0" y="162.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="956.0" y="173.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="996.0" y="185.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="1044.0" y="185.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-1/experiment-3</text>
+    <text x="958.0" y="210.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="958.0" dy="0">CWA Activation vs GELU/SELU/tanh-Swish</tspan><tspan x="958.0" dy="14">in 6-Layer GPT Language Model</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-1/proof-1" target="_top">
+  <g class="node">
+    <title>CWA Formal Proof: Banach Convergence, IFT Gradient, Bias Bound</title>
+    <rect class="card" x="1230.0" y="162.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="1230.0" y="162.0" width="4" height="96" rx="2" fill="#ef4444"/>
+    <rect x="1242.0" y="173.0" width="49" height="17" rx="8.5" fill="#ef4444"/>
+    <text x="1266.5" y="185.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">PROOF</text>
+    <text x="1299.0" y="185.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-1/proof-1</text>
+    <text x="1244.0" y="210.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="1244.0" dy="0">CWA Formal Proof: Banach Convergence,</tspan><tspan x="1244.0" dy="14">IFT Gradient, Bias Bound</tspan></text>
+  </g>
+</a>
+<text x="22" y="398.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8b949e">R2</text>
+<line x1="86" y1="302.0" x2="1482" y2="302.0" stroke="#21262d" stroke-dasharray="3 5"/>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-2/experiment-1" target="_top">
+  <g class="node">
+    <title>CWA vs Baselines: Depth Sweep + Fixed-J Ablation on CIFAR-10 (PARTIAL_CONFIRM)</title>
+    <rect class="card" x="229.0" y="346.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="229.0" y="346.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="241.0" y="357.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="281.0" y="369.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="329.0" y="369.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-2/experiment-1</text>
+    <text x="243.0" y="394.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="243.0" dy="0">CWA vs Baselines: Depth Sweep +</tspan><tspan x="243.0" dy="14">Fixed-J Ablation on CIFAR-10</tspan><tspan x="243.0" dy="14">(PARTIAL_CONFIRM)</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-2/experiment-2" target="_top">
+  <g class="node">
+    <title>CWA Iter2 Exp2: IFT Benchmark + Extended LM + 100x J-LR on RTX 5090</title>
+    <rect class="card" x="515.0" y="346.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="515.0" y="346.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="527.0" y="357.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="567.0" y="369.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="615.0" y="369.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-2/experiment-2</text>
+    <text x="529.0" y="394.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="529.0" dy="0">CWA Iter2 Exp2: IFT Benchmark +</tspan><tspan x="529.0" dy="14">Extended LM + 100x J-LR on RTX 5090</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-2/proof-1" target="_top">
+  <g class="node">
+    <title>CWA Lean 4 Proofs: Revised Theorem 3 (code tolerance) + Theorem 4 (warm-start-T bias)</title>
+    <rect class="card" x="801.0" y="346.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="801.0" y="346.0" width="4" height="96" rx="2" fill="#ef4444"/>
+    <rect x="813.0" y="357.0" width="49" height="17" rx="8.5" fill="#ef4444"/>
+    <text x="837.5" y="369.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">PROOF</text>
+    <text x="870.0" y="369.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-2/proof-1</text>
+    <text x="815.0" y="394.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="815.0" dy="0">CWA Lean 4 Proofs: Revised Theorem 3</tspan><tspan x="815.0" dy="14">(code tolerance) + Theorem 4</tspan><tspan x="815.0" dy="14">(warm-start-T bias)</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-2/evaluation-1" target="_top">
+  <g class="node">
+    <title>CWA Statistical Analysis: Paired Tests, K-Saturation, Gradient Bias &amp; p_c Audit</title>
+    <rect class="card" x="1087.0" y="346.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="1087.0" y="346.0" width="4" height="96" rx="2" fill="#10b981"/>
+    <rect x="1099.0" y="357.0" width="80" height="17" rx="8.5" fill="#10b981"/>
+    <text x="1139.0" y="369.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EVALUATION</text>
+    <text x="1187.0" y="369.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-2/evaluation-1</text>
+    <text x="1101.0" y="394.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="1101.0" dy="0">CWA Statistical Analysis: Paired</tspan><tspan x="1101.0" dy="14">Tests, K-Saturation, Gradient Bias &amp;</tspan><tspan x="1101.0" dy="14">p_c Audit</tspan></text>
+  </g>
+</a>
+<text x="22" y="582.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8b949e">R3</text>
+<line x1="86" y1="486.0" x2="1482" y2="486.0" stroke="#21262d" stroke-dasharray="3 5"/>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-3/experiment-1" target="_top">
+  <g class="node">
+    <title>CWA Mechanistic Sub-Experiments: Small-Weight Init and Constant-Shift Ablation on CIFAR-10</title>
+    <rect class="card" x="372.0" y="530.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="372.0" y="530.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="384.0" y="541.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="424.0" y="553.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="472.0" y="553.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-3/experiment-1</text>
+    <text x="386.0" y="578.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="386.0" dy="0">CWA Mechanistic Sub-Experiments:</tspan><tspan x="386.0" dy="14">Small-Weight Init and Constant-Shift</tspan><tspan x="386.0" dy="14">Ablation on CIFAR-10</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-3/proof-1" target="_top">
+  <g class="node">
+    <title>CWA Proof v3: Corollary 4b (J≤0.55) Covering Experimental Regime</title>
+    <rect class="card" x="658.0" y="530.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="658.0" y="530.0" width="4" height="96" rx="2" fill="#ef4444"/>
+    <rect x="670.0" y="541.0" width="49" height="17" rx="8.5" fill="#ef4444"/>
+    <text x="694.5" y="553.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">PROOF</text>
+    <text x="727.0" y="553.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-3/proof-1</text>
+    <text x="672.0" y="578.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="672.0" dy="0">CWA Proof v3: Corollary 4b (J≤0.55)</tspan><tspan x="672.0" dy="14">Covering Experimental Regime</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-3/evaluation-1" target="_top">
+  <g class="node">
+    <title>CWA Re-Analysis: Six Reviewer Critiques Fixed via Corrected Metrics</title>
+    <rect class="card" x="944.0" y="530.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="944.0" y="530.0" width="4" height="96" rx="2" fill="#10b981"/>
+    <rect x="956.0" y="541.0" width="80" height="17" rx="8.5" fill="#10b981"/>
+    <text x="996.0" y="553.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EVALUATION</text>
+    <text x="1044.0" y="553.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-3/evaluation-1</text>
+    <text x="958.0" y="578.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="958.0" dy="0">CWA Re-Analysis: Six Reviewer</tspan><tspan x="958.0" dy="14">Critiques Fixed via Corrected Metrics</tspan></text>
+  </g>
+</a>
+<text x="22" y="766.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8b949e">R4</text>
+<line x1="86" y1="670.0" x2="1482" y2="670.0" stroke="#21262d" stroke-dasharray="3 5"/>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-4/experiment-1" target="_top">
+  <g class="node">
+    <title>CWA IFT vs Unrolled K=50 vs GELU Peak GPU Memory Benchmark</title>
+    <rect class="card" x="515.0" y="714.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="515.0" y="714.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="527.0" y="725.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="567.0" y="737.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="615.0" y="737.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-4/experiment-1</text>
+    <text x="529.0" y="762.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="529.0" dy="0">CWA IFT vs Unrolled K=50 vs GELU Peak</tspan><tspan x="529.0" dy="14">GPU Memory Benchmark</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-4/evaluation-1" target="_top">
+  <g class="node">
+    <title>CWA Corrected Evaluation: Six Reviewer Fixes from Existing JSONs</title>
+    <rect class="card" x="801.0" y="714.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="801.0" y="714.0" width="4" height="96" rx="2" fill="#10b981"/>
+    <rect x="813.0" y="725.0" width="80" height="17" rx="8.5" fill="#10b981"/>
+    <text x="853.0" y="737.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EVALUATION</text>
+    <text x="901.0" y="737.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-4/evaluation-1</text>
+    <text x="815.0" y="762.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="815.0" dy="0">CWA Corrected Evaluation: Six Reviewer</tspan><tspan x="815.0" dy="14">Fixes from Existing JSONs</tspan></text>
+  </g>
+</a>
+<text x="22" y="950.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#8b949e">R5</text>
+<line x1="86" y1="854.0" x2="1482" y2="854.0" stroke="#21262d" stroke-dasharray="3 5"/>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-5/experiment-1" target="_top">
+  <g class="node">
+    <title>CWA vs SELU vs GELU: Char-GPT on Tiny Shakespeare (5000 steps)</title>
+    <rect class="card" x="515.0" y="898.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="515.0" y="898.0" width="4" height="96" rx="2" fill="#8b5cf6"/>
+    <rect x="527.0" y="909.0" width="80" height="17" rx="8.5" fill="#8b5cf6"/>
+    <text x="567.0" y="921.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EXPERIMENT</text>
+    <text x="615.0" y="921.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-5/experiment-1</text>
+    <text x="529.0" y="946.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="529.0" dy="0">CWA vs SELU vs GELU: Char-GPT on Tiny</tspan><tspan x="529.0" dy="14">Shakespeare (5000 steps)</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/tree/main/round-5/evaluation-1" target="_top">
+  <g class="node">
+    <title>CWA Final-Paper Stats: Power, Metric Table, Captions, Abstract Numbers</title>
+    <rect class="card" x="801.0" y="898.0" width="252" height="96" rx="10"
+      fill="#161b22" stroke="#30363d" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="801.0" y="898.0" width="4" height="96" rx="2" fill="#10b981"/>
+    <rect x="813.0" y="909.0" width="80" height="17" rx="8.5" fill="#10b981"/>
+    <text x="853.0" y="921.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+      font-size="9.5" font-weight="700" fill="#ffffff" letter-spacing="0.5">EVALUATION</text>
+    <text x="901.0" y="921.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="9"
+      fill="#8b949e">round-5/evaluation-1</text>
+    <text x="815.0" y="946.0" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5" font-weight="600"
+      fill="#e6edf3"><tspan x="815.0" dy="0">CWA Final-Paper Stats: Power, Metric</tspan><tspan x="815.0" dy="14">Table, Captions, Abstract Numbers</tspan></text>
+  </g>
+</a>
+<a href="https://github.com/AMGrobelnik/ai-invention-2f6f35-curie-weiss-activation-formal-verificati/blob/main/paper.pdf" target="_top">
+  <g class="node">
+    <rect class="card" x="689.0" y="1082.0" width="190" height="72" rx="10"
+      fill="#161b22" stroke="#e11d48" stroke-width="1.4" filter="url(#shadow)"/>
+    <text x="784.0" y="1112.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="16">&#128196;</text>
+    <text x="784.0" y="1132.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="11.5"
+      font-weight="700" fill="#e6edf3">Research Paper</text>
+  </g>
+</a>
+<g>
+  <title>uses: IFT-implementation-guide</title>
+  <rect x="263.3" y="293.0" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#3b82f6" stroke-width="1"/>
+  <text x="283.5" y="304.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#3b82f6">USES</text>
+</g>
+<g>
+  <title>background: IFT-formulas</title>
+  <rect x="391.0" y="293.0" width="71" height="16" rx="8"
+    fill="#0d1117" stroke="#3b82f6" stroke-width="1"/>
+  <text x="426.5" y="304.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#3b82f6">BACKGROUND</text>
+</g>
+<g>
+  <title>background: mathematical-background</title>
+  <rect x="718.7" y="306.1" width="71" height="16" rx="8"
+    fill="#0d1117" stroke="#3b82f6" stroke-width="1"/>
+  <text x="754.2" y="317.1" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#3b82f6">BACKGROUND</text>
+</g>
+<g>
+  <title>uses: MLP-experiment-results</title>
+  <rect x="835.3" y="293.0" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="855.5" y="304.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: LM-experiment-results</title>
+  <rect x="1138.3" y="298.7" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="1158.5" y="309.7" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: ResNet-experiment-results</title>
+  <rect x="978.3" y="293.0" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="998.5" y="304.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: depth-sweep-results</title>
+  <rect x="938.1" y="495.7" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="958.3" y="506.7" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: ift-lm-results</title>
+  <rect x="835.3" y="477.0" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="855.5" y="488.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: resnet-results</title>
+  <rect x="1025.3" y="462.5" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="1045.5" y="473.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: original-mlp-results</title>
+  <rect x="526.7" y="307.5" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="546.9" y="318.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: original-lm-results</title>
+  <rect x="1049.8" y="307.5" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="1070.0" y="318.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>background: ift-formulas</title>
+  <rect x="438.0" y="462.5" width="71" height="16" rx="8"
+    fill="#0d1117" stroke="#3b82f6" stroke-width="1"/>
+  <text x="473.5" y="473.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#3b82f6">BACKGROUND</text>
+</g>
+<g>
+  <title>background: mathematical-background</title>
+  <rect x="699.6" y="462.5" width="71" height="16" rx="8"
+    fill="#0d1117" stroke="#3b82f6" stroke-width="1"/>
+  <text x="735.1" y="473.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#3b82f6">BACKGROUND</text>
+</g>
+<g>
+  <title>uses: ift-formulas</title>
+  <rect x="355.3" y="446.9" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#3b82f6" stroke-width="1"/>
+  <text x="375.5" y="457.9" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#3b82f6">USES</text>
+</g>
+<g>
+  <title>uses: ift-benchmark-source</title>
+  <rect x="645.3" y="491.5" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="665.5" y="502.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: shift-ablation-source</title>
+  <rect x="581.5" y="647.9" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="601.7" y="658.9" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: depth-sweep-source</title>
+  <rect x="383.7" y="491.5" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="403.9" y="502.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: original-mlp-source</title>
+  <rect x="641.3" y="446.9" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="661.5" y="457.9" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>background: cwa-ift-methodology</title>
+  <rect x="291.6" y="483.0" width="71" height="16" rx="8"
+    fill="#0d1117" stroke="#3b82f6" stroke-width="1"/>
+  <text x="327.1" y="494.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#3b82f6">BACKGROUND</text>
+</g>
+<g>
+  <title>uses: shift-ablation</title>
+  <rect x="514.5" y="675.5" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="534.7" y="686.5" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: depth-sweep</title>
+  <rect x="688.9" y="691.1" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="709.1" y="702.1" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: memory-benchmark</title>
+  <rect x="763.8" y="845.0" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="784.0" y="856.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: cwa-lm-results</title>
+  <rect x="763.8" y="661.0" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="784.0" y="672.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<g>
+  <title>uses: mlp-experiment</title>
+  <rect x="592.9" y="483.0" width="40" height="16" rx="8"
+    fill="#0d1117" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="613.1" y="494.0" text-anchor="middle" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
+    font-size="8.5" font-weight="600" letter-spacing="0.4" fill="#8b5cf6">USES</text>
+</g>
+<circle cx="27" cy="1190.0" r="5" fill="#3b82f6"/><text x="38" y="1193.5" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e">research</text><circle cx="120.2" cy="1190.0" r="5" fill="#8b5cf6"/><text x="131.2" y="1193.5" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e">experiment</text><circle cx="226.2" cy="1190.0" r="5" fill="#10b981"/><text x="237.2" y="1193.5" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e">evaluation</text><circle cx="332.2" cy="1190.0" r="5" fill="#ef4444"/><text x="343.2" y="1193.5" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e">proof</text><circle cx="406.2" cy="1190.0" r="5" fill="#e11d48"/><text x="417.2" y="1193.5" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" fill="#8b949e">paper</text><text x="483.2" y="1193.5" font-family="-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="10" font-style="italic" fill="#8b949e">&#8594; arrows show what each artifact builds on &#183; click any card</text>
+</svg>

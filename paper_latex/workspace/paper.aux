@@ -1,0 +1,90 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{Ioffe2015}
+\citation{Ba2016}
+\citation{Poole2016,Yang2017}
+\citation{Lesser2026}
+\citation{Poole2016,Yang2017}
+\citation{Poole2016,Yang2017}
+\citation{Lesser2026}
+\citation{Curie1895}
+\citation{Poole2016}
+\citation{Yang2017}
+\citation{Lesser2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{Poole2016}
+\citation{Yang2017}
+\citation{Klambauer2017}
+\citation{Lesser2026}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\citation{Bai2019}
+\citation{Geng2023}
+\citation{Milletari2018}
+\citation{Kim2026}
+\citation{Vitvitskyi2026}
+\citation{Ghavasieh2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overview of the Curie-Weiss Activation (CWA). \textbf  {Left}: A hidden layer with pre-activations $\mathbf  {x}$ computes the mean-field fixed point $m^*$ via iteration $m_{t+1} = \overline  {\tanh }(\mathbf  {x}+J\cdot m_t)$ from $m_0=0$, converging in $K_{\rm  mean}\approx 7.4$ steps when $J\cdot \bar  {s}\approx 0.20$--$0.40$. \textbf  {Center}: The effective coupling $J\cdot \bar  {s} = J\cdot \overline  {\text  {sech}^2(\mathbf  {x}+Jm^*)}$ simultaneously determines convergence rate, Jacobian spectral norm, and proximity to the critical point $J\cdot \bar  {s}=1$. \textbf  {Right}: The hybrid backward pass uses warm-start (unrolled $T=3$ steps) when $J\cdot \bar  {s}<0.8$ (the standard training regime with $J\cdot \bar  {s}\approx 0.20$--$0.41$) and the closed-form IFT gradient when $J\cdot \bar  {s}\geq 0.8$ (never triggered in normal training). The IFT path stores only the scalar $m^*$, giving O($n$) memory versus O($K\cdot n$) for unrolled backpropagation.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:fig1}{{1}{3}{Overview of the Curie-Weiss Activation (CWA). \textbf {Left}: A hidden layer with pre-activations $\mathbf {x}$ computes the mean-field fixed point $m^*$ via iteration $m_{t+1} = \overline {\tanh }(\mathbf {x}+J\cdot m_t)$ from $m_0=0$, converging in $K_{\rm mean}\approx 7.4$ steps when $J\cdot \bar {s}\approx 0.20$--$0.40$. \textbf {Center}: The effective coupling $J\cdot \bar {s} = J\cdot \overline {\text {sech}^2(\mathbf {x}+Jm^*)}$ simultaneously determines convergence rate, Jacobian spectral norm, and proximity to the critical point $J\cdot \bar {s}=1$. \textbf {Right}: The hybrid backward pass uses warm-start (unrolled $T=3$ steps) when $J\cdot \bar {s}<0.8$ (the standard training regime with $J\cdot \bar {s}\approx 0.20$--$0.41$) and the closed-form IFT gradient when $J\cdot \bar {s}\geq 0.8$ (never triggered in normal training). The IFT path stores only the scalar $m^*$, giving O($n$) memory versus O($K\cdot n$) for unrolled backpropagation}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: Curie-Weiss Activation}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method: Curie-Weiss Activation}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Definition and Forward Pass}{3}{subsection.3.1}\protected@file@percent }
+\citation{Bai2019}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Hybrid IFT/Warm-Start Backpropagation}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:ift}{{3.2}{4}{Hybrid IFT/Warm-Start Backpropagation}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Formal Verification in Lean 4}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment 1: IFT Branch Validation and Memory Benchmark}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp1}{{4.1}{4}{Experiment 1: IFT Branch Validation and Memory Benchmark}{subsection.4.1}{}}
+\citation{Lesser2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experiment 2: Gradient Stability in Unnormalized Deep MLPs}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp2}{{4.2}{5}{Experiment 2: Gradient Stability in Unnormalized Deep MLPs}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiment 3: Fixed-J Ablation and Shift Ablation}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp3}{{4.3}{5}{Experiment 3: Fixed-J Ablation and Shift Ablation}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Peak GPU memory (MB, log scale) for CWA-IFT vs.\ CWA-Unrolled ($K=50$) vs.\ GELU baseline at layer widths $n \in \{256, 1024, 4096\}$ (batch$=64$, $J_{\rm  raw}=4.0$, measured over 5 runs after 3 warmup runs). CWA-IFT and CWA-Unrolled measure activation backward pass overhead in isolation; the GELU baseline includes \texttt  {nn.Linear($n$,$n$)}, making the IFT/GELU ratio at $n=4096$ ($0.10\times $) an apples-to-oranges comparison dominated by the O($n^2$) weight matrix---not a true measure of CWA's practical advantage over GELU. The architecturally fair comparison is IFT vs.\ Unrolled: savings grow from 16\% ($n=256$) to 41\% ($n=1024$) to 69\% ($n=4096$, IFT/Unrolled $= 0.31\times $), confirming the theoretical O($n$) vs.\ O($K\cdot n$) complexity. Near-critical and saturated regimes produce identical memory profiles.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:fig3}{{2}{6}{Peak GPU memory (MB, log scale) for CWA-IFT vs.\ CWA-Unrolled ($K=50$) vs.\ GELU baseline at layer widths $n \in \{256, 1024, 4096\}$ (batch$=64$, $J_{\rm raw}=4.0$, measured over 5 runs after 3 warmup runs). CWA-IFT and CWA-Unrolled measure activation backward pass overhead in isolation; the GELU baseline includes \texttt {nn.Linear($n$,$n$)}, making the IFT/GELU ratio at $n=4096$ ($0.10\times $) an apples-to-oranges comparison dominated by the O($n^2$) weight matrix---not a true measure of CWA's practical advantage over GELU. The architecturally fair comparison is IFT vs.\ Unrolled: savings grow from 16\% ($n=256$) to 41\% ($n=1024$) to 69\% ($n=4096$, IFT/Unrolled $= 0.31\times $), confirming the theoretical O($n$) vs.\ O($K\cdot n$) complexity. Near-critical and saturated regimes produce identical memory profiles}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Gradient stability of six activation functions in unnormalized MLPs (256 hidden units, CIFAR-10, 3 seeds), measured by $|\text  {ratio}-1|$ where $\text  {ratio} = \log \|\nabla _{W_1}\mathcal  {L}\| / \log \|\nabla _{W_L}\mathcal  {L}\|$ (lower is better; ideal $= 0$). SELU achieves the best stability at all depths ($|\text  {ratio}-1| = 0.089, 0.129, 0.471$ at depths 6, 10, 20). CWA ranks last at all depths ($0.695, 0.653, 10.017$)---raw gradient ratio $0.305$ at depth\nobreakspace  {}6 indicates \emph  {underflow}, not balance, 7.8$\times $ worse than SELU. GELU+LN ranks second-worst at all three depths ($0.630, 0.642, 8.661$, with raw ratio $9.661$ at depth\nobreakspace  {}20); cross-class comparisons between normalized and unnormalized architectures via this metric should be interpreted with caution. Error bars show standard deviation over 3 seeds. The $y$-axis uses a log scale; the depth-20 bar for CWA ($10.017$) is truncated for readability.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:fig2}{{3}{7}{Gradient stability of six activation functions in unnormalized MLPs (256 hidden units, CIFAR-10, 3 seeds), measured by $|\text {ratio}-1|$ where $\text {ratio} = \log \|\nabla _{W_1}\mathcal {L}\| / \log \|\nabla _{W_L}\mathcal {L}\|$ (lower is better; ideal $= 0$). SELU achieves the best stability at all depths ($|\text {ratio}-1| = 0.089, 0.129, 0.471$ at depths 6, 10, 20). CWA ranks last at all depths ($0.695, 0.653, 10.017$)---raw gradient ratio $0.305$ at depth~6 indicates \emph {underflow}, not balance, 7.8$\times $ worse than SELU. GELU+LN ranks second-worst at all three depths ($0.630, 0.642, 8.661$, with raw ratio $9.661$ at depth~20); cross-class comparisons between normalized and unnormalized architectures via this metric should be interpreted with caution. Error bars show standard deviation over 3 seeds. The $y$-axis uses a log scale; the depth-20 bar for CWA ($10.017$) is truncated for readability}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Experiment 4: Language Modeling with SELU Baseline}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp4}{{4.4}{7}{Experiment 4: Language Modeling with SELU Baseline}{subsection.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Shift ablation experiment on 10-layer unnormalized MLP (256 hidden units, CIFAR-10, 3 seeds). \textbf  {Left}: Final test accuracy for three conditions---CWA-Full (standard fixed-point), CWA-ShiftOnly (detached mean shift, no self-consistency), and Pure-Tanh (no shift). All differences are non-significant: CWA-Full vs.\ CWA-ShiftOnly ($p = 0.984$), CWA-Full vs.\ Pure-Tanh ($p = 0.126$). Pure-Tanh numerically outperforms both CWA variants. \textbf  {Right}: The minimum detectable effect (MDE) at 80\% power with $n=3$ seeds is $\approx 0.8$--$1.0$\,pp; the null result rules out effects $\geq 1$\,pp but cannot exclude smaller effects.}}{8}{figure.4}\protected@file@percent }
+\newlabel{fig:fig4}{{4}{8}{Shift ablation experiment on 10-layer unnormalized MLP (256 hidden units, CIFAR-10, 3 seeds). \textbf {Left}: Final test accuracy for three conditions---CWA-Full (standard fixed-point), CWA-ShiftOnly (detached mean shift, no self-consistency), and Pure-Tanh (no shift). All differences are non-significant: CWA-Full vs.\ CWA-ShiftOnly ($p = 0.984$), CWA-Full vs.\ Pure-Tanh ($p = 0.126$). Pure-Tanh numerically outperforms both CWA variants. \textbf {Right}: The minimum detectable effect (MDE) at 80\% power with $n=3$ seeds is $\approx 0.8$--$1.0$\,pp; the null result rules out effects $\geq 1$\,pp but cannot exclude smaller effects}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why CWA Produces Gradient Underflow, Not Balance}{8}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Why the Shift Ablation Is a Complete Null}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Character-level GPT on Tiny Shakespeare (6 layers, 256 hidden, 8 heads, 2 seeds). \textbf  {Left}: Validation BPC at 100 training steps across three activations. SELU achieves the worst BPC ($3.673 \pm 0.006$), contrasting with its dominant performance in unnormalized MLPs. CWA ($3.642 \pm 0.004$) and GELU ($3.641 \pm 0.001$) are essentially tied. \textbf  {Right}: CWA diagnostic trajectory over 100 training steps showing $J\cdot \bar  {s}$ (blue) and mean activation magnitude (red). $J\cdot \bar  {s}$ starts at $0.457$ and declines to $0.452$ as mean activation magnitude rises from $0.254$ to $0.274$---confirming that weight growth during training reduces $\text  {sech}^2$ and actively pushes $J\cdot \bar  {s}$ away from criticality. At 5000 steps, $J\cdot \bar  {s}$ reaches $\approx 0.205$ as activation magnitudes approach $\sim 2.0$.}}{9}{figure.5}\protected@file@percent }
+\newlabel{fig:fig5}{{5}{9}{Character-level GPT on Tiny Shakespeare (6 layers, 256 hidden, 8 heads, 2 seeds). \textbf {Left}: Validation BPC at 100 training steps across three activations. SELU achieves the worst BPC ($3.673 \pm 0.006$), contrasting with its dominant performance in unnormalized MLPs. CWA ($3.642 \pm 0.004$) and GELU ($3.641 \pm 0.001$) are essentially tied. \textbf {Right}: CWA diagnostic trajectory over 100 training steps showing $J\cdot \bar {s}$ (blue) and mean activation magnitude (red). $J\cdot \bar {s}$ starts at $0.457$ and declines to $0.452$ as mean activation magnitude rises from $0.254$ to $0.274$---confirming that weight growth during training reduces $\text {sech}^2$ and actively pushes $J\cdot \bar {s}$ away from criticality. At 5000 steps, $J\cdot \bar {s}$ reaches $\approx 0.205$ as activation magnitudes approach $\sim 2.0$}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Why Self-Organized Criticality Fails: The Declining $J\cdot \bar  {s}$ Mechanism}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}SELU Architecture Specificity}{9}{subsection.5.4}\protected@file@percent }
+\bibstyle{abbrvnat}
+\bibdata{references}
+\bibcite{Ba2016}{{1}{2016}{{Ba et~al.}}{{Ba, Kiros, and Hinton}}}
+\bibcite{Bai2019}{{2}{2019}{{Bai et~al.}}{{Bai, Kolter, and Koltun}}}
+\bibcite{Curie1895}{{3}{1895}{{Curie}}{{}}}
+\bibcite{Geng2023}{{4}{2023}{{Geng and Kolter}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Is CWA Worth Pursuing?}{10}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Limitations and Scope}{10}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\bibcite{Ghavasieh2025}{{5}{2025}{{Ghavasieh}}{{}}}
+\bibcite{Ioffe2015}{{6}{2015}{{Ioffe and Szegedy}}{{}}}
+\bibcite{Kim2026}{{7}{2026}{{Kim and Park}}{{}}}
+\bibcite{Klambauer2017}{{8}{2017}{{Klambauer et~al.}}{{Klambauer, Unterthiner, Mayr, and Hochreiter}}}
+\bibcite{Lesser2026}{{9}{2026}{{Lesser and Chowdhury}}{{}}}
+\bibcite{Milletari2018}{{10}{2018}{{Milletar{\`i} et~al.}}{{Milletar{\`i}, Chotibut, and Trevisanutto}}}
+\bibcite{Poole2016}{{11}{2016}{{Poole et~al.}}{{Poole, Lahiri, Raghu, Sohl-Dickstein, and Ganguli}}}
+\bibcite{Vitvitskyi2026}{{12}{2026}{{Vitvitskyi et~al.}}{{Vitvitskyi, Boratko, Grcic, Pascanu, Shah, and Veli{\v {c}}kovi{\'c}}}}
+\bibcite{Yang2017}{{13}{2017}{{Yang and Schoenholz}}{{}}}
+\gdef \@abspage@last{11}

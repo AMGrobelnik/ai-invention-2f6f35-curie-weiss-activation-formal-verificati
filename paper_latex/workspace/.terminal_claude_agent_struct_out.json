@@ -1,0 +1,16 @@
+{
+  "title": "Curie-Weiss Activation: Formal Verification & Mechanistic Analysis",
+  "summary": "Generated a complete 11-page two-column LaTeX paper titled 'Curie-Weiss Activation: Formal Verification and Mechanistic Analysis of Adaptive Criticality Failure'. The paper includes: (1) Abstract and Introduction with contributions list; (2) Background and Related Work covering edge-of-chaos criticality, SELU, DEQ, mean-field activations, Boltzmann Attention, and activation mining; (3) Method section with Definition/Forward Pass, Hybrid IFT/Warm-Start Backpropagation (with equations), and Formal Verification in Lean 4 (four theorems and Corollary 4b); (4) Experiments with four subsections covering IFT memory benchmark, gradient stability in unnormalized MLPs, fixed-J/shift ablation with power analysis, and language modeling with SELU baseline; (5) Discussion with six subsections analyzing gradient underflow, null shift ablation, declining J·s̄ mechanism, SELU architecture specificity, future directions, and limitations; (6) Conclusion; (7) References (13 cited entries). All five figures are included as full-width figure* environments (21:9 aspect ratio): fig1 (CWA overview diagram) in Introduction, fig3 (memory benchmark) in Experiment 1, fig2 (gradient stability bars) in Experiment 2, fig4 (shift ablation) in Experiment 3, fig5 (LM experiment with J·s̄ trajectory) in Experiment 4. Bibliography built via Semantic Scholar API with manual fallback entries for Yang/Schoenholz and Curie 1895. Compiled successfully with pdflatex + bibtex (4 passes), producing paper.pdf at 8.17 MB with no errors or undefined citations. Visual review of all 11 pages confirmed clean layout, no overlapping figures, correct typesetting of all equations and theorems, and properly rendered footnote GitHub URLs.",
+  "out_expected_files": {
+    "paper_tex_path": "paper.tex",
+    "paper_pdf_path": "paper.pdf",
+    "references_bib_path": "references.bib",
+    "figure_paths": [
+      "figures/fig1_v0.jpg",
+      "figures/fig2_v0.jpg",
+      "figures/fig3_v0.jpg",
+      "figures/fig4_v0.jpg",
+      "figures/fig5_v0.jpg"
+    ]
+  }
+}

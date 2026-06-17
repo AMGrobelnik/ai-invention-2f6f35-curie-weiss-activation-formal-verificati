@@ -1,0 +1,88 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ba et~al.(2016)Ba, Kiros, and Hinton]{Ba2016}
+J.~Ba, J.~Kiros, and G.~E. Hinton.
+\newblock Layer normalization.
+\newblock \emph{arXiv preprint arXiv:1607.06450}, 2016.
+
+\bibitem[Bai et~al.(2019)Bai, Kolter, and Koltun]{Bai2019}
+S.~Bai, J.~Kolter, and V.~Koltun.
+\newblock Deep equilibrium models.
+\newblock In \emph{Neural Information Processing Systems}, 2019.
+
+\bibitem[Curie(1895)]{Curie1895}
+P.~Curie.
+\newblock Propri{\'e}t{\'e}s magn{\'e}tiques des corps {\`a} diverses
+  temp{\'e}ratures.
+\newblock \emph{Annales de Chimie et de Physique}, 5:\penalty0 289--405, 1895.
+
+\bibitem[Geng and Kolter(2023)]{Geng2023}
+Z.~Geng and J.~Kolter.
+\newblock {TorchDEQ}: A library for deep equilibrium models.
+\newblock \emph{arXiv preprint arXiv:2310.18605}, 2023.
+
+\bibitem[Ghavasieh(2025)]{Ghavasieh2025}
+A.~Ghavasieh.
+\newblock Tuning universality in deep neural networks.
+\newblock \emph{arXiv preprint arXiv:2512.00168}, 2025.
+
+\bibitem[Ioffe and Szegedy(2015)]{Ioffe2015}
+S.~Ioffe and C.~Szegedy.
+\newblock Batch normalization: Accelerating deep network training by reducing
+  internal covariate shift.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  448--456, 2015.
+
+\bibitem[Kim and Park(2026)]{Kim2026}
+G.~Kim and D.~K. Park.
+\newblock Boltzmann attention: Learnable ising couplings for cooperative
+  attention.
+\newblock \emph{arXiv preprint arXiv:2606.12478}, 2026.
+
+\bibitem[Klambauer et~al.(2017)Klambauer, Unterthiner, Mayr, and
+  Hochreiter]{Klambauer2017}
+G.~Klambauer, T.~Unterthiner, A.~Mayr, and S.~Hochreiter.
+\newblock Self-normalizing neural networks.
+\newblock In \emph{Neural Information Processing Systems}, pages 971--980,
+  2017.
+
+\bibitem[Lesser and Chowdhury(2026)]{Lesser2026}
+O.~Lesser and D.~Chowdhury.
+\newblock Competing nonlinearities, criticality, and order-to-chaos transition
+  in deep networks.
+\newblock \emph{arXiv preprint arXiv:2605.05294}, 2026.
+
+\bibitem[Milletar{\`i} et~al.(2018)Milletar{\`i}, Chotibut, and
+  Trevisanutto]{Milletari2018}
+M.~Milletar{\`i}, T.~Chotibut, and P.~E. Trevisanutto.
+\newblock Expectation propagation: a probabilistic view of deep feed forward
+  networks.
+\newblock \emph{arXiv preprint arXiv:1805.08786}, 2018.
+
+\bibitem[Poole et~al.(2016)Poole, Lahiri, Raghu, Sohl-Dickstein, and
+  Ganguli]{Poole2016}
+B.~Poole, S.~Lahiri, M.~Raghu, J.~N. Sohl-Dickstein, and S.~Ganguli.
+\newblock Exponential expressivity in deep neural networks through transient
+  chaos.
+\newblock In \emph{Neural Information Processing Systems}, pages 3360--3368,
+  2016.
+
+\bibitem[Vitvitskyi et~al.(2026)Vitvitskyi, Boratko, Grcic, Pascanu, Shah, and
+  Veli{\v{c}}kovi{\'c}]{Vitvitskyi2026}
+A.~Vitvitskyi, M.~Boratko, M.~Grcic, R.~Pascanu, D.~Shah, and
+  P.~Veli{\v{c}}kovi{\'c}.
+\newblock Mining generalizable activation functions.
+\newblock \emph{arXiv preprint arXiv:2602.05688}, 2026.
+
+\bibitem[Yang and Schoenholz(2017)]{Yang2017}
+G.~Yang and S.~S. Schoenholz.
+\newblock Mean field residual networks: On the edge of chaos.
+\newblock In \emph{Neural Information Processing Systems}, pages 7103--7114,
+  2017.
+
+\end{thebibliography}
