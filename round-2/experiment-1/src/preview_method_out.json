@@ -1,0 +1,706 @@
+{
+  "metadata": {
+    "experiment_name": "CWA Unnormalized MLP Depth Sweep + Fixed-J Ablation",
+    "hypothesis_tested": "CWA provides gradient stability via near-critical J*s_bar; fixed-J ablation tests mechanism",
+    "verdict": "PARTIAL_CONFIRM",
+    "verdict_reason": "mechanism confirmed via fixed-J (J0.7/0.9 grad_ratio=0.364 < 2.0); but accuracy advantage only on 0/3 depths",
+    "summary_tables": {
+      "gradient_ratio_by_depth_activation": {
+        "depth6": {
+          "cwa": {
+            "mean": 0.3047,
+            "std": 0.0262,
+            "n": 3,
+            "values": [
+              0.30185,
+              0.33809,
+              0.27419
+            ]
+          },
+          "relu": {
+            "mean": 0.7796,
+            "std": 0.0472,
+            "n": 3,
+            "values": [
+              0.71316,
+              0.80765,
+              0.81803
+            ]
+          },
+          "gelu": {
+            "mean": 0.7119,
+            "std": 0.1149,
+            "n": 3,
+            "values": [
+              0.83577,
+              0.74116,
+              0.55881
+            ]
+          },
+          "selu": {
+            "mean": 1.089,
+            "std": 0.0394,
+            "n": 3,
+            "values": [
+              1.09734,
+              1.03711,
+              1.13254
+            ]
+          },
+          "competing_nl": {
+            "mean": 0.68,
+            "std": 0.0678,
+            "n": 3,
+            "values": [
+              0.65136,
+              0.61505,
+              0.77362
+            ]
+          },
+          "gelu_ln": {
+            "mean": 0.3696,
+            "std": 0.0664,
+            "n": 3,
+            "values": [
+              0.40713,
+              0.27633,
+              0.42536
+            ]
+          }
+        },
+        "depth10": {
+          "cwa": {
+            "mean": 0.3473,
+            "std": 0.0978,
+            "n": 3,
+            "values": [
+              0.37208,
+              0.21705,
+              0.45276
+            ]
+          },
+          "relu": {
+            "mean": 0.5115,
+            "std": 0.0872,
+            "n": 3,
+            "values": [
+              0.44634,
+              0.45353,
+              0.63472
+            ]
+          },
+          "gelu": {
+            "mean": 0.7345,
+            "std": 0.145,
+            "n": 3,
+            "values": [
+              0.84599,
+              0.82783,
+              0.5298
+            ]
+          },
+          "selu": {
+            "mean": 1.1291,
+            "std": 0.0819,
+            "n": 3,
+            "values": [
+              1.01352,
+              1.18042,
+              1.19334
+            ]
+          },
+          "competing_nl": {
+            "mean": 0.5175,
+            "std": 0.1913,
+            "n": 3,
+            "values": [
+              0.25056,
+              0.68894,
+              0.61315
+            ]
+          },
+          "gelu_ln": {
+            "mean": 0.3577,
+            "std": 0.0508,
+            "n": 3,
+            "values": [
+              0.29365,
+              0.41787,
+              0.36168
+            ]
+          }
+        },
+        "depth20": {
+          "cwa": {
+            "mean": 11.0173,
+            "std": 2.1703,
+            "n": 3,
+            "values": [
+              8.70845,
+              13.92307,
+              10.42034
+            ]
+          },
+          "relu": {
+            "mean": 3.3143,
+            "std": 1.657,
+            "n": 3,
+            "values": [
+              4.78993,
+              1.0,
+              4.15295
+            ]
+          },
+          "gelu": {
+            "mean": 2.7614,
+            "std": 1.6599,
+            "n": 3,
+            "values": [
+              0.65296,
+              4.70949,
+              2.92163
+            ]
+          },
+          "selu": {
+            "mean": 1.4711,
+            "std": 0.9684,
+            "n": 3,
+            "values": [
+              2.83968,
+              0.74202,
+              0.83173
+            ]
+          },
+          "competing_nl": {
+            "mean": 1.5647,
+            "std": 0.5881,
+            "n": 3,
+            "values": [
+              2.39632,
+              1.15699,
+              1.14076
+            ]
+          },
+          "gelu_ln": {
+            "mean": 9.661,
+            "std": 1.0381,
+            "n": 3,
+            "values": [
+              8.24126,
+              10.04705,
+              10.69469
+            ]
+          }
+        }
+      },
+      "accuracy_by_depth": {
+        "depth6": {
+          "cwa": {
+            "mean": 0.4826,
+            "std": 0.0021,
+            "n": 3,
+            "values": [
+              0.4806,
+              0.4816,
+              0.4855
+            ]
+          },
+          "relu": {
+            "mean": 0.5348,
+            "std": 0.0031,
+            "n": 3,
+            "values": [
+              0.5387,
+              0.531,
+              0.5346
+            ]
+          },
+          "gelu": {
+            "mean": 0.5309,
+            "std": 0.0023,
+            "n": 3,
+            "values": [
+              0.5298,
+              0.5342,
+              0.5288
+            ]
+          },
+          "selu": {
+            "mean": 0.5468,
+            "std": 0.0019,
+            "n": 3,
+            "values": [
+              0.5441,
+              0.5477,
+              0.5485
+            ]
+          },
+          "competing_nl": {
+            "mean": 0.5292,
+            "std": 0.0021,
+            "n": 3,
+            "values": [
+              0.5283,
+              0.5273,
+              0.5321
+            ]
+          },
+          "gelu_ln": {
+            "mean": 0.5372,
+            "std": 0.0032,
+            "n": 3,
+            "values": [
+              0.5377,
+              0.5409,
+              0.533
+            ]
+          }
+        },
+        "depth10": {
+          "cwa": {
+            "mean": 0.4716,
+            "std": 0.0033,
+            "n": 3,
+            "values": [
+              0.4744,
+              0.4734,
+              0.4669
+            ]
+          },
+          "relu": {
+            "mean": 0.5086,
+            "std": 0.0028,
+            "n": 3,
+            "values": [
+              0.5048,
+              0.5115,
+              0.5095
+            ]
+          },
+          "gelu": {
+            "mean": 0.5113,
+            "std": 0.0001,
+            "n": 3,
+            "values": [
+              0.5112,
+              0.5115,
+              0.5112
+            ]
+          },
+          "selu": {
+            "mean": 0.5424,
+            "std": 0.002,
+            "n": 3,
+            "values": [
+              0.5419,
+              0.5451,
+              0.5402
+            ]
+          },
+          "competing_nl": {
+            "mean": 0.5095,
+            "std": 0.0034,
+            "n": 3,
+            "values": [
+              0.5072,
+              0.507,
+              0.5144
+            ]
+          },
+          "gelu_ln": {
+            "mean": 0.5387,
+            "std": 0.0013,
+            "n": 3,
+            "values": [
+              0.5398,
+              0.5393,
+              0.5369
+            ]
+          }
+        },
+        "depth20": {
+          "cwa": {
+            "mean": 0.1413,
+            "std": 0.0066,
+            "n": 3,
+            "values": [
+              0.1327,
+              0.1488,
+              0.1424
+            ]
+          },
+          "relu": {
+            "mean": 0.1,
+            "std": 0.0,
+            "n": 3,
+            "values": [
+              0.1,
+              0.1,
+              0.1
+            ]
+          },
+          "gelu": {
+            "mean": 0.3056,
+            "std": 0.1558,
+            "n": 3,
+            "values": [
+              0.4769,
+              0.1,
+              0.34
+            ]
+          },
+          "selu": {
+            "mean": 0.5351,
+            "std": 0.0009,
+            "n": 3,
+            "values": [
+              0.5362,
+              0.5352,
+              0.5339
+            ]
+          },
+          "competing_nl": {
+            "mean": 0.3899,
+            "std": 0.0183,
+            "n": 3,
+            "values": [
+              0.3667,
+              0.3914,
+              0.4115
+            ]
+          },
+          "gelu_ln": {
+            "mean": 0.1394,
+            "std": 0.0281,
+            "n": 3,
+            "values": [
+              0.1,
+              0.1638,
+              0.1544
+            ]
+          }
+        }
+      },
+      "fixed_j_gradient_ratios": {
+        "J0.1": {
+          "mean": 0.2453,
+          "std": 0.0123,
+          "n": 3,
+          "values": [
+            0.24039,
+            0.23332,
+            0.26214
+          ]
+        },
+        "J0.3": {
+          "mean": 0.2941,
+          "std": 0.0189,
+          "n": 3,
+          "values": [
+            0.30582,
+            0.30907,
+            0.26744
+          ]
+        },
+        "J0.5": {
+          "mean": 0.2744,
+          "std": 0.119,
+          "n": 3,
+          "values": [
+            0.39942,
+            0.30941,
+            0.11442
+          ]
+        },
+        "J0.7": {
+          "mean": 0.364,
+          "std": 0.0644,
+          "n": 3,
+          "values": [
+            0.3037,
+            0.45336,
+            0.33502
+          ]
+        },
+        "J0.9": {
+          "mean": 0.4099,
+          "std": 0.0812,
+          "n": 3,
+          "values": [
+            0.3014,
+            0.43168,
+            0.49674
+          ]
+        },
+        "learned_J": {
+          "mean": 0.3473,
+          "std": 0.0978,
+          "n": 3,
+          "values": [
+            0.37208,
+            0.21705,
+            0.45276
+          ]
+        }
+      },
+      "fixed_j_accuracy": {
+        "J0.1": {
+          "mean": 0.4707,
+          "std": 0.0052,
+          "n": 3
+        },
+        "J0.3": {
+          "mean": 0.4761,
+          "std": 0.0028,
+          "n": 3
+        },
+        "J0.5": {
+          "mean": 0.4765,
+          "std": 0.0019,
+          "n": 3
+        },
+        "J0.7": {
+          "mean": 0.4764,
+          "std": 0.0042,
+          "n": 3
+        },
+        "J0.9": {
+          "mean": 0.4723,
+          "std": 0.0051,
+          "n": 3
+        },
+        "learned_J": {
+          "mean": 0.4716,
+          "std": 0.0033,
+          "n": 3
+        }
+      },
+      "J_s_bar_trajectory": {
+        "cwa_d6_s0": [
+          0.34578,
+          0.31272,
+          0.2864
+        ],
+        "cwa_d6_s1": [
+          0.34348,
+          0.31256,
+          0.28543
+        ],
+        "cwa_d6_s2": [
+          0.34593,
+          0.3107,
+          0.28868
+        ],
+        "cwa_d10_s0": [
+          0.39589,
+          0.37095,
+          0.3532
+        ],
+        "cwa_d10_s1": [
+          0.40121,
+          0.37897,
+          0.36438
+        ],
+        "cwa_d10_s2": [
+          0.38954,
+          0.37154,
+          0.35164
+        ],
+        "cwa_d20_s0": [
+          0.20955,
+          0.19198,
+          0.19554
+        ],
+        "cwa_d20_s1": [
+          0.21071,
+          0.21321,
+          0.20661
+        ],
+        "cwa_d20_s2": [
+          0.21909,
+          0.18458,
+          0.18877
+        ]
+      },
+      "fraction_steps_converged_before_K_max": {
+        "d6_s0": 1.0,
+        "d6_s1": 1.0,
+        "d6_s2": 1.0,
+        "d10_s0": 1.0,
+        "d10_s1": 1.0,
+        "d10_s2": 1.0,
+        "d20_s0": 1.0,
+        "d20_s1": 1.0,
+        "d20_s2": 1.0
+      }
+    },
+    "statistical_tests": {
+      "paired_ttest_cwa_vs_gelu_depth6_acc": {
+        "t": -17.8027,
+        "p": 0.00314,
+        "significant": true,
+        "cwa_mean_ci": "0.4826 ± 0.0024",
+        "gelu_mean_ci": "0.5309 ± 0.0027"
+      },
+      "paired_ttest_cwa_vs_gelu_depth10_acc": {
+        "t": -17.1711,
+        "p": 0.003374,
+        "significant": true,
+        "cwa_mean_ci": "0.4716 ± 0.0038",
+        "gelu_mean_ci": "0.5113 ± 0.0002"
+      },
+      "paired_ttest_cwa_vs_gelu_depth20_acc": {
+        "t": -1.4332,
+        "p": 0.288195,
+        "significant": false,
+        "cwa_mean_ci": "0.1413 ± 0.0075",
+        "gelu_mean_ci": "0.3056 ± 0.1763"
+      },
+      "welch_fixedJ0.1_vs_gelu_grad_ratio": {
+        "t": -4.7561,
+        "p": 0.040342,
+        "significant": true,
+        "fixedJ_mean": 0.2453,
+        "gelu_mean": 0.7345
+      },
+      "welch_fixedJ0.3_vs_gelu_grad_ratio": {
+        "t": -4.2606,
+        "p": 0.047991,
+        "significant": true,
+        "fixedJ_mean": 0.2941,
+        "gelu_mean": 0.7345
+      },
+      "welch_fixedJ0.5_vs_gelu_grad_ratio": {
+        "t": -3.4701,
+        "p": 0.027163,
+        "significant": true,
+        "fixedJ_mean": 0.2744,
+        "gelu_mean": 0.7345
+      },
+      "welch_fixedJ0.7_vs_gelu_grad_ratio": {
+        "t": -3.3029,
+        "p": 0.051461,
+        "significant": false,
+        "fixedJ_mean": 0.364,
+        "gelu_mean": 0.7345
+      },
+      "welch_fixedJ0.9_vs_gelu_grad_ratio": {
+        "t": -2.7627,
+        "p": 0.066427,
+        "significant": false,
+        "fixedJ_mean": 0.4099,
+        "gelu_mean": 0.7345
+      }
+    },
+    "key_findings": [
+      "Depth 6: CWA acc=0.4826 vs GELU acc=0.5309; grad_ratio: CWA=0.3047 vs GELU=0.7119",
+      "Depth 10: CWA acc=0.4716 vs GELU acc=0.5113; grad_ratio: CWA=0.3473 vs GELU=0.7345",
+      "Depth 20: CWA acc=0.1413 vs GELU acc=0.3056; grad_ratio: CWA=11.0173 vs GELU=2.7614"
+    ],
+    "n_runs_completed": 72,
+    "n_runs_expected": 75
+  },
+  "datasets": [
+    {
+      "dataset": "CIFAR-10",
+      "examples": [
+        {
+          "input": "depth=6, activation=cwa, seed=0, fixed_J=null",
+          "output": "final_test_acc=0.4806, grad_ratio_epoch25=0.30185, J_s_bar_mean=0.22881",
+          "metadata_experiment": "A_depth_sweep",
+          "metadata_run_key": "A_d6_cwa_s0",
+          "metadata_depth": "6",
+          "metadata_activation": "cwa",
+          "metadata_seed": "0",
+          "metadata_fixed_J": "null",
+          "metadata_final_test_acc": 0.4806,
+          "metadata_grad_ratio_epoch5": 1.26979,
+          "metadata_grad_ratio_epoch25": 0.30185,
+          "metadata_J_s_bar_mean": 0.22881,
+          "metadata_K_mean": 7.373,
+          "metadata_fraction_converged": 1.0,
+          "metadata_final_J_mean": 0.51809,
+          "metadata_grad_first_epoch25": 0.70206255,
+          "metadata_grad_last_epoch25": 0.30978075,
+          "metadata_train_loss": 0.30066,
+          "metadata_test_acc_traj": [
+            0.4102,
+            0.4352,
+            0.4537
+          ],
+          "metadata_J_s_bar_traj": [
+            0.34578,
+            0.31272,
+            0.2864
+          ],
+          "predict_final_test_acc": "0.4806",
+          "predict_grad_ratio_epoch25": "0.30185"
+        },
+        {
+          "input": "depth=6, activation=cwa, seed=1, fixed_J=null",
+          "output": "final_test_acc=0.4816, grad_ratio_epoch25=0.33809, J_s_bar_mean=0.22792",
+          "metadata_experiment": "A_depth_sweep",
+          "metadata_run_key": "A_d6_cwa_s1",
+          "metadata_depth": "6",
+          "metadata_activation": "cwa",
+          "metadata_seed": "1",
+          "metadata_fixed_J": "null",
+          "metadata_final_test_acc": 0.4816,
+          "metadata_grad_ratio_epoch5": 1.35219,
+          "metadata_grad_ratio_epoch25": 0.33809,
+          "metadata_J_s_bar_mean": 0.22792,
+          "metadata_K_mean": 7.453,
+          "metadata_fraction_converged": 1.0,
+          "metadata_final_J_mean": 0.51702,
+          "metadata_grad_first_epoch25": 0.61977392,
+          "metadata_grad_last_epoch25": 0.2429217,
+          "metadata_train_loss": 0.29396,
+          "metadata_test_acc_traj": [
+            0.4031,
+            0.4283,
+            0.4446
+          ],
+          "metadata_J_s_bar_traj": [
+            0.34348,
+            0.31256,
+            0.28543
+          ],
+          "predict_final_test_acc": "0.4816",
+          "predict_grad_ratio_epoch25": "0.33809"
+        },
+        {
+          "input": "depth=6, activation=cwa, seed=2, fixed_J=null",
+          "output": "final_test_acc=0.4855, grad_ratio_epoch25=0.27419, J_s_bar_mean=0.22913",
+          "metadata_experiment": "A_depth_sweep",
+          "metadata_run_key": "A_d6_cwa_s2",
+          "metadata_depth": "6",
+          "metadata_activation": "cwa",
+          "metadata_seed": "2",
+          "metadata_fixed_J": "null",
+          "metadata_final_test_acc": 0.4855,
+          "metadata_grad_ratio_epoch5": 1.46737,
+          "metadata_grad_ratio_epoch25": 0.27419,
+          "metadata_J_s_bar_mean": 0.22913,
+          "metadata_K_mean": 7.447,
+          "metadata_fraction_converged": 1.0,
+          "metadata_final_J_mean": 0.51493,
+          "metadata_grad_first_epoch25": 0.69153458,
+          "metadata_grad_last_epoch25": 0.26049092,
+          "metadata_train_loss": 0.28673,
+          "metadata_test_acc_traj": [
+            0.3943,
+            0.4352,
+            0.4599
+          ],
+          "metadata_J_s_bar_traj": [
+            0.34593,
+            0.3107,
+            0.28868
+          ],
+          "predict_final_test_acc": "0.4855",
+          "predict_grad_ratio_epoch25": "0.27419"
+        }
+      ]
+    }
+  ]
+}

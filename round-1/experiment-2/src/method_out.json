@@ -1,0 +1,1391 @@
+{
+  "metadata": {
+    "method_name": "CWA (Curie-Weiss Activation)",
+    "description": "ResNet-20 CIFAR-100 width analysis + computational overhead benchmark",
+    "device": "cuda",
+    "timestamp": "2026-06-16T19:47:40.952760",
+    "verdict": {
+      "memory_within_2x": false,
+      "cwa_vs_gelu_no_bn_significant": false,
+      "soc_observed": false,
+      "mean_final_J_s_bar": 0.30578322721243323,
+      "width_positive_correlation": false,
+      "cwa_acc_standard_no_bn": 0.1401,
+      "gelu_acc_standard_no_bn": 0.1893
+    },
+    "width_correlation": {
+      "standard_no_bn": {
+        "widths": [
+          16,
+          32,
+          64
+        ],
+        "overall_cwa_gain_pct": -4.919999999999999,
+        "per_block_J_s_bar_final": {
+          "group1.1.act1": 0.3117582016741223,
+          "group2.0.act1": 0.3731106384788328,
+          "group2.2.act2": 0.27420388379365285,
+          "group1.2.act2": 0.26352990428200157,
+          "group3.2.act2": 0.17338514533799018,
+          "act0": 0.4000729131881538,
+          "group3.1.act1": 0.3340815548854106,
+          "group2.2.act1": 0.3187128911390329,
+          "group1.0.act1": 0.36698096220755516,
+          "group1.2.act1": 0.2892060439147608,
+          "group2.1.act1": 0.31848341638169936,
+          "group1.1.act2": 0.2794587896455584,
+          "group2.0.act2": 0.29118505181254023,
+          "group2.1.act2": 0.2822787210612041,
+          "group3.0.act2": 0.3105524016158355,
+          "group3.0.act1": 0.3778606150918605,
+          "group3.2.act1": 0.2789039979962742,
+          "group1.0.act2": 0.29854945003833916,
+          "group3.1.act2": 0.2675667344914068
+        },
+        "block_width_map": {
+          "group1.1.act1": 16,
+          "group2.0.act1": 32,
+          "group2.2.act2": 32,
+          "group1.2.act2": 16,
+          "group3.2.act2": 64,
+          "group3.1.act1": 64,
+          "group2.2.act1": 32,
+          "group1.0.act1": 16,
+          "group1.2.act1": 16,
+          "group2.1.act1": 32,
+          "group1.1.act2": 16,
+          "group2.0.act2": 32,
+          "group2.1.act2": 32,
+          "group3.0.act2": 64,
+          "group3.0.act1": 64,
+          "group3.2.act1": 64,
+          "group1.0.act2": 16,
+          "group3.1.act2": 64
+        },
+        "pearson_r": {
+          "r": -0.12341627690148504,
+          "p": 0.625625896247923
+        }
+      },
+      "wide_no_bn": {
+        "widths": [
+          64,
+          128,
+          256
+        ],
+        "overall_cwa_gain_pct": -3.6799999999999997,
+        "per_block_J_s_bar_final": {
+          "group1.1.act1": 0.3613700351446791,
+          "group2.0.act1": 0.3702790610625616,
+          "group2.2.act2": 0.2893754520532115,
+          "group1.2.act2": 0.2742906860683275,
+          "group3.2.act2": 0.22544123140899727,
+          "act0": 0.4622735541190028,
+          "group3.1.act1": 0.3482587811587107,
+          "group2.2.act1": 0.32675060546001816,
+          "group1.0.act1": 0.4428812886595421,
+          "group1.2.act1": 0.32320746657488597,
+          "group2.1.act1": 0.33072864338565056,
+          "group1.1.act2": 0.2956830448354297,
+          "group2.0.act2": 0.3004697303637824,
+          "group2.1.act2": 0.2891106414215644,
+          "group3.0.act2": 0.32829996432794634,
+          "group3.0.act1": 0.3881199327118866,
+          "group3.2.act1": 0.31032010745209504,
+          "group1.0.act2": 0.39164441000774997,
+          "group3.1.act2": 0.296132091594779
+        },
+        "block_width_map": {
+          "group1.1.act1": 64,
+          "group2.0.act1": 128,
+          "group2.2.act2": 128,
+          "group1.2.act2": 64,
+          "group3.2.act2": 256,
+          "group3.1.act1": 256,
+          "group2.2.act1": 128,
+          "group1.0.act1": 64,
+          "group1.2.act1": 64,
+          "group2.1.act1": 128,
+          "group1.1.act2": 64,
+          "group2.0.act2": 128,
+          "group2.1.act2": 128,
+          "group3.0.act2": 256,
+          "group3.0.act1": 256,
+          "group3.2.act1": 256,
+          "group1.0.act2": 64,
+          "group3.1.act2": 256
+        },
+        "pearson_r": {
+          "r": -0.2349970620030552,
+          "p": 0.3479005881882831
+        }
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "CIFAR-100+synthetic-overhead",
+      "examples": [
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0689 at epoch 0. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_cwa": "acc=0.0689"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=1/9.",
+          "output": "test_acc=0.0887 at epoch 1. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_cwa": "acc=0.0887"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1015 at epoch 2. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_cwa": "acc=0.1015"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1128 at epoch 3. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_cwa": "acc=0.1128"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=4/9.",
+          "output": "test_acc=0.1110 at epoch 4. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_cwa": "acc=0.1110"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=5/9.",
+          "output": "test_acc=0.1263 at epoch 5. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_cwa": "acc=0.1263"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=6/9.",
+          "output": "test_acc=0.1235 at epoch 6. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_cwa": "acc=0.1235"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=7/9.",
+          "output": "test_acc=0.1340 at epoch 7. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_cwa": "acc=0.1340"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=8/9.",
+          "output": "test_acc=0.1345 at epoch 8. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_cwa": "acc=0.1345"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=9/9.",
+          "output": "test_acc=0.1401 at epoch 9. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_cwa": "acc=0.1401"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0445 at epoch 0. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_baseline": "acc=0.0445"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=1/9.",
+          "output": "test_acc=0.0843 at epoch 1. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_baseline": "acc=0.0843"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1130 at epoch 2. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_baseline": "acc=0.1130"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1326 at epoch 3. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_baseline": "acc=0.1326"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=4/9.",
+          "output": "test_acc=0.1531 at epoch 4. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_baseline": "acc=0.1531"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=5/9.",
+          "output": "test_acc=0.1617 at epoch 5. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_baseline": "acc=0.1617"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=6/9.",
+          "output": "test_acc=0.1722 at epoch 6. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_baseline": "acc=0.1722"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=7/9.",
+          "output": "test_acc=0.1822 at epoch 7. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_baseline": "acc=0.1822"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=8/9.",
+          "output": "test_acc=0.1878 at epoch 8. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_baseline": "acc=0.1878"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, seed=0, epoch=9/9.",
+          "output": "test_acc=0.1893 at epoch 9. Final acc=0.1893.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_baseline": "acc=0.1893"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0812 at epoch 0. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_baseline": "acc=0.0812"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=1/9.",
+          "output": "test_acc=0.1271 at epoch 1. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_baseline": "acc=0.1271"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1514 at epoch 2. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_baseline": "acc=0.1514"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1769 at epoch 3. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_baseline": "acc=0.1769"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=4/9.",
+          "output": "test_acc=0.1908 at epoch 4. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_baseline": "acc=0.1908"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=5/9.",
+          "output": "test_acc=0.2083 at epoch 5. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_baseline": "acc=0.2083"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=6/9.",
+          "output": "test_acc=0.2237 at epoch 6. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_baseline": "acc=0.2237"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=7/9.",
+          "output": "test_acc=0.2336 at epoch 7. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_baseline": "acc=0.2336"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=8/9.",
+          "output": "test_acc=0.2352 at epoch 8. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_baseline": "acc=0.2352"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, seed=0, epoch=9/9.",
+          "output": "test_acc=0.2384 at epoch 9. Final acc=0.2384.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_baseline": "acc=0.2384"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0617 at epoch 0. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_baseline": "acc=0.0617"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=1/9.",
+          "output": "test_acc=0.0928 at epoch 1. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_baseline": "acc=0.0928"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1107 at epoch 2. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_baseline": "acc=0.1107"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1272 at epoch 3. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_baseline": "acc=0.1272"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=4/9.",
+          "output": "test_acc=0.1329 at epoch 4. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_baseline": "acc=0.1329"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=5/9.",
+          "output": "test_acc=0.1512 at epoch 5. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_baseline": "acc=0.1512"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=6/9.",
+          "output": "test_acc=0.1574 at epoch 6. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_baseline": "acc=0.1574"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=7/9.",
+          "output": "test_acc=0.1597 at epoch 7. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_baseline": "acc=0.1597"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=8/9.",
+          "output": "test_acc=0.1617 at epoch 8. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_baseline": "acc=0.1617"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, seed=0, epoch=9/9.",
+          "output": "test_acc=0.1640 at epoch 9. Final acc=0.1640.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_baseline": "acc=0.1640"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0702 at epoch 0. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_baseline": "acc=0.0702"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=1/9.",
+          "output": "test_acc=0.1074 at epoch 1. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_baseline": "acc=0.1074"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1270 at epoch 2. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_baseline": "acc=0.1270"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1443 at epoch 3. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_baseline": "acc=0.1443"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=4/9.",
+          "output": "test_acc=0.1596 at epoch 4. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_baseline": "acc=0.1596"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=5/9.",
+          "output": "test_acc=0.1694 at epoch 5. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_baseline": "acc=0.1694"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=6/9.",
+          "output": "test_acc=0.1741 at epoch 6. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_baseline": "acc=0.1741"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=7/9.",
+          "output": "test_acc=0.1834 at epoch 7. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_baseline": "acc=0.1834"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=8/9.",
+          "output": "test_acc=0.1857 at epoch 8. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_baseline": "acc=0.1857"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, seed=0, epoch=9/9.",
+          "output": "test_acc=0.1905 at epoch 9. Final acc=0.1905.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_baseline": "acc=0.1905"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0977 at epoch 0. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_cwa": "acc=0.0977"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=1/9.",
+          "output": "test_acc=0.1196 at epoch 1. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_cwa": "acc=0.1196"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1670 at epoch 2. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_cwa": "acc=0.1670"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1792 at epoch 3. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_cwa": "acc=0.1792"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=4/9.",
+          "output": "test_acc=0.1877 at epoch 4. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_cwa": "acc=0.1877"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=5/9.",
+          "output": "test_acc=0.2292 at epoch 5. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_cwa": "acc=0.2292"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=6/9.",
+          "output": "test_acc=0.2449 at epoch 6. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_cwa": "acc=0.2449"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=7/9.",
+          "output": "test_acc=0.3069 at epoch 7. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_cwa": "acc=0.3069"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=8/9.",
+          "output": "test_acc=0.3384 at epoch 8. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_cwa": "acc=0.3384"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, seed=0, epoch=9/9.",
+          "output": "test_acc=0.3553 at epoch 9. Final acc=0.3553.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_cwa": "acc=0.3553"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=0/9.",
+          "output": "test_acc=0.1216 at epoch 0. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_baseline": "acc=0.1216"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=1/9.",
+          "output": "test_acc=0.2347 at epoch 1. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_baseline": "acc=0.2347"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=2/9.",
+          "output": "test_acc=0.2861 at epoch 2. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_baseline": "acc=0.2861"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=3/9.",
+          "output": "test_acc=0.3422 at epoch 3. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_baseline": "acc=0.3422"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=4/9.",
+          "output": "test_acc=0.3818 at epoch 4. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_baseline": "acc=0.3818"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=5/9.",
+          "output": "test_acc=0.4198 at epoch 5. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_baseline": "acc=0.4198"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=6/9.",
+          "output": "test_acc=0.4697 at epoch 6. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_baseline": "acc=0.4697"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=7/9.",
+          "output": "test_acc=0.5130 at epoch 7. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_baseline": "acc=0.5130"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=8/9.",
+          "output": "test_acc=0.5333 at epoch 8. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_baseline": "acc=0.5333"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, seed=0, epoch=9/9.",
+          "output": "test_acc=0.5615 at epoch 9. Final acc=0.5615.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_baseline": "acc=0.5615"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=0/9.",
+          "output": "test_acc=0.1028 at epoch 0. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_cwa": "acc=0.1028"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=1/9.",
+          "output": "test_acc=0.1403 at epoch 1. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_cwa": "acc=0.1403"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1592 at epoch 2. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_cwa": "acc=0.1592"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1805 at epoch 3. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_cwa": "acc=0.1805"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=4/9.",
+          "output": "test_acc=0.1899 at epoch 4. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_cwa": "acc=0.1899"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=5/9.",
+          "output": "test_acc=0.2053 at epoch 5. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_cwa": "acc=0.2053"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=6/9.",
+          "output": "test_acc=0.2140 at epoch 6. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_cwa": "acc=0.2140"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=7/9.",
+          "output": "test_acc=0.2185 at epoch 7. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_cwa": "acc=0.2185"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=8/9.",
+          "output": "test_acc=0.2271 at epoch 8. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_cwa": "acc=0.2271"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, seed=0, epoch=9/9.",
+          "output": "test_acc=0.2308 at epoch 9. Final acc=0.2308.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_cwa": "acc=0.2308"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0739 at epoch 0. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_baseline": "acc=0.0739"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=1/9.",
+          "output": "test_acc=0.1374 at epoch 1. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_baseline": "acc=0.1374"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1715 at epoch 2. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_baseline": "acc=0.1715"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=3/9.",
+          "output": "test_acc=0.1970 at epoch 3. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_baseline": "acc=0.1970"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=4/9.",
+          "output": "test_acc=0.2092 at epoch 4. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_baseline": "acc=0.2092"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=5/9.",
+          "output": "test_acc=0.2328 at epoch 5. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_baseline": "acc=0.2328"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=6/9.",
+          "output": "test_acc=0.2499 at epoch 6. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_baseline": "acc=0.2499"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=7/9.",
+          "output": "test_acc=0.2606 at epoch 7. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_baseline": "acc=0.2606"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=8/9.",
+          "output": "test_acc=0.2653 at epoch 8. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_baseline": "acc=0.2653"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, seed=0, epoch=9/9.",
+          "output": "test_acc=0.2676 at epoch 9. Final acc=0.2676.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_baseline": "acc=0.2676"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=0/9.",
+          "output": "test_acc=0.1051 at epoch 0. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_cwa": "acc=0.1051"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=1/9.",
+          "output": "test_acc=0.1463 at epoch 1. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_cwa": "acc=0.1463"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1782 at epoch 2. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_cwa": "acc=0.1782"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=3/9.",
+          "output": "test_acc=0.2184 at epoch 3. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_cwa": "acc=0.2184"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=4/9.",
+          "output": "test_acc=0.2305 at epoch 4. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_cwa": "acc=0.2305"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=5/9.",
+          "output": "test_acc=0.2512 at epoch 5. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_cwa": "acc=0.2512"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=6/9.",
+          "output": "test_acc=0.3154 at epoch 6. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_cwa": "acc=0.3154"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=7/9.",
+          "output": "test_acc=0.3622 at epoch 7. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_cwa": "acc=0.3622"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=8/9.",
+          "output": "test_acc=0.4114 at epoch 8. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_cwa": "acc=0.4114"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, seed=0, epoch=9/9.",
+          "output": "test_acc=0.4551 at epoch 9. Final acc=0.4551.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_cwa": "acc=0.4551"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=0/9.",
+          "output": "test_acc=0.1426 at epoch 0. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_baseline": "acc=0.1426"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=1/9.",
+          "output": "test_acc=0.2427 at epoch 1. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_baseline": "acc=0.2427"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=2/9.",
+          "output": "test_acc=0.3586 at epoch 2. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_baseline": "acc=0.3586"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=3/9.",
+          "output": "test_acc=0.4217 at epoch 3. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "3",
+          "predict_baseline": "acc=0.4217"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=4/9.",
+          "output": "test_acc=0.4789 at epoch 4. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "4",
+          "predict_baseline": "acc=0.4789"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=5/9.",
+          "output": "test_acc=0.5196 at epoch 5. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "5",
+          "predict_baseline": "acc=0.5196"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=6/9.",
+          "output": "test_acc=0.5675 at epoch 6. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "6",
+          "predict_baseline": "acc=0.5675"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=7/9.",
+          "output": "test_acc=0.6107 at epoch 7. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "7",
+          "predict_baseline": "acc=0.6107"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=8/9.",
+          "output": "test_acc=0.6535 at epoch 8. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "8",
+          "predict_baseline": "acc=0.6535"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, seed=0, epoch=9/9.",
+          "output": "test_acc=0.6718 at epoch 9. Final acc=0.6718.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "metadata_seed": "0",
+          "metadata_epoch": "9",
+          "predict_baseline": "acc=0.6718"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, n_seeds=1.",
+          "output": "test_acc_mean=0.1401, test_acc_std=0.0000, seeds=[0.1401].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "predict_cwa": "acc=0.1401\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELU, n_seeds=1.",
+          "output": "test_acc_mean=0.1893, test_acc_std=0.0000, seeds=[0.1893].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELU",
+          "predict_baseline": "acc=0.1893\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=SELU, n_seeds=1.",
+          "output": "test_acc_mean=0.2384, test_acc_std=0.0000, seeds=[0.2384].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "SELU",
+          "predict_baseline": "acc=0.2384\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=tanhLN, n_seeds=1.",
+          "output": "test_acc_mean=0.1640, test_acc_std=0.0000, seeds=[0.164].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "tanhLN",
+          "predict_baseline": "acc=0.1640\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=GELULN, n_seeds=1.",
+          "output": "test_acc_mean=0.1905, test_acc_std=0.0000, seeds=[0.1905].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "GELULN",
+          "predict_baseline": "acc=0.1905\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=CWA, n_seeds=1.",
+          "output": "test_acc_mean=0.3553, test_acc_std=0.0000, seeds=[0.3553].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "CWA",
+          "predict_cwa": "acc=0.3553\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=standard_bn (widths=[16, 32, 64], use_bn=True), activation=GELU, n_seeds=1.",
+          "output": "test_acc_mean=0.5615, test_acc_std=0.0000, seeds=[0.5615].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "standard_bn",
+          "metadata_activation": "GELU",
+          "predict_baseline": "acc=0.5615\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=CWA, n_seeds=1.",
+          "output": "test_acc_mean=0.2308, test_acc_std=0.0000, seeds=[0.2308].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "CWA",
+          "predict_cwa": "acc=0.2308\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=wide_no_bn (widths=[64, 128, 256], use_bn=False), activation=GELU, n_seeds=1.",
+          "output": "test_acc_mean=0.2676, test_acc_std=0.0000, seeds=[0.2676].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "wide_no_bn",
+          "metadata_activation": "GELU",
+          "predict_baseline": "acc=0.2676\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=CWA, n_seeds=1.",
+          "output": "test_acc_mean=0.4551, test_acc_std=0.0000, seeds=[0.4551].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "CWA",
+          "predict_cwa": "acc=0.4551\u00b10.0000"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 aggregate config=wide_bn (widths=[64, 128, 256], use_bn=True), activation=GELU, n_seeds=1.",
+          "output": "test_acc_mean=0.6718, test_acc_std=0.0000, seeds=[0.6718].",
+          "metadata_experiment": "exp2_cifar100_aggregate",
+          "metadata_config": "wide_bn",
+          "metadata_activation": "GELU",
+          "predict_baseline": "acc=0.6718\u00b10.0000"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.1, actual=0.1000, K_star=3, mode=unrolled.",
+          "output": "CWA wall=3.011ms, GELU wall=0.344ms, wall_ratio=8.747x. CWA mem=42.5MB, GELU mem=30.5MB, mem_ratio=1.394x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.1",
+          "predict_cwa": "wall=3.011ms mem=42.5MB",
+          "predict_baseline": "wall=0.344ms mem=30.5MB"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.3, actual=0.3000, K_star=4, mode=unrolled.",
+          "output": "CWA wall=3.734ms, GELU wall=0.344ms, wall_ratio=10.857x. CWA mem=50.5MB, GELU mem=30.5MB, mem_ratio=1.656x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.3",
+          "predict_cwa": "wall=3.734ms mem=50.5MB",
+          "predict_baseline": "wall=0.344ms mem=30.5MB"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.5, actual=0.4999, K_star=7, mode=unrolled.",
+          "output": "CWA wall=5.774ms, GELU wall=0.349ms, wall_ratio=16.526x. CWA mem=56.5MB, GELU mem=30.5MB, mem_ratio=1.853x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.5",
+          "predict_cwa": "wall=5.774ms mem=56.5MB",
+          "predict_baseline": "wall=0.349ms mem=30.5MB"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.7, actual=0.6999, K_star=13, mode=unrolled.",
+          "output": "CWA wall=9.151ms, GELU wall=0.303ms, wall_ratio=30.232x. CWA mem=68.5MB, GELU mem=30.5MB, mem_ratio=2.246x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.7",
+          "predict_cwa": "wall=9.151ms mem=68.5MB",
+          "predict_baseline": "wall=0.303ms mem=30.5MB"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.8, actual=0.7999, K_star=22, mode=unrolled.",
+          "output": "CWA wall=12.812ms, GELU wall=0.286ms, wall_ratio=44.755x. CWA mem=86.5MB, GELU mem=30.5MB, mem_ratio=2.836x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.8",
+          "predict_cwa": "wall=12.812ms mem=86.5MB",
+          "predict_baseline": "wall=0.286ms mem=30.5MB"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.9, actual=0.8999, K_star=53, mode=IFT.",
+          "output": "CWA wall=17.320ms, GELU wall=0.217ms, wall_ratio=79.720x. CWA mem=148.5MB, GELU mem=30.5MB, mem_ratio=4.870x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.9",
+          "predict_cwa": "wall=17.320ms mem=148.5MB",
+          "predict_baseline": "wall=0.217ms mem=30.5MB"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.95, actual=0.9498, K_star=100, mode=IFT.",
+          "output": "CWA wall=31.376ms, GELU wall=0.242ms, wall_ratio=129.824x. CWA mem=242.5MB, GELU mem=30.5MB, mem_ratio=7.952x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.95",
+          "predict_cwa": "wall=31.376ms mem=242.5MB",
+          "predict_baseline": "wall=0.242ms mem=30.5MB"
+        },
+        {
+          "input": "Overhead benchmark: CWA vs GELU on synthetic tensor (batch=32, C=256, H=8, W=8). Target J*s_bar=0.99, actual=0.9885, K_star=100, mode=IFT.",
+          "output": "CWA wall=32.097ms, GELU wall=0.231ms, wall_ratio=139.237x. CWA mem=242.5MB, GELU mem=30.5MB, mem_ratio=7.952x.",
+          "metadata_experiment": "exp5_overhead",
+          "metadata_J_s_bar_target": "0.99",
+          "predict_cwa": "wall=32.097ms mem=242.5MB",
+          "predict_baseline": "wall=0.231ms mem=30.5MB"
+        },
+        {
+          "input": "Overall CWA verdict: memory_within_2x=False, width_positive_correlation=False, cwa_vs_gelu_no_bn_significant=False, soc_observed=False.",
+          "output": "CWA accuracy (standard_no_bn): 0.1401 vs GELU: 0.1893 (gain=-0.0492). Mean final J*s_bar=0.3058. memory_ok=False, width_corr=False, acc_sig=False, soc=False.",
+          "metadata_experiment": "verdict",
+          "predict_cwa": "acc=0.1401 J_s_bar=0.3058",
+          "predict_baseline": "acc=0.1893"
+        }
+      ]
+    }
+  ]
+}

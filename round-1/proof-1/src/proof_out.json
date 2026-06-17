@@ -1,0 +1,117 @@
+{
+  "proof_successful": true,
+  "verified": true,
+  "lean_code": "import Mathlib.Analysis.SpecialFunctions.ExpDeriv\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic\nimport Mathlib.Analysis.Calculus.Deriv.Comp\nimport Mathlib.Analysis.Calculus.Deriv.Mul\nimport Mathlib.Analysis.Calculus.Deriv.Inv\nimport Mathlib.Analysis.Calculus.MeanValue\nimport Mathlib.Topology.MetricSpace.Contracting\n\n-- CWA Proof: convergence, IFT formula, and bias bound\n-- Three theorems for F(m) = tanh(x + J*m), J in (0,1)\n\n-- ============================================================\n-- Part 1: Derivatives of sinh, cosh, tanh\n-- ============================================================\n\nlemma hasDerivAt_sinh (x : ℝ) : HasDerivAt Real.sinh (Real.cosh x) x := by\n  have h1 := Real.hasDerivAt_exp x\n  have h2 : HasDerivAt (Real.exp ∘ Neg.neg) (Real.exp (-x) * (-1)) x :=\n    (Real.hasDerivAt_exp (-x)).comp x (hasDerivAt_neg x)\n  have h4 : HasDerivAt (fun x => (Real.exp x - Real.exp (-x)) / 2)\n      ((Real.exp x - Real.exp (-x) * (-1)) / 2) x :=\n    (h1.sub h2).div_const 2\n  convert h4 using 1\n  · funext y; exact Real.sinh_eq y\n  · rw [Real.cosh_eq]; ring\n\nlemma hasDerivAt_cosh (x : ℝ) : HasDerivAt Real.cosh (Real.sinh x) x := by\n  have h1 := Real.hasDerivAt_exp x\n  have h2 : HasDerivAt (Real.exp ∘ Neg.neg) (Real.exp (-x) * (-1)) x :=\n    (Real.hasDerivAt_exp (-x)).comp x (hasDerivAt_neg x)\n  have h4 : HasDerivAt (fun x => (Real.exp x + Real.exp (-x)) / 2)\n      ((Real.exp x + Real.exp (-x) * (-1)) / 2) x :=\n    (h1.add h2).div_const 2\n  convert h4 using 1\n  · funext y; exact Real.cosh_eq y\n  · rw [Real.sinh_eq]; ring\n\nlemma hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x := by\n  have hcosh_ne : Real.cosh x ≠ 0 := (Real.cosh_pos x).ne'\n  have hsinh := hasDerivAt_sinh x\n  have hcosh := hasDerivAt_cosh x\n  have hcosh_inv : HasDerivAt (fun y => (Real.cosh y)⁻¹) (-Real.sinh x / Real.cosh x ^ 2) x :=\n    hcosh.inv hcosh_ne\n  have hprod : HasDerivAt (fun y => Real.sinh y * (Real.cosh y)⁻¹)\n      (Real.cosh x * (Real.cosh x)⁻¹ + Real.sinh x * (-Real.sinh x / Real.cosh x ^ 2)) x :=\n    hsinh.mul hcosh_inv\n  convert hprod using 1\n  · funext y; rw [Real.tanh_eq_sinh_div_cosh]; field_simp\n  · rw [Real.tanh_eq_sinh_div_cosh]\n    have hid : Real.cosh x ^ 2 - Real.sinh x ^ 2 = 1 := Real.cosh_sq_sub_sinh_sq x\n    field_simp\n    nlinarith [Real.cosh_pos x]\n\nlemma differentiable_tanh : Differentiable ℝ Real.tanh :=\n  fun x => (hasDerivAt_tanh x).differentiableAt\n\n-- ============================================================\n-- Part 2: tanh is 1-Lipschitz\n-- ============================================================\n\nlemma sech_sq_nonneg (x : ℝ) : 0 ≤ 1 - Real.tanh x ^ 2 := by\n  have hid : Real.cosh x ^ 2 - Real.sinh x ^ 2 = 1 := Real.cosh_sq_sub_sinh_sq x\n  have hcp := Real.cosh_pos x\n  rw [Real.tanh_eq_sinh_div_cosh, div_pow,\n      one_sub_div (pow_ne_zero 2 hcp.ne')]\n  apply div_nonneg _ (sq_nonneg _)\n  nlinarith [sq_nonneg (Real.sinh x)]\n\nlemma sech_sq_le_one (x : ℝ) : 1 - Real.tanh x ^ 2 ≤ 1 := by\n  linarith [sq_nonneg (Real.tanh x)]\n\nlemma nnnorm_deriv_tanh_le (x : ℝ) : ‖deriv Real.tanh x‖₊ ≤ 1 := by\n  rw [(hasDerivAt_tanh x).deriv]\n  have h0 := sech_sq_nonneg x\n  have h1 := sech_sq_le_one x\n  rw [show ‖(1 - Real.tanh x ^ 2)‖₊ = ⟨1 - Real.tanh x ^ 2, h0⟩ from by\n    simp [nnnorm, NNNorm.nnnorm, Real.norm_of_nonneg h0]]\n  exact_mod_cast h1\n\nlemma tanh_lipschitzWith_one : LipschitzWith 1 Real.tanh :=\n  lipschitzWith_of_nnnorm_deriv_le differentiable_tanh nnnorm_deriv_tanh_le\n\n-- ============================================================\n-- Part 3: F(m) = tanh(x + J*m) is J-Lipschitz and contracting\n-- ============================================================\n\nlemma lin_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) :\n    LipschitzWith ⟨J, hJ0⟩ (fun m => x + J * m) := by\n  rw [lipschitzWith_iff_dist_le_mul]\n  intro a b\n  simp only [Real.dist_eq, NNReal.coe_mk]\n  have h : x + J * a - (x + J * b) = J * (a - b) := by ring\n  rw [h, abs_mul, abs_of_nonneg hJ0]\n\nlemma F_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) (hJ1 : J < 1) :\n    LipschitzWith ⟨J, hJ0⟩ (fun m => Real.tanh (x + J * m)) := by\n  have h := tanh_lipschitzWith_one.comp (lin_lipschitz x hJ0)\n  simp only [NNReal.coe_one, one_mul] at h\n  have heq : Real.tanh ∘ (fun m => x + J * m) = fun m => Real.tanh (x + J * m) := rfl\n  rwa [heq] at h\n\nlemma F_contracting (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) :\n    ContractingWith ⟨J, le_of_lt hJ0⟩ (fun m => Real.tanh (x + J * m)) := by\n  constructor\n  · exact_mod_cast hJ1\n  · exact F_lipschitz x (le_of_lt hJ0) hJ1\n\n-- ============================================================\n-- Theorem 1: CWA Banach Fixed-Point Theorem\n-- ============================================================\n\ntheorem cwa_banach (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) :\n    ∃! m_star : ℝ, Real.tanh (x + J * m_star) = m_star := by\n  have hc := F_contracting x hJ0 hJ1\n  let F := fun m => Real.tanh (x + J * m)\n  use ContractingWith.fixedPoint F hc\n  exact ⟨hc.fixedPoint_isFixedPt, fun y hy => hc.fixedPoint_unique hy⟩\n\n-- ============================================================\n-- Part 4: Algebraic helpers for IFT\n-- ============================================================\n\nlemma one_sub_J_sbar_pos {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1)\n    (s_bar : ℝ) (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1) :\n    0 < 1 - J * s_bar := by nlinarith\n\n-- ============================================================\n-- Theorem 2: IFT Gradient Formula\n-- ============================================================\n\ntheorem ift_gradient_correct (x J m_star : ℝ) (hJ0 : 0 < J) (hJ1 : J < 1) :\n    let s_bar := 1 - Real.tanh (x + J * m_star) ^ 2\n    let grad := s_bar / (1 - J * s_bar)\n    s_bar * (1 + J * grad) = grad := by\n  simp only\n  set s := 1 - Real.tanh (x + J * m_star) ^ 2\n  have hs0 : 0 ≤ s := sech_sq_nonneg _\n  have hs1 : s ≤ 1 := sech_sq_le_one _\n  have hden : 1 - J * s ≠ 0 :=\n    (one_sub_J_sbar_pos hJ0 hJ1 s hs0 hs1).ne'\n  field_simp [hden]\n\n-- IFT algebraic uniqueness: s*(1+J*d) = d implies d = s/(1-J*s)\nlemma ift_equation_unique_solution (s_bar d J : ℝ)\n    (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1)\n    (hJ0 : 0 < J) (hJ1 : J < 1)\n    (heq : s_bar * (1 + J * d) = d) :\n    d = s_bar / (1 - J * s_bar) := by\n  have hden : 1 - J * s_bar ≠ 0 :=\n    (one_sub_J_sbar_pos hJ0 hJ1 s_bar hs0 hs1).ne'\n  field_simp [hden]\n  linarith\n\n-- ============================================================\n-- Theorem 3: Bias Bound\n-- ============================================================\n\nlemma contraction_residual_bound {K : ℝ} (hK0 : 0 ≤ K) (hK1 : K < 1)\n    {f : ℝ → ℝ} (hf_lip : LipschitzWith ⟨K, hK0⟩ f)\n    {m_approx m_star : ℝ} (hstar : f m_star = m_star) :\n    |m_approx - m_star| ≤ |f m_approx - m_approx| / (1 - K) := by\n  have hden : 0 < 1 - K := by linarith\n  rw [le_div_iff₀ hden]\n  -- Lipschitz bound: |f(m_approx) - f(m_star)| ≤ K * |m_approx - m_star|\n  have hlip : |f m_approx - f m_star| ≤ K * |m_approx - m_star| := by\n    have h := hf_lip.dist_le_mul m_approx m_star\n    simp only [Real.dist_eq, NNReal.coe_mk] at h\n    linarith\n  -- f(m_star) = m_star, so |f(m_approx) - m_star| ≤ K * |m_approx - m_star|\n  rw [hstar] at hlip\n  -- Triangle: |m_approx - m_star| ≤ |m_approx - f(m_approx)| + |f(m_approx) - m_star|\n  have htri : |m_approx - m_star| ≤ |m_approx - f m_approx| + |f m_approx - m_star| := by\n    calc |m_approx - m_star|\n        = |(m_approx - f m_approx) + (f m_approx - m_star)| := by ring_nf\n      _ ≤ |m_approx - f m_approx| + |f m_approx - m_star| := abs_add _ _\n  -- Combine to get (1-K)*|m_approx - m_star| ≤ |f(m_approx) - m_approx|\n  have hsym : |f m_approx - m_approx| = |m_approx - f m_approx| := abs_sub_comm _ _\n  nlinarith [abs_nonneg (m_approx - m_star), abs_nonneg (f m_approx - m_approx),\n             abs_nonneg (f m_approx - m_star)]\n\ntheorem cwa_ift_bias_uniform (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1)\n    {m_approx m_star : ℝ}\n    (hstar : Real.tanh (x + J * m_star) = m_star)\n    (hres : |Real.tanh (x + J * m_approx) - m_approx| ≤ 1e-4 * (1 - J)) :\n    |m_approx - m_star| ≤ 1e-4 := by\n  have hfl := F_lipschitz x (le_of_lt hJ0) hJ1\n  have hbound : |m_approx - m_star| ≤\n      |Real.tanh (x + J * m_approx) - m_approx| / (1 - J) :=\n    contraction_residual_bound (le_of_lt hJ0) hJ1 hfl hstar\n  have hpos : (0 : ℝ) < 1 - J := by linarith\n  calc |m_approx - m_star|\n      ≤ |Real.tanh (x + J * m_approx) - m_approx| / (1 - J) := hbound\n    _ ≤ (1e-4 * (1 - J)) / (1 - J) := by\n        apply div_le_div_of_nonneg_right hres\n        linarith\n    _ = 1e-4 := by field_simp\n\n-- ============================================================\n-- Main Combined Theorem\n-- ============================================================\n\ntheorem cwa_main (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) :\n    -- (1) Unique fixed point exists\n    (∃! m_star : ℝ, Real.tanh (x + J * m_star) = m_star) ∧\n    -- (2) IFT gradient formula is algebraically consistent\n    (∀ m_star : ℝ,\n      let s_bar := 1 - Real.tanh (x + J * m_star) ^ 2\n      let grad := s_bar / (1 - J * s_bar)\n      s_bar * (1 + J * grad) = grad) ∧\n    -- (3) Adaptive tolerance 1e-4*(1-J) yields uniform bias bound 1e-4\n    (∀ m_approx m_star : ℝ,\n      Real.tanh (x + J * m_star) = m_star →\n      |Real.tanh (x + J * m_approx) - m_approx| ≤ 1e-4 * (1 - J) →\n      |m_approx - m_star| ≤ 1e-4) :=\n  ⟨cwa_banach x hJ0 hJ1,\n   fun m_star => ift_gradient_correct x J m_star hJ0 hJ1,\n   fun m_approx m_star hstar hres => cwa_ift_bias_uniform x hJ0 hJ1 hstar hres⟩\n",
+  "proof_explanation": "The proof establishes three formal results about the CWA scalar fixed-point iteration F(m) = tanh(x + J*m) for J in (0,1), all verified by Lean 4 + Mathlib v4.14.0.\n\nPROOF STRATEGY:\n\n1. Banach convergence (cwa_banach): We construct the HasDerivAt chain exp -> sinh -> cosh -> tanh from first principles (since Mathlib lacks hasDerivAt_sinh/cosh and DerivHyp is broken). From HasDerivAt tanh we prove its derivative equals sech^2 = 1 - tanh^2 in (0,1], bound the nnnorm derivative via Real.cosh_sq_sub_sinh_sq, then apply lipschitzWith_of_nnnorm_deriv_le to get LipschitzWith 1 tanh. Composing with the J-Lipschitz affine map gives LipschitzWith J F, which satisfies ContractingWith since J < 1. The Banach fixed-point theorem (ContractingWith.fixedPoint_isFixedPt + fixedPoint_unique) then gives existence and uniqueness of m*.\n\n2. IFT gradient formula (ift_gradient_correct): Let s_bar = 1 - tanh(x+J*m*)^2 (the sech^2 value). The IFT formula states dm*/dx = s_bar/(1 - J*s_bar). We verify this is consistent with the implicit differentiation equation s_bar*(1 + J*grad) = grad via field_simp after establishing 1 - J*s_bar != 0 (which follows from s_bar in [0,1] and J < 1).\n\n3. Bias bound (cwa_ift_bias_uniform): Given residual |F(m_approx) - m_approx| <= 1e-4*(1-J), the contraction_residual_bound lemma proves |m_approx - m*| <= residual/(1-K) via triangle inequality + Lipschitz bound on the fixed-point contraction. Substituting yields |m_approx - m*| <= 1e-4.\n\nKEY TECHNICAL CHALLENGES SOLVED:\n- Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp is broken (cascades trivial/sorryAx errors). Workaround: build tanh derivative from exp via HasDerivAt.inv + HasDerivAt.mul (product rule for sinh * cosh^-1).\n- HasDerivAt.div does not exist; use HasDerivAt.inv followed by HasDerivAt.mul.\n- Real.tanh_sq_lt_one does not exist; prove sech^2 bounds directly from Real.cosh_sq_sub_sinh_sq and nlinarith.\n- NNReal coercion simp: NNReal.coe_one + one_mul normalizes 1 * J = J.\n- ContractingWith constructor requires K < 1 as NNReal; use exact_mod_cast.\n- le_div_iff deprecated; use le_div_iff0.",
+  "lemmas": [
+    {
+      "name": "hasDerivAt_sinh",
+      "statement": "lemma hasDerivAt_sinh (x : ℝ) : HasDerivAt Real.sinh (Real.cosh x) x",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "convert (using HasDerivAt.sub, HasDerivAt.div_const, convert)"
+    },
+    {
+      "name": "hasDerivAt_cosh",
+      "statement": "lemma hasDerivAt_cosh (x : ℝ) : HasDerivAt Real.cosh (Real.sinh x) x",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "convert (using HasDerivAt.add, HasDerivAt.div_const, convert)"
+    },
+    {
+      "name": "hasDerivAt_tanh",
+      "statement": "lemma hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "HasDerivAt.inv + HasDerivAt.mul (product rule), field_simp, nlinarith"
+    },
+    {
+      "name": "sech_sq_nonneg",
+      "statement": "lemma sech_sq_nonneg (x : ℝ) : 0 ≤ 1 - Real.tanh x ^ 2",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "div_pow, one_sub_div, div_nonneg, nlinarith with cosh_sq_sub_sinh_sq"
+    },
+    {
+      "name": "tanh_lipschitzWith_one",
+      "statement": "lemma tanh_lipschitzWith_one : LipschitzWith 1 Real.tanh",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "lipschitzWith_of_nnnorm_deriv_le"
+    },
+    {
+      "name": "lin_lipschitz",
+      "statement": "lemma lin_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) : LipschitzWith ⟨J, hJ0⟩ (fun m => x + J * m)",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "lipschitzWith_iff_dist_le_mul, abs_mul, abs_of_nonneg"
+    },
+    {
+      "name": "F_lipschitz",
+      "statement": "lemma F_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) (hJ1 : J < 1) : LipschitzWith ⟨J, hJ0⟩ (fun m => Real.tanh (x + J * m))",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "LipschitzWith.comp (tanh_lipschitzWith_one.comp lin_lipschitz)"
+    },
+    {
+      "name": "F_contracting",
+      "statement": "lemma F_contracting (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) : ContractingWith ⟨J, le_of_lt hJ0⟩ (fun m => Real.tanh (x + J * m))",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "constructor, exact_mod_cast, F_lipschitz"
+    },
+    {
+      "name": "contraction_residual_bound",
+      "statement": "lemma contraction_residual_bound {K : ℝ} (hK0 : 0 ≤ K) (hK1 : K < 1) {f : ℝ → ℝ} (hf_lip : LipschitzWith ⟨K, hK0⟩ f) {m_approx m_star : ℝ} (hstar : f m_star = m_star) : |m_approx - m_star| ≤ |f m_approx - m_approx| / (1 - K)",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "le_div_iff0, dist_le_mul, triangle inequality, nlinarith"
+    },
+    {
+      "name": "cwa_banach",
+      "statement": "theorem cwa_banach (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) : ∃! m_star : ℝ, Real.tanh (x + J * m_star) = m_star",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "ContractingWith.fixedPoint_isFixedPt, fixedPoint_unique"
+    },
+    {
+      "name": "ift_gradient_correct",
+      "statement": "theorem ift_gradient_correct (x J m_star : ℝ) (hJ0 : 0 < J) (hJ1 : J < 1) : let s_bar := 1 - Real.tanh (x + J * m_star) ^ 2; let grad := s_bar / (1 - J * s_bar); s_bar * (1 + J * grad) = grad",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "field_simp (after establishing denominator nonzero)"
+    },
+    {
+      "name": "cwa_ift_bias_uniform",
+      "statement": "theorem cwa_ift_bias_uniform (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) {m_approx m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star) (hres : |Real.tanh (x + J * m_approx) - m_approx| ≤ 1e-4 * (1 - J)) : |m_approx - m_star| ≤ 1e-4",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "contraction_residual_bound + div_le_div_of_nonneg_right + field_simp"
+    },
+    {
+      "name": "cwa_main",
+      "statement": "theorem cwa_main (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) : (∃! m_star : ℝ, ...) ∧ (∀ m_star, ...) ∧ (∀ m_approx m_star, ...)",
+      "compiler_out": "verified: true, has_sorries: false",
+      "is_compiler_verified": true,
+      "tactic": "conjunction of cwa_banach, ift_gradient_correct, cwa_ift_bias_uniform"
+    }
+  ],
+  "approaches_tried": [
+    {
+      "approach": "Import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp for tanh derivative",
+      "reason_failed": "This module is broken in Mathlib v4.14.0: importing it cascades errors into trivial and sorryAx, making even basic goals like 1=1 unprovable."
+    },
+    {
+      "approach": "Use HasDerivAt.div for tanh = sinh/cosh quotient rule",
+      "reason_failed": "HasDerivAt.div does not exist in Mathlib v4.14.0. Must use HasDerivAt.inv + HasDerivAt.mul instead (product rule on sinh * cosh^-1)."
+    },
+    {
+      "approach": "Use Real.tanh_sq_lt_one for sech^2 bounds",
+      "reason_failed": "Real.tanh_sq_lt_one does not exist in this Mathlib version. Bounds must be proved from scratch using Real.cosh_sq_sub_sinh_sq and nlinarith."
+    },
+    {
+      "approach": "Use Differentiable.div for tanh differentiability",
+      "reason_failed": "Differentiable.div not available. Use fun x => (hasDerivAt_tanh x).differentiableAt instead."
+    }
+  ]
+}

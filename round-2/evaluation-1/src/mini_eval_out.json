@@ -1,0 +1,540 @@
+{
+  "metadata": {
+    "evaluation_name": "CWA Statistical Analysis",
+    "description": "Paired t-tests, K-saturation diagnostic, gradient bias table, p_c audit, MLP gradient ratio analysis, ResNet CIFAR-100 analysis, SOC J-stability, verdict synthesis.",
+    "paired_ttests": {
+      "shakespeare_cwa_vs_gelu": {
+        "test": "paired_t",
+        "n": 3,
+        "mean_cwa": 3.351850349907963,
+        "mean_baseline": 3.2252450715271874,
+        "mean_diff_cwa_minus_base": 0.1266052783807754,
+        "t_stat": 21.104127296967565,
+        "p_two_sided": 0.002237719028639736,
+        "p_one_sided_H0_cwa_ge_base": 0.001118859514319868,
+        "cohens_d": 13.755029743862158,
+        "bootstrap_ci_95_lo": 0.11571624728964114,
+        "bootstrap_ci_95_hi": 0.1400370316890811,
+        "interpretation": "CWA is WORSE (higher BPC)"
+      },
+      "shakespeare_cwa_vs_selu": {
+        "test": "paired_t",
+        "n": 3,
+        "mean_cwa": 3.351850349907963,
+        "mean_baseline": 3.3514590756186386,
+        "mean_diff_cwa_minus_base": 0.00039127428932417274,
+        "t_stat": 0.13327451969035237,
+        "p_two_sided": 0.9061763884697085,
+        "p_one_sided_H0_cwa_ge_base": 0.45308819423485425,
+        "cohens_d": 0.10388526483953264,
+        "bootstrap_ci_95_lo": -0.003746116928686316,
+        "bootstrap_ci_95_hi": 0.005816347769488139,
+        "interpretation": "CWA is WORSE (higher BPC)"
+      },
+      "shakespeare_cwa_vs_tanh_swish": {
+        "test": "paired_t",
+        "n": 3,
+        "mean_cwa": 3.351850349907963,
+        "mean_baseline": 3.3371464867932663,
+        "mean_diff_cwa_minus_base": 0.014703863114696514,
+        "t_stat": 6.953156065958241,
+        "p_two_sided": 0.020063677083304563,
+        "p_one_sided_H0_cwa_ge_base": 0.010031838541652282,
+        "cohens_d": 3.602474943137624,
+        "bootstrap_ci_95_lo": 0.009852700326666852,
+        "bootstrap_ci_95_hi": 0.020534529013144898,
+        "interpretation": "CWA is WORSE (higher BPC)"
+      },
+      "shakespeare_cwa_vs_gelu+ln": {
+        "test": "paired_t",
+        "n": 3,
+        "mean_cwa": 3.351850349907963,
+        "mean_baseline": 3.260416766489922,
+        "mean_diff_cwa_minus_base": 0.09143358341804086,
+        "t_stat": 47.57808300387525,
+        "p_two_sided": 0.0004414672146764949,
+        "p_one_sided_H0_cwa_ge_base": 0.00022073360733824746,
+        "cohens_d": 22.94076531841499,
+        "bootstrap_ci_95_lo": 0.08667102838483753,
+        "bootstrap_ci_95_hi": 0.09714240534110763,
+        "interpretation": "CWA is WORSE (higher BPC)"
+      },
+      "wikitext2_cwa_vs_gelu": {
+        "test": "welch_t",
+        "n": 2,
+        "mean_cwa": 767.4166611828086,
+        "mean_baseline": 738.7480346569839,
+        "mean_diff_cwa_minus_base": 28.66862652582472,
+        "t_stat": 2.934000437031894,
+        "p_two_sided": 0.0992998964358049,
+        "p_one_sided_H0_cwa_ge_base": 0.049592012909006514,
+        "cohens_d": 2.934000437031894,
+        "bootstrap_ci_95_lo": 14.851821674581515,
+        "bootstrap_ci_95_hi": 42.485431377067925,
+        "interpretation": "CWA is WORSE (higher PPL)"
+      },
+      "wikitext2_cwa_vs_selu": {
+        "test": "welch_t",
+        "n": 2,
+        "mean_cwa": 767.4166611828086,
+        "mean_baseline": 756.3024270148571,
+        "mean_diff_cwa_minus_base": 11.114234167951508,
+        "t_stat": 1.1559329376081873,
+        "p_two_sided": 0.3671397223802153,
+        "p_one_sided_H0_cwa_ge_base": 0.1835698597578489,
+        "cohens_d": 1.1559329376081873,
+        "bootstrap_ci_95_lo": -2.4833545232926326,
+        "bootstrap_ci_95_hi": 24.71182285919565,
+        "interpretation": "CWA is WORSE (higher PPL)"
+      },
+      "wikitext2_cwa_vs_tanh_swish": {
+        "test": "welch_t",
+        "n": 2,
+        "mean_cwa": 767.4166611828086,
+        "mean_baseline": 761.6275704913164,
+        "mean_diff_cwa_minus_base": 5.78909069149222,
+        "t_stat": 0.5590923962117765,
+        "p_two_sided": 0.6332819523030423,
+        "p_one_sided_H0_cwa_ge_base": 0.3161749033579483,
+        "cohens_d": 0.5590923962117765,
+        "bootstrap_ci_95_lo": -8.819444495856601,
+        "bootstrap_ci_95_hi": 20.39762587884104,
+        "interpretation": "CWA is WORSE (higher PPL)"
+      },
+      "wikitext2_cwa_vs_gelu+ln": {
+        "test": "welch_t",
+        "n": 2,
+        "mean_cwa": 767.4166611828086,
+        "mean_baseline": 744.4728609707167,
+        "mean_diff_cwa_minus_base": 22.9438002120919,
+        "t_stat": 2.2972697427780044,
+        "p_two_sided": 0.14909908566098773,
+        "p_one_sided_H0_cwa_ge_base": 0.0742129649266459,
+        "cohens_d": 2.2972697427780044,
+        "bootstrap_ci_95_lo": 8.828889060798247,
+        "bootstrap_ci_95_hi": 37.058711363385555,
+        "interpretation": "CWA is WORSE (higher PPL)"
+      }
+    },
+    "k_saturation": {
+      "K_max_in_code": 5,
+      "K_max_mandated_iter2": 50,
+      "fraction_hits_K_max": 1.0,
+      "mean_rho_J_s_bar": 0.4512508066666667,
+      "analytical_residual_at_K5": 0.01871069658903099,
+      "tolerance_delta": 5.487491933333333e-05,
+      "required_K_for_tolerance": 13,
+      "residual_at_K50": 5.25895631788361e-18,
+      "all_K_equal_K_max": true,
+      "conclusion": "K_max=5 in code. All 100% of logged K values equal K_max → K=5 is SATURATION (hit the cap), NOT genuine tolerance convergence. Analytical residual at K=5: 0.01871 >> tolerance 5.49e-05. Genuine convergence requires K≥13 iterations. Iter-2 mandates K_max=50 which would achieve residual 5.26e-18."
+    },
+    "gradient_bias_table": {
+      "table_rho_x_T": {
+        "rho=0.30": {
+          "T=3": 0.027,
+          "T=5": 0.00243,
+          "T=10": 6e-06
+        },
+        "rho=0.35": {
+          "T=3": 0.042875,
+          "T=5": 0.005252,
+          "T=10": 2.8e-05
+        },
+        "rho=0.40": {
+          "T=3": 0.064,
+          "T=5": 0.01024,
+          "T=10": 0.000105
+        },
+        "rho=0.45": {
+          "T=3": 0.091125,
+          "T=5": 0.018453,
+          "T=10": 0.000341
+        },
+        "rho=0.50": {
+          "T=3": 0.125,
+          "T=5": 0.03125,
+          "T=10": 0.000977
+        },
+        "rho=0.55": {
+          "T=3": 0.166375,
+          "T=5": 0.050328,
+          "T=10": 0.002533
+        },
+        "rho=0.60": {
+          "T=3": 0.216,
+          "T=5": 0.07776,
+          "T=10": 0.006047
+        }
+      },
+      "highlighted_empirical": {
+        "rho": 0.4512508066666667,
+        "T_warm_start": 5,
+        "T_code_param_warm_steps": 3,
+        "bias_at_K_max": 0.01871069658903099,
+        "bias_warm_start_3": 0.09188697910528719
+      },
+      "ift_never_triggered": true,
+      "ift_threshold": 0.8,
+      "ift_bias_proxy": 1.9999999999999995e-05,
+      "note": "Empirical rho=0.4513, K_max=5 (warm-start-5). Warm-start-5 gradient bias = 0.0187 (~1.87%). Warm-start-3 (code param) bias = 0.0919 (~9.19%). IFT never triggered (J·s̄ stayed ~0.451 << 0.8). IFT bias would be ~2.0e-05. Bias is negligible for training purposes at these rho values."
+    },
+    "pc_consistency_audit": {
+      "p_c_mandated_by_hypothesis": 0.83,
+      "p_c_used_mlp_experiment": 0.5,
+      "p_c_used_lm_experiment": 0.5,
+      "deviation_from_mandate": 0.32999999999999996,
+      "baseline_at_critical_point": false,
+      "impact": "Both MLP (art_kKv207AAQYq2) and LM (art_DdhxnRglYGM6) experiments used p_c=0.50 for the CompetingNonlinearities / tanh+Swish baseline instead of the analytically mandated p_c=0.83 (Lesser & Chowdhury 2026 edge-of-chaos condition). Deviation: |0.5 - 0.83| = 0.33. At p_c=0.50 the baseline is NOT at the edge-of-chaos critical point, representing a suboptimal implementation. All comparisons involving tanh+Swish are against a handicapped competitor — CWA beat a suboptimal version. The correct comparison (p_c=0.83) remains unmeasured and is required for iter-2."
+    },
+    "mlp_gradient_ratio": {
+      "experiment_status": "experiment_in_progress",
+      "completed_configs": {
+        "depth_6": [
+          "relu",
+          "gelu"
+        ]
+      },
+      "n_completed": 2,
+      "planned_configs": 27,
+      "completion_fraction": 0.07407407407407407,
+      "completed_gradient_ratios": [
+        {
+          "activation": "relu",
+          "depth": 6,
+          "gradient_ratio": 0.4579,
+          "accuracy": 0.5217
+        },
+        {
+          "activation": "gelu",
+          "depth": 6,
+          "gradient_ratio": 1.685,
+          "accuracy": 0.5125
+        }
+      ],
+      "plausibility_notes": [
+        "relu depth=6 ratio=0.4579: plausible (stable)",
+        "gelu depth=6 ratio=1.6850: plausible (mild gradient drift)"
+      ],
+      "cwa_gradient_ratios_available": false,
+      "summary": "MLP experiment only completed 2 of 27 planned configurations. CWA gradient ratios unavailable for hypothesis testing. Available: relu depth=6 ratio=0.4579 (stable), gelu depth=6 ratio=1.685 (mild drift). Both are plausible values for a 6-layer unnormalized MLP. The key gradient stability hypothesis (CWA<2 vs GELU>5 at depth≥10) cannot be evaluated."
+    },
+    "resnet_cifar100": {
+      "n_examples_logged": 56,
+      "n_seeds": 1,
+      "n_epochs": 8,
+      "experiment_status": "interim — experiment still running",
+      "config": "standard_no_bn (widths=[16,32,64], no BatchNorm)",
+      "cwa_final_acc": 0.1401,
+      "gelu_final_acc": 0.1893,
+      "accuracy_gap_cwa_minus_gelu_pp": -4.92,
+      "mean_J_s_bar": 0.30578322721243323,
+      "soc_criterion_J_s_bar_gt_0p7": false,
+      "mean_J_s_bar_vs_soc_threshold": "0.306 << 0.7 (SOC FAILED)",
+      "auc_cwa": 0.11413000000000002,
+      "auc_gelu": 0.1893,
+      "auc_diff_cwa_minus_gelu": -0.07516999999999997,
+      "single_seed_caveat": "Only 1 seed × 8 epochs available — insufficient for statistical significance",
+      "summary": "CWA final accuracy 0.1401 vs GELU 0.1893 on CIFAR-100 standard_no_bn. Gap: -4.92 pp (CWA is WORSE). Mean J·s̄=0.306 well below SOC threshold 0.7 — self-organized criticality NOT observed. AUC diff: -7.52 pp. Results are interim (1 seed only)."
+    },
+    "j_soc_stability": {
+      "J_global_min": 0.498066,
+      "J_global_max": 0.501536,
+      "J_global_range": 0.003469999999999973,
+      "J_drift_max": 0.001892999999999978,
+      "J_drift_mean": 0.0007342666666666646,
+      "J_drift_std": 0.0004968595330227191,
+      "rho_global_min": 0.437165,
+      "rho_global_max": 0.461581,
+      "rho_global_range": 0.024415999999999993,
+      "rho_drift_max": 0.01858399999999999,
+      "rho_drift_mean": 0.0086652,
+      "n_layers_monotone_toward_criticality": 2,
+      "n_total_layer_trajectories": 30,
+      "fraction_monotone_toward_criticality": 0.06666666666666667,
+      "soc_failure_J_stable": true,
+      "summary": "J varies between 0.498066 and 0.501536 (range 0.003470). J·s̄ varies between 0.4372 and 0.4616. Max J drift from init: 0.001893. SOC predicts J should self-organize toward criticality (J·s̄→1⁻) but J·s̄ stayed at ~0.44-0.46 throughout training — far from criticality. 2/30 layer trajectories show monotone J·s̄ increase. J remained within ~0.003 of initialization (0.5), confirming no SOC."
+    },
+    "verdict_synthesis": {
+      "verdict": "DISCONFIRM",
+      "verdict_strength": "STRONG",
+      "criteria": {
+        "C1_cwa_within_noise_of_gelu": {
+          "met": false,
+          "evidence": "CWA BPC=3.3519 vs GELU 3.2252 (diff=+0.1266 BPC) on Shakespeare. CWA PPL=767.4 vs GELU 738.7 (diff=+28.7). CWA is WORSE, not within noise."
+        },
+        "C2_selu_tanh_swish_match_or_exceed_cwa": {
+          "met": true,
+          "evidence": "SELU BPC=3.3515 and tanh+Swish BPC=3.3371 both better than CWA BPC=3.3519 on Shakespeare. SELU PPL=756.3 and tanh+Swish PPL=761.6 both better than CWA PPL=767.4 on WikiText-2. CRITERION MET: simple baselines match or exceed CWA."
+        },
+        "C3_k_saturation_confound": {
+          "met": true,
+          "evidence": "K_max=5 was hit at 100% of logged iterations — CWA computed m* to only ~1.87% residual, not true fixed point. Genuine convergence requires K≥13. This is a primary confound explaining CWA underperformance."
+        },
+        "C4_soc_self_organization": {
+          "met": false,
+          "evidence": "J·s̄ remained ~0.437-0.462 throughout training (far from criticality threshold 1.0). ResNet mean J·s̄=0.306 << 0.7 SOC criterion. SOC NOT observed."
+        },
+        "C5_gradient_stability_untested": {
+          "met": true,
+          "evidence": "MLP gradient stability experiment (depths 6/10/20) only completed 2 of 27 configs. CWA gradient ratios unavailable. Primary hypothesis C1 (CWA<2 vs GELU>5 at depth≥10) untestable."
+        },
+        "C6_pc_suboptimal_comparison": {
+          "met": true,
+          "evidence": "p_c=0.50 used vs mandated p_c=0.83 — tanh+Swish baseline not at edge-of-chaos. Comparison is against handicapped competitor."
+        }
+      },
+      "summary": "OVERALL VERDICT: DISCONFIRM (STRONG). CWA fails on all LM benchmarks: BPC diff=+0.1266 (CWA WORSE, p=0.0022), PPL diff=+28.7 (CWA WORSE). Simple baselines (SELU, tanh+Swish) outperform CWA on all tasks. ResNet CIFAR-100: CWA -4.92 pp WORSE than GELU. PRIMARY CONFOUND: K_max=5 (should be 50) means CWA computed only approximate fixed points. SOC not observed: J·s̄ stayed at ~0.45 (far from criticality). MLP gradient stability untestable (experiment incomplete). p_c=0.50 weakened tanh+Swish baseline. Iter-2 must fix K_max=50, p_c=0.83, and complete MLP experiment."
+    }
+  },
+  "metrics_agg": {
+    "shk_bpc_diff_cwa_minus_gelu": 0.1266052783807754,
+    "shk_bpc_t_stat_cwa_vs_gelu": 21.104127296967565,
+    "shk_bpc_p_two_cwa_vs_gelu": 0.002237719028639736,
+    "shk_bpc_cohens_d_cwa_vs_gelu": 13.755029743862158,
+    "shk_bpc_diff_cwa_minus_selu": 0.00039127428932417274,
+    "shk_bpc_diff_cwa_minus_tanh_swish": 0.014703863114696514,
+    "wt2_ppl_diff_cwa_minus_gelu": 28.66862652582472,
+    "wt2_ppl_t_stat_cwa_vs_gelu": 2.934000437031894,
+    "wt2_ppl_p_two_cwa_vs_gelu": 0.0992998964358049,
+    "wt2_ppl_cohens_d_cwa_vs_gelu": 2.934000437031894,
+    "k_max_in_code": 5.0,
+    "k_fraction_hits_k_max": 1.0,
+    "k_analytical_residual_at_k5": 0.01871069658903099,
+    "k_required_for_tolerance": 13.0,
+    "grad_bias_empirical_rho": 0.4512508066666667,
+    "grad_bias_at_k_max": 0.01871069658903099,
+    "grad_bias_warm_start_3": 0.09188697910528719,
+    "pc_used": 0.5,
+    "pc_mandated": 0.83,
+    "pc_deviation": 0.32999999999999996,
+    "mlp_n_completed_configs": 2.0,
+    "mlp_planned_configs": 27.0,
+    "mlp_completion_fraction": 0.07407407407407407,
+    "resnet_cwa_final_acc": 0.1401,
+    "resnet_gelu_final_acc": 0.1893,
+    "resnet_gap_pp": -4.92,
+    "resnet_mean_J_s_bar": 0.30578322721243323,
+    "j_global_range": 0.003469999999999973,
+    "j_drift_max": 0.001892999999999978,
+    "rho_global_max": 0.461581,
+    "rho_global_min": 0.437165,
+    "verdict_disconfirm": 1.0
+  },
+  "datasets": [
+    {
+      "dataset": "cwa_paired_ttests",
+      "examples": [
+        {
+          "input": "Paired/Welch t-test: CWA vs baseline comparison 'shakespeare_cwa_vs_gelu'",
+          "output": "CWA is WORSE (higher BPC)",
+          "predict_mean_cwa": "3.35185",
+          "predict_mean_baseline": "3.225245",
+          "predict_diff": "0.126605",
+          "predict_test_type": "paired_t",
+          "eval_t_stat": 21.104127296967565,
+          "eval_p_two_sided": 0.002237719028639736,
+          "eval_cohens_d": 13.755029743862158,
+          "eval_bootstrap_ci_lo": 0.11571624728964114,
+          "eval_bootstrap_ci_hi": 0.1400370316890811,
+          "metadata_comparison": "shakespeare_cwa_vs_gelu",
+          "metadata_n": "3",
+          "metadata_test_type": "paired_t"
+        },
+        {
+          "input": "Paired/Welch t-test: CWA vs baseline comparison 'shakespeare_cwa_vs_selu'",
+          "output": "CWA is WORSE (higher BPC)",
+          "predict_mean_cwa": "3.35185",
+          "predict_mean_baseline": "3.351459",
+          "predict_diff": "0.000391",
+          "predict_test_type": "paired_t",
+          "eval_t_stat": 0.13327451969035237,
+          "eval_p_two_sided": 0.9061763884697085,
+          "eval_cohens_d": 0.10388526483953264,
+          "eval_bootstrap_ci_lo": -0.003746116928686316,
+          "eval_bootstrap_ci_hi": 0.005816347769488139,
+          "metadata_comparison": "shakespeare_cwa_vs_selu",
+          "metadata_n": "3",
+          "metadata_test_type": "paired_t"
+        },
+        {
+          "input": "Paired/Welch t-test: CWA vs baseline comparison 'shakespeare_cwa_vs_tanh_swish'",
+          "output": "CWA is WORSE (higher BPC)",
+          "predict_mean_cwa": "3.35185",
+          "predict_mean_baseline": "3.337146",
+          "predict_diff": "0.014704",
+          "predict_test_type": "paired_t",
+          "eval_t_stat": 6.953156065958241,
+          "eval_p_two_sided": 0.020063677083304563,
+          "eval_cohens_d": 3.602474943137624,
+          "eval_bootstrap_ci_lo": 0.009852700326666852,
+          "eval_bootstrap_ci_hi": 0.020534529013144898,
+          "metadata_comparison": "shakespeare_cwa_vs_tanh_swish",
+          "metadata_n": "3",
+          "metadata_test_type": "paired_t"
+        }
+      ]
+    },
+    {
+      "dataset": "cwa_k_saturation",
+      "examples": [
+        {
+          "input": "K-saturation diagnostic: Is K=5 saturation or genuine convergence?",
+          "output": "K_max=5 in code. All 100% of logged K values equal K_max → K=5 is SATURATION (hit the cap), NOT genuine tolerance convergence. Analytical residual at K=5: 0.01871 >> tolerance 5.49e-05. Genuine convergence requires K≥13 iterations. Iter-2 mandates K_max=50 which would achieve residual 5.26e-18.",
+          "predict_K_max_in_code": "5",
+          "predict_fraction_hits_K_max": "1.0",
+          "predict_residual_at_K5": "0.018711",
+          "predict_required_K": "13",
+          "eval_fraction_hits_K_max": 1.0,
+          "eval_analytical_residual_at_K5": 0.01871069658903099,
+          "eval_required_K": 13.0,
+          "metadata_K_max_in_code": "5",
+          "metadata_K_max_mandated": "50",
+          "metadata_all_K_equal_K_max": "True"
+        }
+      ]
+    },
+    {
+      "dataset": "cwa_gradient_bias_table",
+      "examples": [
+        {
+          "input": "Gradient bias for rho=0.30: warm-start T∈{3,5,10} gives O(rho^T) relative bias",
+          "output": "T=3: 0.027000, T=5: 0.002430, T=10: 0.000006",
+          "predict_bias_T3": "0.027",
+          "predict_bias_T5": "0.00243",
+          "predict_bias_T10": "6e-06",
+          "eval_bias_T3": 0.027,
+          "eval_bias_T5": 0.00243,
+          "eval_bias_T10": 6e-06,
+          "metadata_rho": "rho=0.30",
+          "metadata_is_empirical_observed": "False"
+        },
+        {
+          "input": "Gradient bias for rho=0.35: warm-start T∈{3,5,10} gives O(rho^T) relative bias",
+          "output": "T=3: 0.042875, T=5: 0.005252, T=10: 0.000028",
+          "predict_bias_T3": "0.042875",
+          "predict_bias_T5": "0.005252",
+          "predict_bias_T10": "2.8e-05",
+          "eval_bias_T3": 0.042875,
+          "eval_bias_T5": 0.005252,
+          "eval_bias_T10": 2.8e-05,
+          "metadata_rho": "rho=0.35",
+          "metadata_is_empirical_observed": "False"
+        },
+        {
+          "input": "Gradient bias for rho=0.40: warm-start T∈{3,5,10} gives O(rho^T) relative bias",
+          "output": "T=3: 0.064000, T=5: 0.010240, T=10: 0.000105",
+          "predict_bias_T3": "0.064",
+          "predict_bias_T5": "0.01024",
+          "predict_bias_T10": "0.000105",
+          "eval_bias_T3": 0.064,
+          "eval_bias_T5": 0.01024,
+          "eval_bias_T10": 0.000105,
+          "metadata_rho": "rho=0.40",
+          "metadata_is_empirical_observed": "False"
+        }
+      ]
+    },
+    {
+      "dataset": "cwa_pc_audit",
+      "examples": [
+        {
+          "input": "p_c consistency audit: Was the tanh+Swish baseline at the edge-of-chaos critical point?",
+          "output": "Both MLP (art_kKv207AAQYq2) and LM (art_DdhxnRglYGM6) experiments used p_c=0.50 for the CompetingNonlinearities / tanh+Swish baseline instead of the analytically mandated p_c=0.83 (Lesser & Chowdhury 2026 edge-of-chaos condition). Deviation: |0.5 - 0.83| = 0.33. At p_c=0.50 the baseline is NOT at the edge-of-chaos critical point, representing a suboptimal implementation. All comparisons involving tanh+Swish are against a handicapped competitor — CWA beat a suboptimal version. The correct comparison (p_c=0.83) remains unmeasured and is required for iter-2.",
+          "predict_p_c_used": "0.5",
+          "predict_p_c_mandated": "0.83",
+          "predict_baseline_optimal": "False",
+          "eval_p_c_deviation": 0.32999999999999996,
+          "metadata_p_c_used": "0.5",
+          "metadata_p_c_mandated": "0.83"
+        }
+      ]
+    },
+    {
+      "dataset": "cwa_mlp_gradient_ratio",
+      "examples": [
+        {
+          "input": "MLP gradient ratio: depth=6 activation=relu on CIFAR-10",
+          "output": "gradient_ratio=0.4579, accuracy=0.5217",
+          "predict_gradient_ratio": "0.4579",
+          "predict_accuracy": "0.5217",
+          "eval_gradient_ratio": 0.4579,
+          "metadata_depth": "6",
+          "metadata_activation": "relu",
+          "metadata_experiment_status": "experiment_in_progress"
+        },
+        {
+          "input": "MLP gradient ratio: depth=6 activation=gelu on CIFAR-10",
+          "output": "gradient_ratio=1.6850, accuracy=0.5125",
+          "predict_gradient_ratio": "1.685",
+          "predict_accuracy": "0.5125",
+          "eval_gradient_ratio": 1.685,
+          "metadata_depth": "6",
+          "metadata_activation": "gelu",
+          "metadata_experiment_status": "experiment_in_progress"
+        }
+      ]
+    },
+    {
+      "dataset": "cwa_resnet_cifar100",
+      "examples": [
+        {
+          "input": "ResNet-20 CIFAR-100 standard_no_bn: CWA vs GELU final accuracy comparison",
+          "output": "CWA final accuracy 0.1401 vs GELU 0.1893 on CIFAR-100 standard_no_bn. Gap: -4.92 pp (CWA is WORSE). Mean J·s̄=0.306 well below SOC threshold 0.7 — self-organized criticality NOT observed. AUC diff: -7.52 pp. Results are interim (1 seed only).",
+          "predict_cwa_final_acc": "0.1401",
+          "predict_gelu_final_acc": "0.1893",
+          "predict_gap_pp": "-4.92",
+          "eval_cwa_final_acc": 0.1401,
+          "eval_gelu_final_acc": 0.1893,
+          "eval_gap_pp": -4.92,
+          "eval_mean_J_s_bar": 0.30578322721243323,
+          "metadata_status": "interim — experiment still running",
+          "metadata_n_seeds": "1"
+        }
+      ]
+    },
+    {
+      "dataset": "cwa_j_soc_stability",
+      "examples": [
+        {
+          "input": "SOC analysis: Does J self-organize toward criticality (J·s̄→1⁻) during training?",
+          "output": "J varies between 0.498066 and 0.501536 (range 0.003470). J·s̄ varies between 0.4372 and 0.4616. Max J drift from init: 0.001893. SOC predicts J should self-organize toward criticality (J·s̄→1⁻) but J·s̄ stayed at ~0.44-0.46 throughout training — far from criticality. 2/30 layer trajectories show monotone J·s̄ increase. J remained within ~0.003 of initialization (0.5), confirming no SOC.",
+          "predict_J_global_range": "0.00347",
+          "predict_rho_range": "0.024416",
+          "eval_J_drift_max": 0.001892999999999978,
+          "eval_rho_global_max": 0.461581,
+          "eval_J_global_range": 0.003469999999999973,
+          "metadata_n_layer_trajectories": "30",
+          "metadata_soc_failure_confirmed": "True"
+        }
+      ]
+    },
+    {
+      "dataset": "cwa_verdict_synthesis",
+      "examples": [
+        {
+          "input": "Overall verdict: Does CWA (Curie-Weiss Activation) outperform baselines? Map findings to CONFIRM/DISCONFIRM.",
+          "output": "OVERALL VERDICT: DISCONFIRM (STRONG). CWA fails on all LM benchmarks: BPC diff=+0.1266 (CWA WORSE, p=0.0022), PPL diff=+28.7 (CWA WORSE). Simple baselines (SELU, tanh+Swish) outperform CWA on all tasks. ResNet CIFAR-100: CWA -4.92 pp WORSE than GELU. PRIMARY CONFOUND: K_max=5 (should be 50) means CWA computed only approximate fixed points. SOC not observed: J·s̄ stayed at ~0.45 (far from criticality). MLP gradient stability untestable (experiment incomplete). p_c=0.50 weakened tanh+Swish baseline. Iter-2 must fix K_max=50, p_c=0.83, and complete MLP experiment.",
+          "predict_verdict": "DISCONFIRM",
+          "predict_verdict_strength": "STRONG",
+          "eval_verdict_disconfirm": 1.0,
+          "metadata_verdict": "DISCONFIRM",
+          "metadata_strength": "STRONG"
+        },
+        {
+          "input": "Verdict criterion: C1_cwa_within_noise_of_gelu",
+          "output": "CWA BPC=3.3519 vs GELU 3.2252 (diff=+0.1266 BPC) on Shakespeare. CWA PPL=767.4 vs GELU 738.7 (diff=+28.7). CWA is WORSE, not within noise.",
+          "predict_criterion_met": "False",
+          "eval_criterion_met": 0.0,
+          "metadata_criterion": "C1_cwa_within_noise_of_gelu"
+        },
+        {
+          "input": "Verdict criterion: C2_selu_tanh_swish_match_or_exceed_cwa",
+          "output": "SELU BPC=3.3515 and tanh+Swish BPC=3.3371 both better than CWA BPC=3.3519 on Shakespeare. SELU PPL=756.3 and tanh+Swish PPL=761.6 both better than CWA PPL=767.4 on WikiText-2. CRITERION MET: simple baselines match or exceed CWA.",
+          "predict_criterion_met": "True",
+          "eval_criterion_met": 1.0,
+          "metadata_criterion": "C2_selu_tanh_swish_match_or_exceed_cwa"
+        }
+      ]
+    }
+  ]
+}

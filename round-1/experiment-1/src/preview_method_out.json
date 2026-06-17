@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "method_name": "CWA (Coupled-Weight Activation)",
+    "description": "CWA uses mean-field fixed-point iteration with learnable coupling J. Hybrid IFT/unrolled backprop. Tested against 8 baselines across depths 6/10/20 on CIFAR-10 (Exp1) and fixed-J ablation (Exp4). NOTE...",
+    "hypothesis_verdict": "INCONCLUSIVE",
+    "depths": [
+      6,
+      10,
+      20
+    ],
+    "hidden_dim": 256,
+    "num_seeds": 3,
+    "num_epochs": 25,
+    "batch_size": 256,
+    "lr": 0.001,
+    "activations": [
+      "relu",
+      "gelu",
+      "swish"
+    ],
+    "datasets": [
+      "cifar10"
+    ],
+    "status": "experiment_in_progress",
+    "completed_configs": {
+      "depth_6": [
+        "relu",
+        "gelu"
+      ]
+    },
+    "gradient_stability_results": {},
+    "accuracy_improvements_vs_gelu": {},
+    "soc_finding": {}
+  },
+  "datasets": [
+    {
+      "dataset": "cifar10_gradient_stability",
+      "examples": [
+        {
+          "input": "Train 6-layer unnormalized MLP with relu activation on CIFAR-10 (hidden_dim=256, batch=256, epochs=25, seeds=3). Measure gradient ratio and test accuracy.",
+          "output": "CWA hypothesis: gradient ratio < 2.0 (stable) vs GELU > 5.0 (vanishing/exploding), competitive accuracy within 5pp of GELU.",
+          "predict_accuracy": "0.5217",
+          "predict_gradient_ratio": "0.4579",
+          "metadata_depth": 6,
+          "metadata_activation": "relu",
+          "metadata_dataset": "cifar10",
+          "metadata_num_seeds": 3,
+          "metadata_accuracy_vs_gelu_delta": "0.0092"
+        },
+        {
+          "input": "Train 6-layer unnormalized MLP with gelu activation on CIFAR-10 (hidden_dim=256, batch=256, epochs=25, seeds=3). Measure gradient ratio and test accuracy.",
+          "output": "CWA hypothesis: gradient ratio < 2.0 (stable) vs GELU > 5.0 (vanishing/exploding), competitive accuracy within 5pp of GELU.",
+          "predict_accuracy": "0.5125",
+          "predict_gradient_ratio": "1.685",
+          "metadata_depth": 6,
+          "metadata_activation": "gelu",
+          "metadata_dataset": "cifar10",
+          "metadata_num_seeds": 3,
+          "metadata_accuracy_vs_gelu_delta": "0.0"
+        },
+        {
+          "input": "Train 6-layer unnormalized MLP with swish activation on CIFAR-10 (hidden_dim=256, batch=256, epochs=25, seeds=3). Measure gradient ratio and test accuracy.",
+          "output": "CWA hypothesis: gradient ratio < 2.0 (stable) vs GELU > 5.0 (vanishing/exploding), competitive accuracy within 5pp of GELU.",
+          "predict_accuracy": "None",
+          "predict_gradient_ratio": "None",
+          "metadata_depth": 6,
+          "metadata_activation": "swish",
+          "metadata_dataset": "cifar10",
+          "metadata_num_seeds": 3,
+          "metadata_accuracy_vs_gelu_delta": "-0.5125"
+        }
+      ]
+    },
+    {
+      "dataset": "mnist_gradient_stability",
+      "examples": [
+        {
+          "input": "Train 6-layer unnormalized MLP with relu on MNIST (hidden_dim=256, seeds=3, epochs=25).",
+          "output": "CWA hypothesis: gradient ratio < 2.0 with competitive accuracy.",
+          "predict_accuracy": "None",
+          "predict_gradient_ratio": "None",
+          "metadata_depth": 6,
+          "metadata_activation": "relu",
+          "metadata_dataset": "mnist",
+          "metadata_num_seeds": 0,
+          "metadata_accuracy_vs_gelu_delta": "0"
+        },
+        {
+          "input": "Train 6-layer unnormalized MLP with gelu on MNIST (hidden_dim=256, seeds=3, epochs=25).",
+          "output": "CWA hypothesis: gradient ratio < 2.0 with competitive accuracy.",
+          "predict_accuracy": "None",
+          "predict_gradient_ratio": "None",
+          "metadata_depth": 6,
+          "metadata_activation": "gelu",
+          "metadata_dataset": "mnist",
+          "metadata_num_seeds": 0,
+          "metadata_accuracy_vs_gelu_delta": "0"
+        },
+        {
+          "input": "Train 6-layer unnormalized MLP with swish on MNIST (hidden_dim=256, seeds=3, epochs=25).",
+          "output": "CWA hypothesis: gradient ratio < 2.0 with competitive accuracy.",
+          "predict_accuracy": "None",
+          "predict_gradient_ratio": "None",
+          "metadata_depth": 6,
+          "metadata_activation": "swish",
+          "metadata_dataset": "mnist",
+          "metadata_num_seeds": 0,
+          "metadata_accuracy_vs_gelu_delta": "0"
+        }
+      ]
+    },
+    {
+      "dataset": "cifar10_fixed_j_ablation",
+      "examples": [
+        {
+          "input": "Train 10-layer MLP on CIFAR-10 with fixed J=0.1 CWA (hidden_dim=256, seeds=3). Fixed-J ablation.",
+          "output": "Learned J should outperform fixed J by finding SOC critical point.",
+          "predict_accuracy": "None",
+          "predict_gradient_ratio": "None",
+          "predict_j_s_bar_mean": "None",
+          "metadata_j_condition": "0.1",
+          "metadata_dataset": "cifar10_exp4",
+          "metadata_depth": 10,
+          "metadata_num_seeds": 3
+        },
+        {
+          "input": "Train 10-layer MLP on CIFAR-10 with fixed J=0.3 CWA (hidden_dim=256, seeds=3). Fixed-J ablation.",
+          "output": "Learned J should outperform fixed J by finding SOC critical point.",
+          "predict_accuracy": "None",
+          "predict_gradient_ratio": "None",
+          "predict_j_s_bar_mean": "None",
+          "metadata_j_condition": "0.3",
+          "metadata_dataset": "cifar10_exp4",
+          "metadata_depth": 10,
+          "metadata_num_seeds": 3
+        },
+        {
+          "input": "Train 10-layer MLP on CIFAR-10 with fixed J=0.5 CWA (hidden_dim=256, seeds=3). Fixed-J ablation.",
+          "output": "Learned J should outperform fixed J by finding SOC critical point.",
+          "predict_accuracy": "None",
+          "predict_gradient_ratio": "None",
+          "predict_j_s_bar_mean": "None",
+          "metadata_j_condition": "0.5",
+          "metadata_dataset": "cifar10_exp4",
+          "metadata_depth": 10,
+          "metadata_num_seeds": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "method": "CWA vs SELU vs GELU on Tiny Shakespeare char-GPT",
+    "config": {
+      "n_embd": 256,
+      "n_head": 8,
+      "n_layer": 6,
+      "seq_len": 256,
+      "batch": 64,
+      "lr": 0.0003,
+      "n_steps": 100,
+      "warmup": 20,
+      "eval_interval": 10,
+      "eval_iters": 5
+    },
+    "dataset": "tiny_shakespeare",
+    "n_runs": 6,
+    "n_checkpoints_per_run": 11,
+    "total_examples": 66,
+    "act_summary": {
+      "selu": {
+        "mean_val_bpc": 3.672818,
+        "std_val_bpc": 0.005635,
+        "min_val_bpc": 3.668834,
+        "max_val_bpc": 3.676803
+      },
+      "cwa": {
+        "mean_val_bpc": 3.641573,
+        "std_val_bpc": 0.003936,
+        "min_val_bpc": 3.63879,
+        "max_val_bpc": 3.644357
+      },
+      "gelu": {
+        "mean_val_bpc": 3.640989,
+        "std_val_bpc": 0.000625,
+        "min_val_bpc": 3.640547,
+        "max_val_bpc": 3.641431
+      }
+    },
+    "cwa_trajectory_summary": {
+      "step_0_J_s_bar": 0.457304,
+      "step_final_J_s_bar": 0.452245,
+      "step_0_mean_act_mag": 0.254486,
+      "step_final_mean_act_mag": 0.273601,
+      "step_0_J": 0.5,
+      "step_final_J": 0.500363,
+      "n_diag_entries": 11,
+      "sech2_saturation_confirmed": true
+    },
+    "primary_comparison": {
+      "selu_mean_val_bpc": 3.672818,
+      "cwa_mean_val_bpc": 3.641573,
+      "gelu_mean_val_bpc": 3.640989
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "tiny_shakespeare",
+      "examples": [
+        {
+          "input": "{\"activation\": \"selu\", \"seed\": 42, \"eval_step\": 0, \"n_steps_total\": 100, \"architecture\": \"gpt_6layer_256embd_8head_seqlen256\", \"lr\": 0.0003, \"batch\": 64, \"init_type\": \"lecun_normal_1_sqrt_fan_in\"}",
+          "output": "{\"val_bpc\": 6.147486, \"is_final\": false, \"cwa_J\": null, \"cwa_J_s_bar\": null, \"cwa_mean_act_mag\": null, \"cwa_mean_sech2\": null}",
+          "metadata_activation": "selu",
+          "metadata_seed": "42",
+          "metadata_eval_step": "0",
+          "predict_val_bpc": "6.147486"
+        },
+        {
+          "input": "{\"activation\": \"selu\", \"seed\": 42, \"eval_step\": 10, \"n_steps_total\": 100, \"architecture\": \"gpt_6layer_256embd_8head_seqlen256\", \"lr\": 0.0003, \"batch\": 64, \"init_type\": \"lecun_normal_1_sqrt_fan_in\"}",
+          "output": "{\"val_bpc\": 5.044823, \"is_final\": false, \"cwa_J\": null, \"cwa_J_s_bar\": null, \"cwa_mean_act_mag\": null, \"cwa_mean_sech2\": null}",
+          "metadata_activation": "selu",
+          "metadata_seed": "42",
+          "metadata_eval_step": "10",
+          "predict_val_bpc": "5.044823"
+        },
+        {
+          "input": "{\"activation\": \"selu\", \"seed\": 42, \"eval_step\": 20, \"n_steps_total\": 100, \"architecture\": \"gpt_6layer_256embd_8head_seqlen256\", \"lr\": 0.0003, \"batch\": 64, \"init_type\": \"lecun_normal_1_sqrt_fan_in\"}",
+          "output": "{\"val_bpc\": 4.396304, \"is_final\": false, \"cwa_J\": null, \"cwa_J_s_bar\": null, \"cwa_mean_act_mag\": null, \"cwa_mean_sech2\": null}",
+          "metadata_activation": "selu",
+          "metadata_seed": "42",
+          "metadata_eval_step": "20",
+          "predict_val_bpc": "4.396304"
+        }
+      ]
+    }
+  ]
+}

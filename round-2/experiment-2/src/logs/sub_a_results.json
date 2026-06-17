@@ -1,0 +1,33 @@
+{
+  "GELU_peak_MB": 0.18798828125,
+  "IFT_trigger_small_x": {
+    "peak_memory_MB": 0.31640625,
+    "ift_triggered_count": 50,
+    "J_s_bar_mean": 0.9537137055397034,
+    "grad_nan_count": 0
+  },
+  "IFT_path": {
+    "peak_memory_MB": 1.046875,
+    "ift_triggered_count": 0,
+    "J_s_bar_mean": 0.5912670731544495,
+    "grad_nan_count": 0,
+    "peak_memory_ratio_vs_GELU": 1.046875
+  },
+  "unrolled_full_path": {
+    "peak_memory_MB": 1.046875,
+    "ift_triggered_count": 0,
+    "J_s_bar_mean": 0.5914777910709381,
+    "grad_nan_count": 0,
+    "peak_memory_ratio_vs_GELU": 1.046875
+  },
+  "IFT_path_low_J": {
+    "peak_memory_MB": 0.5390625,
+    "ift_triggered_count": 0,
+    "J_s_bar_mean": 0.3021748983860016,
+    "grad_nan_count": 0,
+    "peak_memory_ratio_vs_GELU": 0.5390625
+  },
+  "ift_confirmed": true,
+  "memory_saving_vs_unrolled": 1.0,
+  "low_j_fallback_triggered": 0
+}

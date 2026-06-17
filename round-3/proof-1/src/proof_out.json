@@ -1,0 +1,169 @@
+{
+  "proof_successful": true,
+  "verified": true,
+  "lean_code": "import Mathlib.Analysis.SpecialFunctions.ExpDeriv\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic\nimport Mathlib.Analysis.Calculus.Deriv.Comp\nimport Mathlib.Analysis.Calculus.Deriv.Mul\nimport Mathlib.Analysis.Calculus.Deriv.Inv\nimport Mathlib.Analysis.Calculus.MeanValue\nimport Mathlib.Topology.MetricSpace.Contracting\n\n-- CWA Proof v3: convergence, IFT formula, revised bias bound (code tolerance),\n-- warm-start-T bias bound (Theorem 4), and Corollary 4b (J≤55/100)\n\nlemma hasDerivAt_sinh (x : ℝ) : HasDerivAt Real.sinh (Real.cosh x) x := by\n  have h1 := Real.hasDerivAt_exp x\n  have h2 : HasDerivAt (Real.exp ∘ Neg.neg) (Real.exp (-x) * (-1)) x :=\n    (Real.hasDerivAt_exp (-x)).comp x (hasDerivAt_neg x)\n  have h4 : HasDerivAt (fun x => (Real.exp x - Real.exp (-x)) / 2)\n      ((Real.exp x - Real.exp (-x) * (-1)) / 2) x :=\n    (h1.sub h2).div_const 2\n  convert h4 using 1\n  · funext y; exact Real.sinh_eq y\n  · rw [Real.cosh_eq]; ring\n\nlemma hasDerivAt_cosh (x : ℝ) : HasDerivAt Real.cosh (Real.sinh x) x := by\n  have h1 := Real.hasDerivAt_exp x\n  have h2 : HasDerivAt (Real.exp ∘ Neg.neg) (Real.exp (-x) * (-1)) x :=\n    (Real.hasDerivAt_exp (-x)).comp x (hasDerivAt_neg x)\n  have h4 : HasDerivAt (fun x => (Real.exp x + Real.exp (-x)) / 2)\n      ((Real.exp x + Real.exp (-x) * (-1)) / 2) x :=\n    (h1.add h2).div_const 2\n  convert h4 using 1\n  · funext y; exact Real.cosh_eq y\n  · rw [Real.sinh_eq]; ring\n\nlemma hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x := by\n  have hcosh_ne : Real.cosh x ≠ 0 := (Real.cosh_pos x).ne'\n  have hsinh := hasDerivAt_sinh x\n  have hcosh := hasDerivAt_cosh x\n  have hcosh_inv : HasDerivAt (fun y => (Real.cosh y)⁻¹) (-Real.sinh x / Real.cosh x ^ 2) x :=\n    hcosh.inv hcosh_ne\n  have hprod : HasDerivAt (fun y => Real.sinh y * (Real.cosh y)⁻¹)\n      (Real.cosh x * (Real.cosh x)⁻¹ + Real.sinh x * (-Real.sinh x / Real.cosh x ^ 2)) x :=\n    hsinh.mul hcosh_inv\n  convert hprod using 1\n  · funext y; rw [Real.tanh_eq_sinh_div_cosh]; field_simp\n  · rw [Real.tanh_eq_sinh_div_cosh]\n    have hid : Real.cosh x ^ 2 - Real.sinh x ^ 2 = 1 := Real.cosh_sq_sub_sinh_sq x\n    field_simp\n    nlinarith [Real.cosh_pos x]\n\nlemma differentiable_tanh : Differentiable ℝ Real.tanh :=\n  fun x => (hasDerivAt_tanh x).differentiableAt\n\nlemma sech_sq_nonneg (x : ℝ) : 0 ≤ 1 - Real.tanh x ^ 2 := by\n  have hid : Real.cosh x ^ 2 - Real.sinh x ^ 2 = 1 := Real.cosh_sq_sub_sinh_sq x\n  have hcp := Real.cosh_pos x\n  rw [Real.tanh_eq_sinh_div_cosh, div_pow,\n      one_sub_div (pow_ne_zero 2 hcp.ne')]\n  apply div_nonneg _ (sq_nonneg _)\n  nlinarith [sq_nonneg (Real.sinh x)]\n\nlemma sech_sq_le_one (x : ℝ) : 1 - Real.tanh x ^ 2 ≤ 1 := by\n  linarith [sq_nonneg (Real.tanh x)]\n\nlemma nnnorm_deriv_tanh_le (x : ℝ) : ‖deriv Real.tanh x‖₊ ≤ 1 := by\n  rw [(hasDerivAt_tanh x).deriv]\n  have h0 := sech_sq_nonneg x\n  have h1 := sech_sq_le_one x\n  rw [show ‖(1 - Real.tanh x ^ 2)‖₊ = ⟨1 - Real.tanh x ^ 2, h0⟩ from by\n    simp [nnnorm, NNNorm.nnnorm, Real.norm_of_nonneg h0]]\n  exact_mod_cast h1\n\nlemma tanh_lipschitzWith_one : LipschitzWith 1 Real.tanh :=\n  lipschitzWith_of_nnnorm_deriv_le differentiable_tanh nnnorm_deriv_tanh_le\n\nlemma lin_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) :\n    LipschitzWith ⟨J, hJ0⟩ (fun m => x + J * m) := by\n  rw [lipschitzWith_iff_dist_le_mul]\n  intro a b\n  simp only [Real.dist_eq, NNReal.coe_mk]\n  have h : x + J * a - (x + J * b) = J * (a - b) := by ring\n  rw [h, abs_mul, abs_of_nonneg hJ0]\n\nlemma F_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) (hJ1 : J < 1) :\n    LipschitzWith ⟨J, hJ0⟩ (fun m => Real.tanh (x + J * m)) := by\n  have h := tanh_lipschitzWith_one.comp (lin_lipschitz x hJ0)\n  simp only [NNReal.coe_one, one_mul] at h\n  have heq : Real.tanh ∘ (fun m => x + J * m) = fun m => Real.tanh (x + J * m) := rfl\n  rwa [heq] at h\n\nlemma F_contracting (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) :\n    ContractingWith ⟨J, le_of_lt hJ0⟩ (fun m => Real.tanh (x + J * m)) := by\n  constructor\n  · exact_mod_cast hJ1\n  · exact F_lipschitz x (le_of_lt hJ0) hJ1\n\ntheorem cwa_banach (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) :\n    ∃! m_star : ℝ, Real.tanh (x + J * m_star) = m_star := by\n  have hc := F_contracting x hJ0 hJ1\n  let F := fun m => Real.tanh (x + J * m)\n  use ContractingWith.fixedPoint F hc\n  exact ⟨hc.fixedPoint_isFixedPt, fun y hy => hc.fixedPoint_unique hy⟩\n\nlemma one_sub_J_sbar_pos {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1)\n    (s_bar : ℝ) (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1) :\n    0 < 1 - J * s_bar := by nlinarith\n\ntheorem ift_gradient_correct (x J m_star : ℝ) (hJ0 : 0 < J) (hJ1 : J < 1) :\n    let s_bar := 1 - Real.tanh (x + J * m_star) ^ 2\n    let grad := s_bar / (1 - J * s_bar)\n    s_bar * (1 + J * grad) = grad := by\n  simp only\n  set s := 1 - Real.tanh (x + J * m_star) ^ 2\n  have hs0 : 0 ≤ s := sech_sq_nonneg _\n  have hs1 : s ≤ 1 := sech_sq_le_one _\n  have hden : 1 - J * s ≠ 0 :=\n    (one_sub_J_sbar_pos hJ0 hJ1 s hs0 hs1).ne'\n  field_simp [hden]\n\nlemma ift_equation_unique_solution (s_bar d J : ℝ)\n    (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1)\n    (hJ0 : 0 < J) (hJ1 : J < 1)\n    (heq : s_bar * (1 + J * d) = d) :\n    d = s_bar / (1 - J * s_bar) := by\n  have hden : 1 - J * s_bar ≠ 0 :=\n    (one_sub_J_sbar_pos hJ0 hJ1 s_bar hs0 hs1).ne'\n  field_simp [hden]\n  linarith\n\nlemma contraction_residual_bound {K : ℝ} (hK0 : 0 ≤ K) (hK1 : K < 1)\n    {f : ℝ → ℝ} (hf_lip : LipschitzWith ⟨K, hK0⟩ f)\n    {m_approx m_star : ℝ} (hstar : f m_star = m_star) :\n    |m_approx - m_star| ≤ |f m_approx - m_approx| / (1 - K) := by\n  have hden : 0 < 1 - K := by linarith\n  rw [le_div_iff₀ hden]\n  have hlip : |f m_approx - f m_star| ≤ K * |m_approx - m_star| := by\n    have h := hf_lip.dist_le_mul m_approx m_star\n    simp only [Real.dist_eq, NNReal.coe_mk] at h\n    linarith\n  rw [hstar] at hlip\n  have htri : |m_approx - m_star| ≤ |m_approx - f m_approx| + |f m_approx - m_star| := by\n    calc |m_approx - m_star|\n        = |(m_approx - f m_approx) + (f m_approx - m_star)| := by ring_nf\n      _ ≤ |m_approx - f m_approx| + |f m_approx - m_star| := abs_add _ _\n  have hsym : |f m_approx - m_approx| = |m_approx - f m_approx| := abs_sub_comm _ _\n  nlinarith [abs_nonneg (m_approx - m_star), abs_nonneg (f m_approx - m_approx),\n             abs_nonneg (f m_approx - m_star)]\n\ntheorem cwa_ift_bias_code_tolerance (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1)\n    {m_approx m_star : ℝ}\n    (hstar : Real.tanh (x + J * m_star) = m_star)\n    (s_bar : ℝ) (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1)\n    (hres : |Real.tanh (x + J * m_approx) - m_approx| ≤ 1e-4 * (1 - J * s_bar)) :\n    |m_approx - m_star| ≤ 1e-4 * (1 - J * s_bar) / (1 - J) := by\n  have hfl := F_lipschitz x (le_of_lt hJ0) hJ1\n  have hbound : |m_approx - m_star| ≤\n      |Real.tanh (x + J * m_approx) - m_approx| / (1 - J) :=\n    contraction_residual_bound (le_of_lt hJ0) hJ1 hfl hstar\n  calc |m_approx - m_star|\n      ≤ |Real.tanh (x + J * m_approx) - m_approx| / (1 - J) := hbound\n    _ ≤ (1e-4 * (1 - J * s_bar)) / (1 - J) := by\n          apply div_le_div_of_nonneg_right hres\n          linarith\n\nlemma code_tol_bound_finite {J s_bar : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1)\n    (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1) :\n    1e-4 * (1 - J * s_bar) / (1 - J) ≤ 1e-4 / (1 - J) := by\n  apply div_le_div_of_nonneg_right _ (by linarith)\n  nlinarith\n\nlemma warmstart_iteration_bound {J : ℝ} (hJ0 : 0 ≤ J)\n    {f : ℝ → ℝ} (hf_lip : LipschitzWith ⟨J, hJ0⟩ f)\n    {m_star : ℝ} (hfp : f m_star = m_star)\n    {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε)\n    (hinit : |m_hat - m_star| ≤ ε)\n    (T : ℕ) : |f^[T] m_hat - m_star| ≤ J ^ T * ε := by\n  induction T with\n  | zero =>\n      simp only [Function.iterate_zero, id, pow_zero, one_mul]\n      exact hinit\n  | succ n ih =>\n      simp only [Function.iterate_succ_apply']\n      rw [← hfp]\n      have hlip : |f (f^[n] m_hat) - f m_star| ≤ J * |f^[n] m_hat - m_star| := by\n        have h := hf_lip.dist_le_mul (f^[n] m_hat) m_star\n        simp only [Real.dist_eq, NNReal.coe_mk] at h\n        linarith\n      calc |f (f^[n] m_hat) - f m_star|\n          ≤ J * |f^[n] m_hat - m_star| := hlip\n        _ ≤ J * (J ^ n * ε) := mul_le_mul_of_nonneg_left ih hJ0\n        _ = J ^ (n + 1) * ε := by ring\n\ntheorem cwa_warmstart_bias (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1)\n    {m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star)\n    {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε)\n    (hinit : |m_hat - m_star| ≤ ε)\n    (T : ℕ) :\n    |(fun m => Real.tanh (x + J * m))^[T] m_hat - m_star| ≤ J ^ T * ε := by\n  exact warmstart_iteration_bound (le_of_lt hJ0)\n    (F_lipschitz x (le_of_lt hJ0) hJ1) hstar hε hinit T\n\ntheorem cwa_warmstart3_concrete (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ_half : J ≤ 1/2)\n    {m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star)\n    {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε)\n    (hinit : |m_hat - m_star| ≤ ε) :\n    |(fun m => Real.tanh (x + J * m))^[3] m_hat - m_star| ≤ (1/8) * ε := by\n  have hJ1 : J < 1 := by linarith\n  have h3 := cwa_warmstart_bias x hJ0 hJ1 hstar hε hinit 3\n  have hJ3 : J ^ 3 ≤ (1/2 : ℝ) ^ 3 := by gcongr\n  calc |(fun m => Real.tanh (x + J * m))^[3] m_hat - m_star|\n      ≤ J ^ 3 * ε := h3\n    _ ≤ (1/2 : ℝ) ^ 3 * ε := mul_le_mul_of_nonneg_right hJ3 hε\n    _ = 1/8 * ε := by norm_num\n\ntheorem cwa_warmstart_corollary_j55 (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ_55 : J ≤ 55/100)\n    {m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star)\n    {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε)\n    (hinit : |m_hat - m_star| ≤ ε) :\n    |(fun m => Real.tanh (x + J * m))^[3] m_hat - m_star| ≤ (167/1000) * ε := by\n  have hJ1 : J < 1 := by linarith\n  have h3 := cwa_warmstart_bias x hJ0 hJ1 hstar hε hinit 3\n  have hJ3 : J ^ 3 ≤ (55/100 : ℝ) ^ 3 := by gcongr\n  have h55_3 : (55/100 : ℝ) ^ 3 ≤ 167/1000 := by norm_num\n  calc |(fun m => Real.tanh (x + J * m))^[3] m_hat - m_star|\n      ≤ J ^ 3 * ε := h3\n    _ ≤ (55/100 : ℝ) ^ 3 * ε := mul_le_mul_of_nonneg_right hJ3 hε\n    _ ≤ (167/1000) * ε := mul_le_mul_of_nonneg_right h55_3 hε\n\ntheorem cwa_main_v2 (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) :\n    (∃! m_star : ℝ, Real.tanh (x + J * m_star) = m_star) ∧\n    (∀ m_star : ℝ,\n      let s_bar := 1 - Real.tanh (x + J * m_star) ^ 2\n      let grad := s_bar / (1 - J * s_bar)\n      s_bar * (1 + J * grad) = grad) ∧\n    (∀ (m_approx m_star : ℝ) (s_bar : ℝ),\n      0 ≤ s_bar → s_bar ≤ 1 →\n      Real.tanh (x + J * m_star) = m_star →\n      |Real.tanh (x + J * m_approx) - m_approx| ≤ 1e-4 * (1 - J * s_bar) →\n      |m_approx - m_star| ≤ 1e-4 * (1 - J * s_bar) / (1 - J)) ∧\n    (∀ (m_star m_hat : ℝ) (ε : ℝ) (T : ℕ),\n      Real.tanh (x + J * m_star) = m_star →\n      0 ≤ ε →\n      |m_hat - m_star| ≤ ε →\n      |(fun m => Real.tanh (x + J * m))^[T] m_hat - m_star| ≤ J ^ T * ε) :=\n  ⟨cwa_banach x hJ0 hJ1,\n   fun m_star => ift_gradient_correct x J m_star hJ0 hJ1,\n   fun m_approx m_star s_bar hs0 hs1 hstar hres =>\n     cwa_ift_bias_code_tolerance x hJ0 hJ1 hstar s_bar hs0 hs1 hres,\n   fun m_star m_hat ε T hstar hε hinit =>\n     cwa_warmstart_bias x hJ0 hJ1 hstar hε hinit T⟩",
+  "proof_explanation": "CWA Proof v3 extends iter-2 by adding Corollary 4b (cwa_warmstart_corollary_j55), which provides a verified warm-start-3 bias bound for J≤55/100, covering the experimentally observed J∈[0.515,0.521] range that the existing J≤1/2 corollary misses. The proof reuses cwa_warmstart_bias with the same gcongr+norm_num pattern: gcongr gives J^3≤(55/100)^3 from hJ_55, norm_num closes (55/100)^3≤167/1000 (since 166375/1000000≤167000/1000000), and a three-step calc chain applies mul_le_mul_of_nonneg_right twice. All 16 theorems/lemmas verified by Lean 4.14.0 with no sorries.",
+  "lemmas": [
+    {
+      "name": "hasDerivAt_sinh",
+      "statement": "lemma hasDerivAt_sinh (x : ℝ) : HasDerivAt Real.sinh (Real.cosh x) x",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "convert, ring, funext"
+    },
+    {
+      "name": "hasDerivAt_cosh",
+      "statement": "lemma hasDerivAt_cosh (x : ℝ) : HasDerivAt Real.cosh (Real.sinh x) x",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "convert, ring, funext"
+    },
+    {
+      "name": "hasDerivAt_tanh",
+      "statement": "lemma hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "convert, field_simp, nlinarith"
+    },
+    {
+      "name": "differentiable_tanh",
+      "statement": "lemma differentiable_tanh : Differentiable ℝ Real.tanh",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "exact"
+    },
+    {
+      "name": "sech_sq_nonneg",
+      "statement": "lemma sech_sq_nonneg (x : ℝ) : 0 ≤ 1 - Real.tanh x ^ 2",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "div_nonneg, nlinarith"
+    },
+    {
+      "name": "sech_sq_le_one",
+      "statement": "lemma sech_sq_le_one (x : ℝ) : 1 - Real.tanh x ^ 2 ≤ 1",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "linarith"
+    },
+    {
+      "name": "nnnorm_deriv_tanh_le",
+      "statement": "lemma nnnorm_deriv_tanh_le (x : ℝ) : ‖deriv Real.tanh x‖₊ ≤ 1",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "exact_mod_cast"
+    },
+    {
+      "name": "tanh_lipschitzWith_one",
+      "statement": "lemma tanh_lipschitzWith_one : LipschitzWith 1 Real.tanh",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "lipschitzWith_of_nnnorm_deriv_le"
+    },
+    {
+      "name": "lin_lipschitz",
+      "statement": "lemma lin_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) : LipschitzWith ⟨J, hJ0⟩ (fun m => x + J * m)",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "rw, abs_mul"
+    },
+    {
+      "name": "F_lipschitz",
+      "statement": "lemma F_lipschitz (x : ℝ) {J : ℝ} (hJ0 : 0 ≤ J) (hJ1 : J < 1) : LipschitzWith ⟨J, hJ0⟩ (fun m => Real.tanh (x + J * m))",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "comp, rwa"
+    },
+    {
+      "name": "F_contracting",
+      "statement": "lemma F_contracting (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) : ContractingWith ⟨J, le_of_lt hJ0⟩ (fun m => Real.tanh (x + J * m))",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "constructor, exact_mod_cast"
+    },
+    {
+      "name": "cwa_banach",
+      "statement": "theorem cwa_banach (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) : ∃! m_star : ℝ, Real.tanh (x + J * m_star) = m_star",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "ContractingWith.fixedPoint"
+    },
+    {
+      "name": "one_sub_J_sbar_pos",
+      "statement": "lemma one_sub_J_sbar_pos {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) (s_bar : ℝ) (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1) : 0 < 1 - J * s_bar",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "nlinarith"
+    },
+    {
+      "name": "ift_gradient_correct",
+      "statement": "theorem ift_gradient_correct (x J m_star : ℝ) (hJ0 : 0 < J) (hJ1 : J < 1) : let s_bar := 1 - Real.tanh (x + J * m_star) ^ 2; let grad := s_bar / (1 - J * s_bar); s_bar * (1 + J * grad) = grad",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "field_simp"
+    },
+    {
+      "name": "ift_equation_unique_solution",
+      "statement": "lemma ift_equation_unique_solution (s_bar d J : ℝ) (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1) (hJ0 : 0 < J) (hJ1 : J < 1) (heq : s_bar * (1 + J * d) = d) : d = s_bar / (1 - J * s_bar)",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "field_simp, linarith"
+    },
+    {
+      "name": "contraction_residual_bound",
+      "statement": "lemma contraction_residual_bound {K : ℝ} (hK0 : 0 ≤ K) (hK1 : K < 1) {f : ℝ → ℝ} (hf_lip : LipschitzWith ⟨K, hK0⟩ f) {m_approx m_star : ℝ} (hstar : f m_star = m_star) : |m_approx - m_star| ≤ |f m_approx - m_approx| / (1 - K)",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "nlinarith, abs_add"
+    },
+    {
+      "name": "cwa_ift_bias_code_tolerance",
+      "statement": "theorem cwa_ift_bias_code_tolerance (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) {m_approx m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star) (s_bar : ℝ) (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1) (hres : |Real.tanh (x + J * m_approx) - m_approx| ≤ 1e-4 * (1 - J * s_bar)) : |m_approx - m_star| ≤ 1e-4 * (1 - J * s_bar) / (1 - J)",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "calc, div_le_div_of_nonneg_right"
+    },
+    {
+      "name": "code_tol_bound_finite",
+      "statement": "lemma code_tol_bound_finite {J s_bar : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) (hs0 : 0 ≤ s_bar) (hs1 : s_bar ≤ 1) : 1e-4 * (1 - J * s_bar) / (1 - J) ≤ 1e-4 / (1 - J)",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "div_le_div_of_nonneg_right, nlinarith"
+    },
+    {
+      "name": "warmstart_iteration_bound",
+      "statement": "lemma warmstart_iteration_bound {J : ℝ} (hJ0 : 0 ≤ J) {f : ℝ → ℝ} (hf_lip : LipschitzWith ⟨J, hJ0⟩ f) {m_star : ℝ} (hfp : f m_star = m_star) {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε) (hinit : |m_hat - m_star| ≤ ε) (T : ℕ) : |f^[T] m_hat - m_star| ≤ J ^ T * ε",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "induction, mul_le_mul_of_nonneg_left, ring"
+    },
+    {
+      "name": "cwa_warmstart_bias",
+      "statement": "theorem cwa_warmstart_bias (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) {m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star) {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε) (hinit : |m_hat - m_star| ≤ ε) (T : ℕ) : |(fun m => Real.tanh (x + J * m))^[T] m_hat - m_star| ≤ J ^ T * ε",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "warmstart_iteration_bound"
+    },
+    {
+      "name": "cwa_warmstart3_concrete",
+      "statement": "theorem cwa_warmstart3_concrete (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ_half : J ≤ 1/2) {m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star) {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε) (hinit : |m_hat - m_star| ≤ ε) : |(fun m => Real.tanh (x + J * m))^[3] m_hat - m_star| ≤ (1/8) * ε",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "calc, gcongr, mul_le_mul_of_nonneg_right, norm_num"
+    },
+    {
+      "name": "cwa_warmstart_corollary_j55",
+      "statement": "theorem cwa_warmstart_corollary_j55 (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ_55 : J ≤ 55/100) {m_star : ℝ} (hstar : Real.tanh (x + J * m_star) = m_star) {m_hat : ℝ} {ε : ℝ} (hε : 0 ≤ ε) (hinit : |m_hat - m_star| ≤ ε) : |(fun m => Real.tanh (x + J * m))^[3] m_hat - m_star| ≤ (167/1000) * ε",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "calc, gcongr, norm_num, mul_le_mul_of_nonneg_right"
+    },
+    {
+      "name": "cwa_main_v2",
+      "statement": "theorem cwa_main_v2 (x : ℝ) {J : ℝ} (hJ0 : 0 < J) (hJ1 : J < 1) : (∃! m_star : ℝ, Real.tanh (x + J * m_star) = m_star) ∧ (∀ m_star : ℝ, let s_bar := 1 - Real.tanh (x + J * m_star) ^ 2; let grad := s_bar / (1 - J * s_bar); s_bar * (1 + J * grad) = grad) ∧ (∀ (m_approx m_star : ℝ) (s_bar : ℝ), 0 ≤ s_bar → s_bar ≤ 1 → Real.tanh (x + J * m_star) = m_star → |Real.tanh (x + J * m_approx) - m_approx| ≤ 1e-4 * (1 - J * s_bar) → |m_approx - m_star| ≤ 1e-4 * (1 - J * s_bar) / (1 - J)) ∧ (∀ (m_star m_hat : ℝ) (ε : ℝ) (T : ℕ), Real.tanh (x + J * m_star) = m_star → 0 ≤ ε → |m_hat - m_star| ≤ ε → |(fun m => Real.tanh (x + J * m))^[T] m_hat - m_star| ≤ J ^ T * ε)",
+      "compiler_out": "verified",
+      "is_compiler_verified": true,
+      "tactic": "constructor tuple"
+    }
+  ]
+}

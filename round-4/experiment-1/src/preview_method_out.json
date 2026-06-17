@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "method_name": "cwa_memory_benchmark",
+    "description": "Peak GPU memory comparison: CWA-IFT vs Unrolled-K50 vs GELU baseline at n in {256,1024,4096}",
+    "hypothesis": "IFT implicit backward stores O(n) activations (m* scalar + y output) vs O(K*n) for unrolled K=50",
+    "J_raw": 4.0,
+    "J_sigmoid": 0.9820137619972229,
+    "batch_size": 64,
+    "K_max": 50,
+    "n_warmup": 3,
+    "n_measure": 5,
+    "widths_tested": [
+      256,
+      1024,
+      4096
+    ],
+    "x_scales_tested": [
+      0.1,
+      1.0
+    ],
+    "device": "cuda",
+    "finding": "IFT achieves O(n) memory overhead (within 2x of GELU at all n tested). IFT uses less memory than unrolled K=50 at all widths tested (ratio_ift_over_unrolled range: 0.31–0.84; savings grow with n: n=25...",
+    "ift_2x_criterion_met_at_n": [
+      256,
+      256,
+      1024
+    ],
+    "ift_meaningful_savings_vs_unrolled_at_n": [
+      4096,
+      4096
+    ],
+    "jsbar_near_critical_mean": 0.9625753063176781,
+    "jsbar_saturated_mean": 0.5934982895926026,
+    "summary_table": [
+      {
+        "n": 256,
+        "x_scale": 0.1,
+        "Jsbar": 0.9523,
+        "gelu_MB": 18.2,
+        "ift_MB": 17.4,
+        "unrolled_MB": 20.7,
+        "ift_over_gelu": 0.96,
+        "ift_over_unrolled": 0.841,
+        "unrolled_over_gelu": 1.142
+      },
+      {
+        "n": 256,
+        "x_scale": 1.0,
+        "Jsbar": 0.5917,
+        "gelu_MB": 18.2,
+        "ift_MB": 17.4,
+        "unrolled_MB": 20.7,
+        "ift_over_gelu": 0.96,
+        "ift_over_unrolled": 0.841,
+        "unrolled_over_gelu": 1.142
+      },
+      {
+        "n": 1024,
+        "x_scale": 0.1,
+        "Jsbar": 0.966,
+        "gelu_MB": 30.9,
+        "ift_MB": 18.6,
+        "unrolled_MB": 31.7,
+        "ift_over_gelu": 0.602,
+        "ift_over_unrolled": 0.586,
+        "unrolled_over_gelu": 1.026
+      }
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "cwa_memory_benchmark",
+      "examples": [
+        {
+          "input": "n=256, x_scale=0.1, mode=gelu, batch=64, K_max=50, J=0.9820, J*s̄=0.9523",
+          "output": "{\"peak_MB\": 18.154496, \"peak_MB_std\": 0.0, \"ratio_over_gelu\": 1.0, \"ratio_ift_over_unrolled\": null}",
+          "predict_mode": "gelu",
+          "predict_confirms_ift_advantage": "None",
+          "predict_ift_within_2x_gelu": "None",
+          "metadata_n": 256,
+          "metadata_x_scale": 0.1,
+          "metadata_J": 0.9820137619972229,
+          "metadata_Jsbar": 0.9523043796314639,
+          "metadata_sbar": 0.969746470451355,
+          "metadata_peak_MB": 18.154496,
+          "metadata_std_MB": 0.0,
+          "metadata_ratio_over_gelu": 1.0,
+          "metadata_ratio_ift_over_unrolled": 0.8408305352557772,
+          "metadata_theory_ratio": 1.0,
+          "metadata_hypothesis_claim": "GELU baseline: input activations (B,n) → O(n) memory"
+        },
+        {
+          "input": "n=256, x_scale=0.1, mode=ift, batch=64, K_max=50, J=0.9820, J*s̄=0.9523",
+          "output": "{\"peak_MB\": 17.437184, \"peak_MB_std\": 0.0, \"ratio_over_gelu\": 0.9604884652264649, \"ratio_ift_over_unrolled\": 0.8408305352557772}",
+          "predict_mode": "ift",
+          "predict_confirms_ift_advantage": "False",
+          "predict_ift_within_2x_gelu": "True",
+          "metadata_n": 256,
+          "metadata_x_scale": 0.1,
+          "metadata_J": 0.9820137619972229,
+          "metadata_Jsbar": 0.9523043796314639,
+          "metadata_sbar": 0.969746470451355,
+          "metadata_peak_MB": 17.437184,
+          "metadata_std_MB": 0.0,
+          "metadata_ratio_over_gelu": 0.9604884652264649,
+          "metadata_ratio_ift_over_unrolled": 0.8408305352557772,
+          "metadata_theory_ratio": 1.0,
+          "metadata_hypothesis_claim": "IFT stores only m* (B,1) + output y (B,n) → O(n) memory"
+        },
+        {
+          "input": "n=256, x_scale=0.1, mode=unrolled, batch=64, K_max=50, J=0.9820, J*s̄=0.9523",
+          "output": "{\"peak_MB\": 20.738048, \"peak_MB_std\": 0.0, \"ratio_over_gelu\": 1.1423092108973996, \"ratio_ift_over_unrolled\": null}",
+          "predict_mode": "unrolled",
+          "predict_confirms_ift_advantage": "None",
+          "predict_ift_within_2x_gelu": "None",
+          "metadata_n": 256,
+          "metadata_x_scale": 0.1,
+          "metadata_J": 0.9820137619972229,
+          "metadata_Jsbar": 0.9523043796314639,
+          "metadata_sbar": 0.969746470451355,
+          "metadata_peak_MB": 20.738048,
+          "metadata_std_MB": 0.0,
+          "metadata_ratio_over_gelu": 1.1423092108973996,
+          "metadata_ratio_ift_over_unrolled": 0.8408305352557772,
+          "metadata_theory_ratio": 50.0,
+          "metadata_hypothesis_claim": "Unrolled stores K=50 intermediate (B,1) tanh outputs → O(K) extra"
+        }
+      ]
+    }
+  ]
+}

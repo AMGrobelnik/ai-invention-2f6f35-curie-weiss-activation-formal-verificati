@@ -1,0 +1,18 @@
+[project]
+name = "cwa-experiment"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "torch==2.11.0+cu128",
+    "numpy==2.4.6",
+    "loguru==0.7.3",
+    "requests==2.34.2",
+    "psutil==7.2.2",
+    "certifi==2026.5.20",
+    "charset-normalizer==3.4.7",
+    "idna==3.18",
+    "urllib3==2.7.0",
+]
+
+[tool.uv.sources]
+torch = { url = "https://download.pytorch.org/whl/cu128" }

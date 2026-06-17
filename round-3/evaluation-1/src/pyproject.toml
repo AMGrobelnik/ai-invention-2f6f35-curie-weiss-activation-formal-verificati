@@ -1,0 +1,8 @@
+[project]
+name = "cwa-evaluation"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "loguru==0.7.3",
+    "numpy==2.4.6",
+]

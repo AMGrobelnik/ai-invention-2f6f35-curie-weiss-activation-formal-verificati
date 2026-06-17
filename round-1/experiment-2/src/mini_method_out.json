@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "method_name": "CWA (Curie-Weiss Activation)",
+    "description": "ResNet-20 CIFAR-100 width analysis + overhead benchmark (interim)",
+    "timestamp": "2026-06-16T18:53:25.016341",
+    "verdict": {
+      "memory_within_2x": null,
+      "cwa_vs_gelu_no_bn_significant": false,
+      "soc_observed": false,
+      "mean_final_J_s_bar": 0.30578322721243323,
+      "width_positive_correlation": null,
+      "cwa_acc_standard_no_bn": 0.1401,
+      "gelu_acc_standard_no_bn": 0.1893,
+      "note": "interim result — experiment still running"
+    },
+    "n_examples": 56
+  },
+  "datasets": [
+    {
+      "dataset": "CIFAR-100+synthetic-overhead",
+      "examples": [
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=0/9.",
+          "output": "test_acc=0.0689 at epoch 0. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "0",
+          "predict_cwa": "acc=0.0689"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=1/9.",
+          "output": "test_acc=0.0887 at epoch 1. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "1",
+          "predict_cwa": "acc=0.0887"
+        },
+        {
+          "input": "ResNet-20 CIFAR-100 config=standard_no_bn (widths=[16, 32, 64], use_bn=False), activation=CWA, seed=0, epoch=2/9.",
+          "output": "test_acc=0.1015 at epoch 2. Final acc=0.1401.",
+          "metadata_experiment": "exp2_cifar100_per_epoch",
+          "metadata_config": "standard_no_bn",
+          "metadata_activation": "CWA",
+          "metadata_seed": "0",
+          "metadata_epoch": "2",
+          "predict_cwa": "acc=0.1015"
+        }
+      ]
+    }
+  ]
+}

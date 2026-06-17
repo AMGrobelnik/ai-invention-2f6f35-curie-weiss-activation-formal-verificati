@@ -1,0 +1,12 @@
+{
+  "title": "CWA IFT vs Unrolled K=50 vs GELU Peak GPU Memory Benchmark",
+  "layman_summary": "Measures GPU memory for three CWA computation modes (implicit IFT, naive 50-step loop, GELU layer) at widths 256–4096, showing IFT uses up to 90% less memory at large layer sizes.",
+  "summary": "This experiment benchmarks peak GPU memory for three forward+backward computation modes of the Curie-Weiss Activation (CWA) at layer widths n∈{256,1024,4096}, batch=64, K_max=50, J_raw=4.0 (J≈0.982), across near-critical (x_scale=0.1, J*s̄≈0.963) and saturated (x_scale=1.0, J*s̄≈0.593) regimes on an NVIDIA RTX A4500 (20GB VRAM).\n\n**Methods implemented:**\n1. **CWA-IFT**: Custom `torch.autograd.Function` that runs fixed-point iteration under `torch.no_grad()` (zero intermediate tensors stored), then computes the closed-form IFT gradient `∂L/∂x_k = s_k*(g_k + J*Σ(g_i*s_i)/(n*(1-J*s̄)))` — O(n) memory w.r.t. iteration depth K.\n2. **CWA-Unrolled**: Runs all K=50 iterations through the autograd tape, accumulating K intermediate (B,1) tensors — O(K*n) memory.\n3. **GELU Baseline**: `nn.Linear(n,n) + nn.GELU()` — stores input activations and weight gradients, O(n²) dominated at large n.\n\n**Key results (mean over 5 measurements after 3 warmup runs):**\n- n=256: IFT=17.4MB, GELU=18.2MB, Unrolled=20.7MB → IFT/GELU=0.96x, IFT/Unrolled=0.84x\n- n=1024: IFT=18.6MB, GELU=30.9MB, Unrolled=31.7MB → IFT/GELU=0.60x, IFT/Unrolled=0.59x\n- n=4096: IFT=23.3MB, GELU=223.6MB, Unrolled=75.8MB → IFT/GELU=0.10x, IFT/Unrolled=0.31x\n\n**Finding**: IFT achieves O(n) memory overhead (within 2x of GELU at all n tested). IFT uses less memory than unrolled K=50 at all widths tested; savings grow with n: n=256→16%, n=1024→41%, n=4096→69%. At n=4096 IFT uses 90% less memory than the GELU baseline (which includes the n×n weight matrix). Both near-critical and saturated regimes produce identical memory profiles since memory is determined by architecture, not regime.\n\n**Smoke test**: IFT vs Unrolled output max diff=0.0 (exact match), grad_x max diff=0.0101 (small IFT approximation error from K=10 convergence). Schema validation: PASSED (exp_gen_sol_out). Output: 18 examples (3 modes × 2 x_scales × 3 widths).",
+  "out_expected_files": {
+    "script": "method.py",
+    "full_output": "full_method_out.json",
+    "mini_output": "mini_method_out.json",
+    "preview_output": "preview_method_out.json"
+  },
+  "upload_ignore_regexes": []
+}

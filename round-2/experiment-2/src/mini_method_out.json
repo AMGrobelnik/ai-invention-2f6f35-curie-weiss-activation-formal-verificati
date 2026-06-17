@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "experiment_id": "experiment_iter2_dir2",
+    "title": "CWA Iter2 Exp2: IFT Benchmark + Extended LM + 100x J-LR",
+    "verdict": "PARTIAL_CONFIRM",
+    "sub_exp_a": {
+      "description": "IFT synthetic benchmark J_raw=+4.0",
+      "ift_confirmed": true,
+      "GELU_peak_MB": 0.18798828125,
+      "IFT_peak_MB": 1.046875,
+      "unrolled_peak_MB": 1.046875,
+      "IFT_ratio_vs_GELU": 1.046875,
+      "IFT_ratio_vs_unrolled_inverse": 1.0,
+      "IFT_J_s_bar_mean_standard_x": 0.5912670731544495,
+      "IFT_J_s_bar_mean_small_x": 0.9537137055397034,
+      "IFT_trigger_count_small_x": 50,
+      "grad_nan_count": 0,
+      "low_J_fallback_trigger_count": 0,
+      "memory_ok": true
+    },
+    "sub_exp_b": {
+      "description": "5000-step char-GPT cosine LR, 2 seeds",
+      "CWA_val_bpc_mean": 2.2104018177390596,
+      "GELU_val_bpc_mean": 2.1958865121032023,
+      "CWA_val_bpc_per_seed": [
+        2.1958468658026122,
+        2.2249567696755066
+      ],
+      "GELU_val_bpc_per_seed": [
+        2.222333036750474,
+        2.169439987455931
+      ],
+      "CWA_final_J_mean": [
+        0.5217009286085764,
+        0.5147042870521545
+      ],
+      "CWA_final_J_s_bar": [
+        0.20449538777271906,
+        0.20480758820970854
+      ],
+      "CWA_J_rate_per_step": [
+        1.0879524750926187e-06,
+        6.557670387606077e-07
+      ],
+      "CWA_extrapolated_steps_to_J90": [
+        352715.5409814602,
+        592548.6787335484
+      ],
+      "CWA_better_than_GELU": false
+    },
+    "sub_exp_c": {
+      "description": "100x J-LR (3e-2 vs 3e-4), 5000 steps, 2 seeds",
+      "high_lr_bpc_mean": 2.211641821250913,
+      "high_lr_bpc_per_seed": [
+        2.1961257012744557,
+        2.22715794122737
+      ],
+      "J_moved_detectably_any_seed": true,
+      "J_movement_per_seed": [
+        0.35105828444163,
+        0.3074824810028076
+      ],
+      "final_J_mean_per_seed": [
+        0.85105828444163,
+        0.8074824810028076
+      ],
+      "final_J_s_bar_per_seed": [
+        0.30779249717791873,
+        0.2893221800525983
+      ],
+      "bpc_improvement_vs_shared_lr": -0.0012400035118531605
+    },
+    "summary_findings": {
+      "ift_branch_triggers_at_high_j": true,
+      "ift_memory_within_2x_GELU": true,
+      "j_self_organizes_shared_lr": false,
+      "j_self_organizes_high_lr": true,
+      "cwa_vs_gelu_bpc_delta_shared_lr": -0.014515305635857345,
+      "cwa_vs_gelu_bpc_delta_high_lr": -0.015755309147710506
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "TinyShakespeare_CharGPT_Predictions",
+      "examples": [
+        {
+          "input": "?\n\nGREMIO:\nGood morrow, neighbour Baptista.\n\nBAPTISTA:\nGood morrow, neighbour Gremio.\nGod save y",
+          "output": "ou, gentlemen!\n\nPETRUCHIO:\nAnd you, good sir! Pray, have you not",
+          "metadata_example_idx": 0,
+          "metadata_start_token": 0,
+          "predict_cwa": "our grace in the state of my soul\nTo hear the sentence of the se",
+          "predict_gelu": "ou to the common of the compass\nThat you shall be so so fortune ",
+          "predict_cwa_100xlr": "our grace in the consent of the seas,\nAnd the sea through of the"
+        },
+        {
+          "input": "n long studying at Rheims; as cunning\nin Greek, Latin, and other languages, as the other\nin musi",
+          "output": "c and mathematics: his name is Cambio; pray,\naccept his service.",
+          "metadata_example_idx": 1,
+          "metadata_start_token": 1856,
+          "predict_cwa": "c of the state of the seasing of the state,\nthe sea the sea the ",
+          "predict_gelu": "c and the state of the streets of the world\nof the sease of the ",
+          "predict_cwa_100xlr": "c of the state of the state of the state,\nthe sentence of the st"
+        },
+        {
+          "input": " for that dowry, I'll assure her of\nHer widowhood, be it that she survive me,\nIn all my lands an",
+          "output": "d leases whatsoever:\nLet specialties be therefore drawn between ",
+          "metadata_example_idx": 2,
+          "metadata_start_token": 3712,
+          "predict_cwa": "d the state of the state,\nAnd the seas of the state of the state",
+          "predict_gelu": "d the world of the world.\n\nKING RICHARD II:\nWhat say the common ",
+          "predict_cwa_100xlr": "d the seasing of the state,\nAnd the seat of the strange of the s"
+        }
+      ]
+    },
+    {
+      "dataset": "CWA_Training_Metrics",
+      "examples": [
+        {
+          "input": "Train char-GPT on Shakespeare: model=CWA, seed=0, 5000 steps cosine LR",
+          "output": "val_bpc=2.1958",
+          "predict_cwa_bpc": "2.195847",
+          "predict_gelu_bpc": "N/A",
+          "metadata_model": "CWA",
+          "metadata_seed": "0",
+          "metadata_final_J": "0.5217009286085764",
+          "metadata_final_J_s_bar": "0.20449538777271906"
+        },
+        {
+          "input": "Train char-GPT on Shakespeare: model=GELU, seed=0, 5000 steps cosine LR",
+          "output": "val_bpc=2.2223",
+          "predict_cwa_bpc": "N/A",
+          "predict_gelu_bpc": "2.222333",
+          "metadata_model": "GELU",
+          "metadata_seed": "0",
+          "metadata_final_J": "None",
+          "metadata_final_J_s_bar": "None"
+        },
+        {
+          "input": "Train char-GPT on Shakespeare: model=CWA, seed=1, 5000 steps cosine LR",
+          "output": "val_bpc=2.2250",
+          "predict_cwa_bpc": "2.224957",
+          "predict_gelu_bpc": "N/A",
+          "metadata_model": "CWA",
+          "metadata_seed": "1",
+          "metadata_final_J": "0.5147042870521545",
+          "metadata_final_J_s_bar": "0.20480758820970854"
+        }
+      ]
+    }
+  ]
+}

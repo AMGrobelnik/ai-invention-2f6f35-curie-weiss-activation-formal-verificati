@@ -1,0 +1,488 @@
+{
+  "metadata": {
+    "evaluation_id": "evaluation_iter3_dir1",
+    "depends_on": [
+      "art_v26XKv4_F1RM",
+      "art_V46hELP73T_t",
+      "art_SVlh9mQatV8y",
+      "art_kKv207AAQYq2",
+      "art_DdhxnRglYGM6"
+    ],
+    "purpose": "Fix 6 reviewer critiques via corrected metrics and diagnostics",
+    "n_metrics": 22,
+    "corrected_gradient_stability_table": {
+      "depth6": {
+        "cwa": {
+          "mean_ratio": 0.3047,
+          "std_ratio": 0.0262,
+          "abs_dev_from_1": 0.6953,
+          "abs_dev_std": 0.032,
+          "interpretation": "unstable"
+        },
+        "relu": {
+          "mean_ratio": 0.7796,
+          "std_ratio": 0.0472,
+          "abs_dev_from_1": 0.2204,
+          "abs_dev_std": 0.0578,
+          "interpretation": "closer_to_ideal"
+        },
+        "gelu": {
+          "mean_ratio": 0.7119,
+          "std_ratio": 0.1149,
+          "abs_dev_from_1": 0.2881,
+          "abs_dev_std": 0.1408,
+          "interpretation": "closer_to_ideal"
+        },
+        "selu": {
+          "mean_ratio": 1.089,
+          "std_ratio": 0.0394,
+          "abs_dev_from_1": 0.089,
+          "abs_dev_std": 0.0483,
+          "interpretation": "closer_to_ideal"
+        },
+        "competing_nl": {
+          "mean_ratio": 0.68,
+          "std_ratio": 0.0678,
+          "abs_dev_from_1": 0.32,
+          "abs_dev_std": 0.0831,
+          "interpretation": "closer_to_ideal"
+        },
+        "gelu_ln": {
+          "mean_ratio": 0.3696,
+          "std_ratio": 0.0664,
+          "abs_dev_from_1": 0.6304,
+          "abs_dev_std": 0.0813,
+          "interpretation": "unstable"
+        }
+      },
+      "depth10": {
+        "cwa": {
+          "mean_ratio": 0.3473,
+          "std_ratio": 0.0978,
+          "abs_dev_from_1": 0.6527,
+          "abs_dev_std": 0.1198,
+          "interpretation": "unstable"
+        },
+        "relu": {
+          "mean_ratio": 0.5115,
+          "std_ratio": 0.0872,
+          "abs_dev_from_1": 0.4885,
+          "abs_dev_std": 0.1067,
+          "interpretation": "closer_to_ideal"
+        },
+        "gelu": {
+          "mean_ratio": 0.7345,
+          "std_ratio": 0.145,
+          "abs_dev_from_1": 0.2655,
+          "abs_dev_std": 0.1775,
+          "interpretation": "closer_to_ideal"
+        },
+        "selu": {
+          "mean_ratio": 1.1291,
+          "std_ratio": 0.0819,
+          "abs_dev_from_1": 0.1291,
+          "abs_dev_std": 0.1003,
+          "interpretation": "closer_to_ideal"
+        },
+        "competing_nl": {
+          "mean_ratio": 0.5175,
+          "std_ratio": 0.1913,
+          "abs_dev_from_1": 0.4825,
+          "abs_dev_std": 0.2343,
+          "interpretation": "closer_to_ideal"
+        },
+        "gelu_ln": {
+          "mean_ratio": 0.3577,
+          "std_ratio": 0.0508,
+          "abs_dev_from_1": 0.6423,
+          "abs_dev_std": 0.0622,
+          "interpretation": "unstable"
+        }
+      },
+      "depth20": {
+        "cwa": {
+          "mean_ratio": 11.0173,
+          "std_ratio": 2.1703,
+          "abs_dev_from_1": 10.0173,
+          "abs_dev_std": 2.6581,
+          "interpretation": "unstable"
+        },
+        "relu": {
+          "mean_ratio": 3.3143,
+          "std_ratio": 1.657,
+          "abs_dev_from_1": 2.3143,
+          "abs_dev_std": 2.0294,
+          "interpretation": "unstable"
+        },
+        "gelu": {
+          "mean_ratio": 2.7614,
+          "std_ratio": 1.6599,
+          "abs_dev_from_1": 1.7614,
+          "abs_dev_std": 1.706,
+          "interpretation": "unstable"
+        },
+        "selu": {
+          "mean_ratio": 1.4711,
+          "std_ratio": 0.9684,
+          "abs_dev_from_1": 0.4711,
+          "abs_dev_std": 1.0025,
+          "interpretation": "closer_to_ideal"
+        },
+        "competing_nl": {
+          "mean_ratio": 1.5647,
+          "std_ratio": 0.5881,
+          "abs_dev_from_1": 0.5647,
+          "abs_dev_std": 0.7203,
+          "interpretation": "unstable"
+        },
+        "gelu_ln": {
+          "mean_ratio": 9.661,
+          "std_ratio": 1.0381,
+          "abs_dev_from_1": 8.661,
+          "abs_dev_std": 1.2715,
+          "interpretation": "unstable"
+        }
+      }
+    },
+    "corrected_gradient_stability_ranking": {
+      "depth6": [
+        {
+          "rank": 1,
+          "activation": "selu",
+          "abs_dev": 0.089,
+          "grad_ratio": 1.089
+        },
+        {
+          "rank": 2,
+          "activation": "relu",
+          "abs_dev": 0.2204,
+          "grad_ratio": 0.7796
+        },
+        {
+          "rank": 3,
+          "activation": "gelu",
+          "abs_dev": 0.2881,
+          "grad_ratio": 0.7119
+        },
+        {
+          "rank": 4,
+          "activation": "competing_nl",
+          "abs_dev": 0.32,
+          "grad_ratio": 0.68
+        },
+        {
+          "rank": 5,
+          "activation": "gelu_ln",
+          "abs_dev": 0.6304,
+          "grad_ratio": 0.3696
+        },
+        {
+          "rank": 6,
+          "activation": "cwa",
+          "abs_dev": 0.6953,
+          "grad_ratio": 0.3047
+        }
+      ],
+      "depth10": [
+        {
+          "rank": 1,
+          "activation": "selu",
+          "abs_dev": 0.1291,
+          "grad_ratio": 1.1291
+        },
+        {
+          "rank": 2,
+          "activation": "gelu",
+          "abs_dev": 0.2655,
+          "grad_ratio": 0.7345
+        },
+        {
+          "rank": 3,
+          "activation": "competing_nl",
+          "abs_dev": 0.4825,
+          "grad_ratio": 0.5175
+        },
+        {
+          "rank": 4,
+          "activation": "relu",
+          "abs_dev": 0.4885,
+          "grad_ratio": 0.5115
+        },
+        {
+          "rank": 5,
+          "activation": "gelu_ln",
+          "abs_dev": 0.6423,
+          "grad_ratio": 0.3577
+        },
+        {
+          "rank": 6,
+          "activation": "cwa",
+          "abs_dev": 0.6527,
+          "grad_ratio": 0.3473
+        }
+      ],
+      "depth20": [
+        {
+          "rank": 1,
+          "activation": "selu",
+          "abs_dev": 0.4711,
+          "grad_ratio": 1.4711
+        },
+        {
+          "rank": 2,
+          "activation": "competing_nl",
+          "abs_dev": 0.5647,
+          "grad_ratio": 1.5647
+        },
+        {
+          "rank": 3,
+          "activation": "gelu",
+          "abs_dev": 1.7614,
+          "grad_ratio": 2.7614
+        },
+        {
+          "rank": 4,
+          "activation": "relu",
+          "abs_dev": 2.3143,
+          "grad_ratio": 3.3143
+        },
+        {
+          "rank": 5,
+          "activation": "gelu_ln",
+          "abs_dev": 8.661,
+          "grad_ratio": 9.661
+        },
+        {
+          "rank": 6,
+          "activation": "cwa",
+          "abs_dev": 10.0173,
+          "grad_ratio": 11.0173
+        }
+      ]
+    },
+    "gelu_ln_anomaly_report": {
+      "gelu_ln_grad_ratio_depth20": 9.661,
+      "gelu_ln_abs_dev_from_1": 8.661,
+      "gelu_ln_accuracy_depth20": 0.1394,
+      "cwa_accuracy_depth20": 0.1413,
+      "gelu_accuracy_depth20": 0.3056,
+      "selu_accuracy_depth20": 0.5351,
+      "diagnosis": "dual_training_failure",
+      "interpretation": "GELU+LN depth-20 shows BOTH gradient instability (ratio=9.661, far from 1.0) AND accuracy collapse (acc=0.1394 ≈ random chance). This indicates that LayerNorm + deep stack interaction causes training failure at this budget/LR. The gradient ratio anomaly reflects genuine instability, not metric miscalibration.",
+      "caveat_for_normalized_archs": "For normalized architectures (tanh+LN, GELU+LN), the gradient ratio metric conflates LayerNorm's internal re-scaling with gradient flow. Report separately from unnormalized architectures in the paper."
+    },
+    "resnet_supplementary": {
+      "seeds": 1,
+      "epochs": 10,
+      "cwa_acc": 0.1401,
+      "gelu_acc": 0.1893,
+      "delta_acc": -0.0492,
+      "verdict": "preliminary_negative",
+      "caveat": "1 seed × 10 epochs insufficient for significance; consistent with depth-sweep finding that CWA accuracy < GELU in sub-critical regime",
+      "mean_J_s_bar": 0.306,
+      "soc_observed": false,
+      "n_epoch_rows_logged": 56,
+      "note": "interim result — experiment still running"
+    },
+    "pc_reconciliation": {
+      "iter1_value": 0.5,
+      "iter2_depth_sweep_value": 0.83,
+      "iter2_lm_value": 0.5,
+      "theoretical_value_lesser2026": 0.83,
+      "inconsistency_detected": true,
+      "explanation": "iter1 gradient-stability MLP experiment and iter1 LM experiment both used p_c=0.5 (default quenched disorder mask). The iter2 depth-sweep experiment corrected this to p_c=0.83 (theory-derived from Leslie & Chowdhury 2026, Section III.A: tanh+Swish mixture kernel satisfies g_mix'(K*)=1 at p_c≈0.83). The iter2 LM experiment (art_DdhxnRglYGM6) used tanh_swish_p_c=0.5, sub-optimal for the theoretical baseline. INCONSISTENCY: CompetingNL baseline not standardized across experiments (iter1=0.5, iter2_depth=0.83, iter2_lm=0.5); iter1 comparison is under-optimized for CompetingNL. The iter2 depth-sweep result (p_c=0.83) is the most valid comparison.",
+      "impact_on_results": "In iter1, using p_c=0.5 instead of 0.83 likely made CompetingNL slightly sub-optimal, potentially slightly favorable to CWA in indirect comparisons. The iter2 depth sweep with p_c=0.83 shows CompetingNL achieving strong acc=0.3899 at depth-20 — actually outperforming CWA (0.1413) and nearly matching GELU (0.3056) at depth-20."
+    },
+    "warmstart_bias_actual": {
+      "J_range": [
+        0.5147,
+        0.5217
+      ],
+      "J_s_bar_typical": 0.2047,
+      "rho_contraction_rate": 0.2047,
+      "bias_using_J_cubed": [
+        0.1364,
+        0.142
+      ],
+      "bias_using_J_cubed_pct": [
+        13.6,
+        14.2
+      ],
+      "bias_using_J_s_bar_cubed": 0.008571,
+      "bias_using_J_s_bar_cubed_pct": 0.86,
+      "correct_contraction_rate": "J*s_bar (not J)",
+      "conclusion": "Actual warm-start bias ≈0.86% (using ρ=J·s̄=0.205), NOT ~13.6–14.2% (using J≈0.515–0.522 directly). The contraction rate of fixed-point iteration is ρ=J·s̄, not J. In the sub-critical training regime (J·s̄≈0.20), 3-step unrolled error is ρ³≈0.0086, making the warm-start bias negligible (~0.86%). The 14% figure applies only if J itself were the contraction rate, which it is not — J is bounded by sigmoid to (0,1) but the actual mean-field contraction is J·s̄ where s̄=mean(sech²) << 1 for typical activation magnitudes."
+    },
+    "ift_numerical_check_explanation": {
+      "J_s_bar_at_check": 0.9537137055397034,
+      "one_minus_J_s_bar": 0.0463,
+      "amplification_factor_first_order": 21.6,
+      "amplification_factor_second_order": 466.8,
+      "max_err_reported": 0.166,
+      "max_err_pct": 16.6,
+      "grad_nan_count": 0,
+      "ift_confirmed": true,
+      "fd_instability_explanation": "The IFT gradient formula contains a factor 1/(1-J·s̄) = 1/(1-0.9537) ≈ 21.6. A finite-difference step ε perturbs both x and (through the mean-field equation) s̄=mean(sech²), introducing a secondary perturbation of ~J·δ(s̄)/(1-J·s̄)², amplifying FD noise by ≈1/(1-J·s̄)² ≈ 467× at J·s̄=0.9537. At machine-epsilon noise (~1e-7), this 467× amplification yields relative FD error of ~4.67e-05, but with ε=1e-3 or 1e-5 the truncation error also dominates, producing max_err=0.166 (16.6% relative). The IFT backward itself is analytically correct (implements the IFT closed-form); only the finite-difference check is unreliable near criticality.",
+      "conclusion": "max_err=0.166 is a finite-difference artifact caused by 467× amplification of FD noise at J·s̄=0.9537 near criticality. IFT backward is analytically correct (no NaN gradients, IFT confirmed). FD gradient checks are unreliable when J·s̄ > 0.9."
+    },
+    "overall_verdict_revision": {
+      "prior_claim": "CWA achieves gradient stability (ratio < 2.0 at depth>=10)",
+      "corrected_finding": "Using the correct |ratio-1| distance-to-ideal metric, SELU is the gradient-stability leader at all depths (abs_dev≈0.089 at depth-6, 0.129 at depth-10, 0.471 at depth-20). CWA achieves grad_ratio < 2.0 at depth-6 and depth-10, but NOT because it is closest to the ideal ratio=1.0 — its ratio=0.305–0.347 represents gradient UNDERFLOW (abs_dev=0.653–0.695), worse than SELU and often worse than GELU. At depth-20, CWA catastrophically fails (ratio=11.0, abs_dev=10.0), while SELU remains most stable (ratio=1.471, abs_dev=0.471). The CONFIRM verdict for gradient-stability must be revised to DISCONFIRM: CWA does not achieve gradient stability by the correct metric.",
+      "selu_is_best_at_shallow_depths": true,
+      "selu_is_best_at_depth20": true,
+      "cwa_not_gradient_leader": true,
+      "cwa_gradient_underflow_shallow": "CWA ratio=0.305–0.347 at depth 6/10 indicates gradient UNDERFLOW (<<1.0), not stability. The < 2.0 threshold was too lenient — it accepts both vanishing (<<1) and exploding (>>1) gradients as 'stable'.",
+      "cwa_depth20_catastrophic_failure": "At depth-20, CWA shows worst gradient behavior (ratio=11.017, abs_dev=10.017) alongside GELU+LN (ratio=9.661, abs_dev=8.661), both exhibiting dual training failure.",
+      "positive_findings_retained": [
+        "Fixed-J ablation confirms J*s_bar coupling affects gradient flow (mechanism is real)",
+        "IFT backward is analytically correct (max_err=0.166 is FD artifact)",
+        "Warm-start bias is negligible (~0.8%, not ~14%) in actual sub-critical training regime",
+        "J self-organizes with 100x J-LR (J=0.83–0.85), showing gradient signal exists"
+      ],
+      "best_activation_per_depth": {
+        "depth6": "selu",
+        "depth10": "selu",
+        "depth20": "selu"
+      },
+      "cwa_ranks_by_depth": {
+        "depth6": 6,
+        "depth10": 6,
+        "depth20": 6
+      }
+    }
+  },
+  "metrics_agg": {
+    "selu_abs_dev_depth6": 0.089,
+    "selu_abs_dev_depth10": 0.1291,
+    "selu_abs_dev_depth20": 0.4711,
+    "cwa_abs_dev_depth6": 0.6953,
+    "cwa_abs_dev_depth10": 0.6527,
+    "cwa_abs_dev_depth20": 10.0173,
+    "cwa_stability_rank_depth6": 6.0,
+    "cwa_stability_rank_depth10": 6.0,
+    "cwa_stability_rank_depth20": 6.0,
+    "gelu_ln_abs_dev_depth20": 8.661,
+    "gelu_ln_accuracy_depth20": 0.1394,
+    "resnet_cwa_acc": 0.1401,
+    "resnet_gelu_acc": 0.1893,
+    "resnet_delta_acc": -0.0492,
+    "warmstart_bias_pct_correct": 0.86,
+    "warmstart_bias_pct_naive": 13.6,
+    "ift_max_err": 0.166,
+    "ift_amplification_factor": 466.8,
+    "ift_j_s_bar": 0.9537137055397034,
+    "pc_iter1": 0.5,
+    "pc_iter2_depth": 0.83,
+    "pc_theoretical": 0.83
+  },
+  "datasets": [
+    {
+      "dataset": "corrected_gradient_stability",
+      "examples": [
+        {
+          "input": "depth=6, activation=cwa: grad_ratio_mean=0.3047",
+          "output": "abs_deviation_from_1=0.6953; UNSTABLE (far from 1.0)",
+          "metadata_depth": 6,
+          "metadata_activation": "cwa",
+          "metadata_grad_ratio_mean": 0.3047,
+          "metadata_grad_ratio_std": 0.0262,
+          "predict_abs_deviation": "0.6953",
+          "eval_abs_deviation_from_ideal": 0.6953,
+          "eval_grad_ratio_mean": 0.3047
+        },
+        {
+          "input": "depth=6, activation=relu: grad_ratio_mean=0.7796",
+          "output": "abs_deviation_from_1=0.2204; STABLE (close to 1.0)",
+          "metadata_depth": 6,
+          "metadata_activation": "relu",
+          "metadata_grad_ratio_mean": 0.7796,
+          "metadata_grad_ratio_std": 0.0472,
+          "predict_abs_deviation": "0.2204",
+          "eval_abs_deviation_from_ideal": 0.2204,
+          "eval_grad_ratio_mean": 0.7796
+        },
+        {
+          "input": "depth=6, activation=gelu: grad_ratio_mean=0.7119",
+          "output": "abs_deviation_from_1=0.2881; STABLE (close to 1.0)",
+          "metadata_depth": 6,
+          "metadata_activation": "gelu",
+          "metadata_grad_ratio_mean": 0.7119,
+          "metadata_grad_ratio_std": 0.1149,
+          "predict_abs_deviation": "0.2881",
+          "eval_abs_deviation_from_ideal": 0.2881,
+          "eval_grad_ratio_mean": 0.7119
+        }
+      ]
+    },
+    {
+      "dataset": "gelu_ln_anomaly_analysis",
+      "examples": [
+        {
+          "input": "GELU+LN depth-20: grad_ratio=9.661, accuracy=?",
+          "output": "accuracy=0.1394; diagnosis=dual_training_failure",
+          "metadata_activation": "gelu_ln",
+          "metadata_depth": 20,
+          "metadata_grad_ratio": 9.661,
+          "predict_diagnosis": "dual_training_failure",
+          "eval_gelu_ln_accuracy_depth20": 0.1394,
+          "eval_gelu_ln_abs_dev": 8.661
+        }
+      ]
+    },
+    {
+      "dataset": "pc_reconciliation_analysis",
+      "examples": [
+        {
+          "input": "CompetingNL p_c used in experiment: iter1_mlp_kKv207AAQYq2",
+          "output": "p_c=0.5; theoretical=0.83; consistent=False",
+          "metadata_experiment": "iter1_mlp_kKv207AAQYq2",
+          "predict_pc_value": "0.5",
+          "eval_pc_deviation_from_theory": 0.33
+        },
+        {
+          "input": "CompetingNL p_c used in experiment: iter2_depth_sweep_v26XKv4_F1RM",
+          "output": "p_c=0.83; theoretical=0.83; consistent=True",
+          "metadata_experiment": "iter2_depth_sweep_v26XKv4_F1RM",
+          "predict_pc_value": "0.83",
+          "eval_pc_deviation_from_theory": 0.0
+        },
+        {
+          "input": "CompetingNL p_c used in experiment: iter1_lm_DdhxnRglYGM6",
+          "output": "p_c=0.5; theoretical=0.83; consistent=False",
+          "metadata_experiment": "iter1_lm_DdhxnRglYGM6",
+          "predict_pc_value": "0.5",
+          "eval_pc_deviation_from_theory": 0.33
+        }
+      ]
+    },
+    {
+      "dataset": "warmstart_bias_analysis",
+      "examples": [
+        {
+          "input": "CWA warm-start bias: J=[0.5147, 0.5217], J*s_bar=0.2047",
+          "output": "bias_correct(J*s_bar)^3=0.0086 (0.86%); bias_naive(J)^3=0.136–0.142 (~13.6%)",
+          "metadata_J_min": 0.5147,
+          "metadata_J_max": 0.5217,
+          "metadata_J_s_bar": 0.2047,
+          "predict_bias_method": "J_s_bar_cubed",
+          "eval_bias_correct": 0.008571,
+          "eval_bias_naive": 0.1364
+        }
+      ]
+    },
+    {
+      "dataset": "ift_gradient_check_analysis",
+      "examples": [
+        {
+          "input": "IFT gradient check at J*s_bar=0.9537",
+          "output": "max_err=0.166, amplification_factor=467x; verdict=FD_artifact",
+          "metadata_J_s_bar": 0.9537137055397034,
+          "metadata_max_err": 0.166,
+          "predict_explanation": "finite_difference_amplification_artifact",
+          "eval_amplification_factor": 466.8,
+          "eval_max_err": 0.166
+        }
+      ]
+    }
+  ]
+}

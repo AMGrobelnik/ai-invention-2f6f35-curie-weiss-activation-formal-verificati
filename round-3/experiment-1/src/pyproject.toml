@@ -1,0 +1,23 @@
+[project]
+name = "cwa-mechanistic-experiments"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "filelock==3.29.0",
+    "fsspec==2026.4.0",
+    "loguru==0.7.3",
+    "mpmath==1.3.0",
+    "networkx==3.6.1",
+    "numpy==2.4.4",
+    "pillow==12.2.0",
+    "scipy==1.17.1",
+    "sympy==1.14.0",
+    "torch==2.7.0+cu128",
+    "torchvision==0.22.0+cu128",
+    "triton==3.3.0",
+    "typing-extensions==4.15.0",
+]
+
+[tool.uv.sources]
+torch = { url = "https://download.pytorch.org/whl/cu128" }
+torchvision = { url = "https://download.pytorch.org/whl/cu128" }

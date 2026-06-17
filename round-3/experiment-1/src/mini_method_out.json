@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "title": "CWA Mechanistic Sub-Experiments: Small-Init (Sub-Exp A) and Shift Ablation (Sub-Exp B)",
+    "summary": {
+      "sub_exp_A": {
+        "accuracy_by_condition": {
+          "cwa_small_init": {
+            "mean": 0.42263333333333336,
+            "std": 0.011300589955101149,
+            "ci_95": [
+              0.3945611116608396,
+              0.4507055550058271
+            ],
+            "n": 3
+          },
+          "gelu_small_init": {
+            "mean": 0.5033666666666666,
+            "std": 0.0053594153910042795,
+            "ci_95": [
+              0.49005314078093776,
+              0.5166801925523955
+            ],
+            "n": 3
+          },
+          "cwa_kaiming_init": {
+            "mean": 0.4685333333333333,
+            "std": 0.003572580766523473,
+            "ci_95": [
+              0.45965855072293843,
+              0.4774081159437282
+            ],
+            "n": 3
+          }
+        },
+        "max_j_s_bar_by_condition": {
+          "cwa_small_init": {
+            "mean": 0.41161166666666665,
+            "std": 0.004173709660881226,
+            "ci_95": [
+              0.40124359710017493,
+              0.4219797362331584
+            ],
+            "n": 3
+          },
+          "gelu_small_init": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci_95": [
+              0.0,
+              0.0
+            ],
+            "n": 3
+          },
+          "cwa_kaiming_init": {
+            "mean": 0.37435899999999994,
+            "std": 0.002065774189014843,
+            "ci_95": [
+              0.36922733243310774,
+              0.37949066756689215
+            ],
+            "n": 3
+          }
+        },
+        "verdict": "init_does_not_help",
+        "description": "Small-init (σ=0.01) does not push J·s̄ above 0.7 (criticality); max J·s̄≈0.41 vs 0.37 for Kaiming."
+      },
+      "sub_exp_B": {
+        "accuracy_by_condition": {
+          "cwa_full": {
+            "mean": 0.4685333333333333,
+            "std": 0.003572580766523473,
+            "ci_95": [
+              0.45965855072293843,
+              0.4774081159437282
+            ],
+            "n": 3
+          },
+          "cwa_shift_only": {
+            "mean": 0.46856666666666663,
+            "std": 0.004636090306856982,
+            "ci_95": [
+              0.45704997990032303,
+              0.48008335343301023
+            ],
+            "n": 3
+          },
+          "pure_tanh": {
+            "mean": 0.4731,
+            "std": 0.0009848857801796175,
+            "ci_95": [
+              0.4706534080916892,
+              0.47554659190831083
+            ],
+            "n": 3
+          }
+        },
+        "grad_ratio_abs_deviation": {
+          "cwa_full": {
+            "mean": 3.5145163333333334,
+            "std": 0.36399650509357,
+            "ci_95": [
+              2.610298888085075,
+              4.418733778581592
+            ],
+            "n": 3
+          },
+          "cwa_shift_only": {
+            "mean": 3.9470349999999996,
+            "std": 0.24118141585951436,
+            "ci_95": [
+              3.347907149490041,
+              4.546162850509958
+            ],
+            "n": 3
+          },
+          "pure_tanh": {
+            "mean": 3.6881573333333333,
+            "std": 0.4043163769009777,
+            "ci_95": [
+              2.6837797739953544,
+              4.692534892671312
+            ],
+            "n": 3
+          }
+        },
+        "pairwise_ttests": {
+          "cwa_full_vs_shift_only": {
+            "t_stat": -0.022959706631911457,
+            "p_val": 0.9837671748814217,
+            "n_pairs": 3
+          },
+          "cwa_shift_only_vs_pure_tanh": {
+            "t_stat": -2.0967789711173705,
+            "p_val": 0.17094744991261676,
+            "n_pairs": 3
+          },
+          "cwa_full_vs_pure_tanh": {
+            "t_stat": -2.5405243748165462,
+            "p_val": 0.12625347634794126,
+            "n_pairs": 3
+          }
+        },
+        "verdict": "bias_dominant",
+        "verdict_description": "Coupling loss is entirely from mean shift; fixed-point adds no value."
+      },
+      "mechanistic_interpretation": "bias_dominant",
+      "mechanistic_description": "Coupling loss is entirely from mean shift; fixed-point adds no value.",
+      "cwa_full_final_acc_mean": 0.4685333333333333,
+      "cwa_shift_only_final_acc_mean": 0.46856666666666663,
+      "pure_tanh_final_acc_mean": 0.4731
+    },
+    "n_epochs": 25,
+    "n_seeds": 3,
+    "architecture": "10-layer unnormalized MLP hidden=256 CIFAR-10 no-BN",
+    "optimizer": "AdamW lr=1e-3 wd=1e-4 cosine-annealing"
+  },
+  "datasets": [
+    {
+      "dataset": "CIFAR-10",
+      "examples": [
+        {
+          "input": "sub_exp=A_small_weight_init epoch=1 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_kaiming_init best_test_acc=0.3616",
+          "metadata_epoch": "1",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.1968",
+          "predict_gelu_small_init": "0.1915",
+          "predict_cwa_kaiming_init": "0.3616",
+          "metadata_j_s_bar_cwa_small_init": "0.4069",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.3759"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=2 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_kaiming_init best_test_acc=0.3892",
+          "metadata_epoch": "2",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.2102",
+          "predict_gelu_small_init": "0.2695",
+          "predict_cwa_kaiming_init": "0.3892",
+          "metadata_j_s_bar_cwa_small_init": "0.4048",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.3473"
+        },
+        {
+          "input": "sub_exp=A_small_weight_init epoch=3 seed=42 dataset=CIFAR-10",
+          "output": "best_condition=cwa_kaiming_init best_test_acc=0.4079",
+          "metadata_epoch": "3",
+          "metadata_seed": "42",
+          "metadata_sub_exp": "A_small_weight_init",
+          "predict_cwa_small_init": "0.2631",
+          "predict_gelu_small_init": "0.3708",
+          "predict_cwa_kaiming_init": "0.4079",
+          "metadata_j_s_bar_cwa_small_init": "0.3865",
+          "metadata_j_s_bar_cwa_kaiming_init": "0.3196"
+        }
+      ]
+    }
+  ]
+}

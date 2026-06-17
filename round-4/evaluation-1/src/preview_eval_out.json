@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "title": "CWA Corrected Evaluation: Six Reviewer Fixes",
+    "eval_type": "reviewer_correction",
+    "source_artifacts": [
+      "art_V46hELP73T_t (IFT benchmark, iter2/exp2)",
+      "art_5zKSer_FGOKx (shift ablation, iter3/exp1)",
+      "art_v26XKv4_F1RM (depth sweep, iter2/exp1)"
+    ],
+    "n_corrections": 6,
+    "summary": {
+      "verdict": "corrections_applied",
+      "n_fixes_confirmed": 6,
+      "key_numeric_corrections": {
+        "fix1_ift_gelu_ratio_bug": "1.047x → 5.569x",
+        "fix2_ift_unrolled_1x_is_artifact": "model-param-dominated benchmark at n=256",
+        "fix3_gelu_ln_second_worst_all_depths": true,
+        "fix4_shift_ablation_all_null": true,
+        "fix5_scope_boundaries_n": 12,
+        "fix6_warmstart_bias_correct_pct": 0.8571,
+        "fix6_warmstart_overestimate_factor": 16.2351
+      }
+    }
+  },
+  "metrics_agg": {
+    "n_fixes_applied": 6,
+    "fix1_ratio_bug_corrected": 5.5688,
+    "fix1_stored_bug_value": 1.046875,
+    "fix1_ratio_error_magnitude": 4.522,
+    "fix2_ift_unrolled_ratio": 1.0,
+    "fix2_activation_unrolled_large_mb": 0.78,
+    "fix3_gelu_ln_second_worst_n_depths": 3,
+    "fix3_gelu_ln_second_worst_all_depths": 1.0,
+    "fix3_n_depth_activation_rows": 18.0,
+    "fix4_pure_tanh_best": 1.0,
+    "fix4_p_full_vs_shift": 0.983767,
+    "fix4_p_full_vs_tanh": 0.126253,
+    "fix4_p_shift_vs_tanh": 0.170947,
+    "fix4_any_pair_significant": 0.0,
+    "fix5_scope_items_defined": 12.0,
+    "fix6_warmstart_bias_correct_pct": 0.857126,
+    "fix6_warmstart_bias_incorrect_pct": 13.915499,
+    "fix6_ratio_overestimate": 16.2351,
+    "all_fixes_confirmed": 1.0
+  },
+  "datasets": [
+    {
+      "dataset": "CWA_Reviewer_Corrections",
+      "examples": [
+        {
+          "metadata_id": "fix_1_ift_ratio",
+          "metadata_correction_label": "IFT_GELU_ratio",
+          "input": "Compute corrected IFT/GELU peak memory ratio from stored benchmark values",
+          "output": "Corrected IFT/GELU ratio = 5.569x (was erroneously stored as 1.047x)",
+          "metadata_ift_gelu_ratio_bug": 1.046875,
+          "metadata_ift_gelu_ratio_corrected": 5.5688,
+          "metadata_gelu_peak_mb": 0.18798828125,
+          "metadata_ift_peak_mb": 1.046875,
+          "metadata_bug_description": "The stored field IFT_ratio_vs_GELU=1.046875 equals IFT_peak_MB (1.046875), not the ratio IFT_peak_MB/GELU_peak_MB. The code set ratio=IFT_peak_MB instead of ratio=IFT_peak_MB/GELU_peak_MB.",
+          "metadata_anomaly_explanation": "GELU baseline of 0.188 MB is unrealistically small for a standard activation benchmark because the single-layer batch=1 n=256 micro-benchmark is dominated by model parameter memory (~50K params × 4 by...",
+          "metadata_meets_2x_criterion": false,
+          "eval_ratio_error": 4.521956168831169,
+          "eval_ratio_factor_overestimate": 5.3195
+        },
+        {
+          "metadata_id": "fix_2_ift_unrolled",
+          "metadata_correction_label": "IFT_unrolled_explanation",
+          "input": "Explain IFT/unrolled peak memory ratio = 1.0 in benchmark",
+          "output": "Ratio=1.0 is a measurement artifact: benchmark is model-parameter-dominated (0.188 MB params >> 0.0479 MB activation diff at n=256,K=50)",
+          "metadata_ift_unrolled_ratio": 1.0,
+          "metadata_ift_peak_mb": 1.046875,
+          "metadata_unrolled_peak_mb": 1.046875,
+          "metadata_explanation": "When model parameter bytes (0.188 MB) >> activation bytes, both IFT and unrolled show identical peak memory because peak is set by parameter storage, not intermediate activations. At n=256, K=50, the ...",
+          "metadata_required_n_for_demonstration": 9850,
+          "metadata_activation_memory_unrolled_large_mb": 0.78,
+          "metadata_activation_memory_ift_large_mb": 0.0156,
+          "metadata_activation_diff_at_n256_k50_mb": 0.047852,
+          "metadata_model_param_mb_reference": 0.18798828125,
+          "eval_ratio_vs_expected": 0.0
+        },
+        {
+          "metadata_id": "fix_4_shift_ablation",
+          "metadata_correction_label": "shift_ablation_null",
+          "input": "Reinterpret shift ablation results: CWA-Full vs CWA-ShiftOnly vs Pure-Tanh",
+          "output": "Full null result: Pure-Tanh (0.4731) > CWA-Full (0.4685) ≈ CWA-ShiftOnly (0.4686); all pairwise p > 0.05",
+          "metadata_cwa_full_acc": 0.4685333333333333,
+          "metadata_cwa_shift_only_acc": 0.46856666666666663,
+          "metadata_pure_tanh_acc": 0.4731,
+          "metadata_t_full_vs_shift": -0.022959706631911457,
+          "metadata_p_full_vs_shift": 0.9837671748814217,
+          "metadata_t_full_vs_tanh": -2.5405243748165462,
+          "metadata_p_full_vs_tanh": 0.12625347634794126,
+          "metadata_t_shift_vs_tanh": -2.0967789711173705,
+          "metadata_p_shift_vs_tanh": 0.17094744991261676,
+          "metadata_alpha": 0.05,
+          "metadata_any_significant": false,
+          "metadata_pure_tanh_best": true,
+          "metadata_corrected_conclusion": "1) The self-consistent fixed-point coupling adds zero benefit over a detached mean-shift: CWA-Full≈CWA-ShiftOnly (p=0.9838, NOT significant). 2) CWA provides no statistically significant accuracy gain...",
+          "metadata_old_incorrect_claim": "verdict='bias_dominant': coupling loss is entirely from mean shift; fixed-point adds no value. This framing implies the shift 'explains' CWA's behavior (partial credit). But the shift itself adds noth...",
+          "metadata_new_verified_claim": "Complete null result: neither the fixed-point coupling NOR the mean shift provides accuracy benefit. Pure-Tanh (no coupling, no shift) numerically outperforms both CWA variants (0.4731 vs 0.4686). All...",
+          "eval_acc_delta_full_vs_tanh": -0.004567,
+          "eval_acc_delta_shift_vs_tanh": -0.004533,
+          "eval_acc_delta_full_vs_shift": -3.3e-05
+        }
+      ]
+    },
+    {
+      "dataset": "CWA_GELU_LN_AbsDev_Table",
+      "examples": [
+        {
+          "metadata_id": "fix_3_gelu_ln_depth6_cwa",
+          "metadata_correction_label": "GELU_LN_all_depths",
+          "input": "Compute abs_dev of gradient ratio for activation=cwa at depth=6",
+          "output": "abs_dev=0.6953, rank=1 (1=worst) at depth=6",
+          "metadata_depth": 6,
+          "metadata_activation": "cwa",
+          "metadata_raw_ratio_mean": 0.3047,
+          "metadata_abs_dev": 0.6953,
+          "metadata_rank_worst_first": 1,
+          "metadata_n_activations": 6,
+          "metadata_gelu_ln_is_second_worst": false,
+          "metadata_interpretation": "",
+          "eval_abs_dev": 0.6953,
+          "eval_rank": 1.0
+        },
+        {
+          "metadata_id": "fix_3_gelu_ln_depth6_relu",
+          "metadata_correction_label": "GELU_LN_all_depths",
+          "input": "Compute abs_dev of gradient ratio for activation=relu at depth=6",
+          "output": "abs_dev=0.2204, rank=5 (1=worst) at depth=6",
+          "metadata_depth": 6,
+          "metadata_activation": "relu",
+          "metadata_raw_ratio_mean": 0.7796,
+          "metadata_abs_dev": 0.2204,
+          "metadata_rank_worst_first": 5,
+          "metadata_n_activations": 6,
+          "metadata_gelu_ln_is_second_worst": false,
+          "metadata_interpretation": "",
+          "eval_abs_dev": 0.2204,
+          "eval_rank": 5.0
+        },
+        {
+          "metadata_id": "fix_3_gelu_ln_depth6_gelu",
+          "metadata_correction_label": "GELU_LN_all_depths",
+          "input": "Compute abs_dev of gradient ratio for activation=gelu at depth=6",
+          "output": "abs_dev=0.2881, rank=4 (1=worst) at depth=6",
+          "metadata_depth": 6,
+          "metadata_activation": "gelu",
+          "metadata_raw_ratio_mean": 0.7119,
+          "metadata_abs_dev": 0.2881,
+          "metadata_rank_worst_first": 4,
+          "metadata_n_activations": 6,
+          "metadata_gelu_ln_is_second_worst": false,
+          "metadata_interpretation": "",
+          "eval_abs_dev": 0.2881,
+          "eval_rank": 4.0
+        }
+      ]
+    }
+  ]
+}

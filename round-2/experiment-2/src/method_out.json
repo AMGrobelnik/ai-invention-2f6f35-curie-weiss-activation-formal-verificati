@@ -1,0 +1,690 @@
+{
+  "metadata": {
+    "experiment_id": "experiment_iter2_dir2",
+    "title": "CWA Iter2 Exp2: IFT Benchmark + Extended LM + 100x J-LR",
+    "verdict": "PARTIAL_CONFIRM",
+    "sub_exp_a": {
+      "description": "IFT synthetic benchmark J_raw=+4.0",
+      "ift_confirmed": true,
+      "GELU_peak_MB": 0.18798828125,
+      "IFT_peak_MB": 1.046875,
+      "unrolled_peak_MB": 1.046875,
+      "IFT_ratio_vs_GELU": 1.046875,
+      "IFT_ratio_vs_unrolled_inverse": 1.0,
+      "IFT_J_s_bar_mean_standard_x": 0.5912670731544495,
+      "IFT_J_s_bar_mean_small_x": 0.9537137055397034,
+      "IFT_trigger_count_small_x": 50,
+      "grad_nan_count": 0,
+      "low_J_fallback_trigger_count": 0,
+      "memory_ok": true
+    },
+    "sub_exp_b": {
+      "description": "5000-step char-GPT cosine LR, 2 seeds",
+      "CWA_val_bpc_mean": 2.2104018177390596,
+      "GELU_val_bpc_mean": 2.1958865121032023,
+      "CWA_val_bpc_per_seed": [
+        2.1958468658026122,
+        2.2249567696755066
+      ],
+      "GELU_val_bpc_per_seed": [
+        2.222333036750474,
+        2.169439987455931
+      ],
+      "CWA_final_J_mean": [
+        0.5217009286085764,
+        0.5147042870521545
+      ],
+      "CWA_final_J_s_bar": [
+        0.20449538777271906,
+        0.20480758820970854
+      ],
+      "CWA_J_rate_per_step": [
+        1.0879524750926187e-06,
+        6.557670387606077e-07
+      ],
+      "CWA_extrapolated_steps_to_J90": [
+        352715.5409814602,
+        592548.6787335484
+      ],
+      "CWA_better_than_GELU": false
+    },
+    "sub_exp_c": {
+      "description": "100x J-LR (3e-2 vs 3e-4), 5000 steps, 2 seeds",
+      "high_lr_bpc_mean": 2.211641821250913,
+      "high_lr_bpc_per_seed": [
+        2.1961257012744557,
+        2.22715794122737
+      ],
+      "J_moved_detectably_any_seed": true,
+      "J_movement_per_seed": [
+        0.35105828444163,
+        0.3074824810028076
+      ],
+      "final_J_mean_per_seed": [
+        0.85105828444163,
+        0.8074824810028076
+      ],
+      "final_J_s_bar_per_seed": [
+        0.30779249717791873,
+        0.2893221800525983
+      ],
+      "bpc_improvement_vs_shared_lr": -0.0012400035118531605
+    },
+    "summary_findings": {
+      "ift_branch_triggers_at_high_j": true,
+      "ift_memory_within_2x_GELU": true,
+      "j_self_organizes_shared_lr": false,
+      "j_self_organizes_high_lr": true,
+      "cwa_vs_gelu_bpc_delta_shared_lr": -0.014515305635857345,
+      "cwa_vs_gelu_bpc_delta_high_lr": -0.015755309147710506
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "TinyShakespeare_CharGPT_Predictions",
+      "examples": [
+        {
+          "input": "?\n\nGREMIO:\nGood morrow, neighbour Baptista.\n\nBAPTISTA:\nGood morrow, neighbour Gremio.\nGod save y",
+          "output": "ou, gentlemen!\n\nPETRUCHIO:\nAnd you, good sir! Pray, have you not",
+          "metadata_example_idx": 0,
+          "metadata_start_token": 0,
+          "predict_cwa": "our grace in the state of my soul\nTo hear the sentence of the se",
+          "predict_gelu": "ou to the common of the compass\nThat you shall be so so fortune ",
+          "predict_cwa_100xlr": "our grace in the consent of the seas,\nAnd the sea through of the"
+        },
+        {
+          "input": "n long studying at Rheims; as cunning\nin Greek, Latin, and other languages, as the other\nin musi",
+          "output": "c and mathematics: his name is Cambio; pray,\naccept his service.",
+          "metadata_example_idx": 1,
+          "metadata_start_token": 1856,
+          "predict_cwa": "c of the state of the seasing of the state,\nthe sea the sea the ",
+          "predict_gelu": "c and the state of the streets of the world\nof the sease of the ",
+          "predict_cwa_100xlr": "c of the state of the state of the state,\nthe sentence of the st"
+        },
+        {
+          "input": " for that dowry, I'll assure her of\nHer widowhood, be it that she survive me,\nIn all my lands an",
+          "output": "d leases whatsoever:\nLet specialties be therefore drawn between ",
+          "metadata_example_idx": 2,
+          "metadata_start_token": 3712,
+          "predict_cwa": "d the state of the state,\nAnd the seas of the state of the state",
+          "predict_gelu": "d the world of the world.\n\nKING RICHARD II:\nWhat say the common ",
+          "predict_cwa_100xlr": "d the seasing of the state,\nAnd the seat of the strange of the s"
+        },
+        {
+          "input": "ith her!\n\nBAPTISTA:\nWell, go with me and be not so discomfited:\nProceed in practise with my youn",
+          "output": "ger daughter;\nShe's apt to learn and thankful for good turns.\nSi",
+          "metadata_example_idx": 3,
+          "metadata_start_token": 5568,
+          "predict_cwa": "g son,\nAnd then the season of the state of the state,\nAnd the se",
+          "predict_gelu": "g son,\nAnd therefore that I shall be so much a soldier.\n\nCLARENC",
+          "predict_cwa_100xlr": "g son,\nAnd the world of the world of the world of the\nThat which"
+        },
+        {
+          "input": "\nAlas! good Kate, I will not burden thee;\nFor, knowing thee to be but young and light--\n\nKATHARI",
+          "output": "NA:\nToo light for such a swain as you to catch;\nAnd yet as heavy",
+          "metadata_example_idx": 4,
+          "metadata_start_token": 7424,
+          "predict_cwa": "NA:\nI will not so much a man of my soul\nTo see the strength of t",
+          "predict_gelu": "NA:\nIndeed, my lord, I will see you to your honour.\n\nKING RICHAR",
+          "predict_cwa_100xlr": "NA:\nI will not so be so so so so so so soul\nThat we shall be a s"
+        },
+        {
+          "input": " you, if I tarry: let me go.\n\nPETRUCHIO:\nNo, not a whit: I find you passing gentle.\n'Twas told m",
+          "output": "e you were rough and coy and sullen,\nAnd now I find report a ver",
+          "metadata_example_idx": 5,
+          "metadata_start_token": 9280,
+          "predict_cwa": "e the prince of your house to heart.\n\nSICINIUS:\nWhat say you to ",
+          "predict_gelu": "e the prince of the state, and the\nsease of the seasy of the sea",
+          "predict_cwa_100xlr": "e the prince of your honour souls,\nI will not be the seat of you"
+        },
+        {
+          "input": "UCHIO:\nHow but well, sir? how but well?\nIt were impossible I should speed amiss.\n\nBAPTISTA:\nWhy,",
+          "output": " how now, daughter Katharina! in your dumps?\n\nKATHARINA:\nCall yo",
+          "metadata_example_idx": 6,
+          "metadata_start_token": 11136,
+          "predict_cwa": " then the season of the seas of the seas,\nAnd the sea thousand t",
+          "predict_gelu": " then I will not so so so far the world.\n\nCAMILLO:\nThen I have s",
+          "predict_cwa_100xlr": " then the season of the seas of the state,\nAnd the seat of the s"
+        },
+        {
+          "input": "day comes apace:\nWe will have rings and things and fine array;\nAnd kiss me, Kate, we will be mar",
+          "output": "ried o'Sunday.\n\nGREMIO:\nWas ever match clapp'd up so suddenly?\n\n",
+          "metadata_example_idx": 7,
+          "metadata_start_token": 12992,
+          "predict_cwa": "ried to the sea\nThat will be the present of the world of the sta",
+          "predict_gelu": "ried to me.\n\nKING RICHARD II:\nThe common of the court of the cou",
+          "predict_cwa_100xlr": "ried to the sea\nThat will be the senate of the state of the stat"
+        },
+        {
+          "input": "'only' came well in. Sir, list to me:\nI am my father's heir and only son:\nIf I may have your dau",
+          "output": "ghter to my wife,\nI'll leave her houses three or four as good,\nW",
+          "metadata_example_idx": 8,
+          "metadata_start_token": 14848,
+          "predict_cwa": "ghter shall be so.\n\nCAMILLO:\nI have some to meet the sea to me t",
+          "predict_gelu": "ghter to him the company.\n\nLEONTES:\nI will not so.\n\nLADY ANNE:\nI",
+          "predict_cwa_100xlr": "ghter so shall be so.\n\nLUCIO:\nI have not so so so so sound of th"
+        },
+        {
+          "input": " of ten.\n'Tis in my head to do my master good:\nI see no reason but supposed Lucentio\nMust get a ",
+          "output": "father, call'd 'supposed Vincentio;'\nAnd that's a wonder: father",
+          "metadata_example_idx": 9,
+          "metadata_start_token": 16704,
+          "predict_cwa": "man of the state of the seas,\nAnd the seas of the strange of the",
+          "predict_gelu": "man an old the sea of death.\n\nDUKE VINCENTIO:\nI would the sea of",
+          "predict_cwa_100xlr": "seat of the strong of the state,\nAnd the seate of the seasily of"
+        },
+        {
+          "input": "\nbeguile the old pantaloon.\n\nHORTENSIO:\nMadam, my instrument's in tune.\n\nBIANCA:\nLet's hear. O f",
+          "output": "ie! the treble jars.\n\nLUCENTIO:\nSpit in the hole, man, and tune ",
+          "metadata_example_idx": 10,
+          "metadata_start_token": 18560,
+          "predict_cwa": "or the common of the state,\nAnd the seat of the state of the sea",
+          "predict_gelu": "air some to me the common of the\nsea of the seasy of the stronge",
+          "predict_cwa_100xlr": "or the common of the courtest\nThat the seat of the strength of t"
+        },
+        {
+          "input": "o stay.\n\nHORTENSIO:\nBut I have cause to pry into this pedant:\nMethinks he looks as though he wer",
+          "output": "e in love:\nYet if thy thoughts, Bianca, be so humble\nTo cast thy",
+          "metadata_example_idx": 11,
+          "metadata_start_token": 20416,
+          "predict_cwa": "e the seas,\nAnd the seat of the seasons of the state,\nAnd the se",
+          "predict_gelu": "e a sight,\nAnd there that we are the world of the world.\n\nBUCKIN",
+          "predict_cwa_100xlr": "e the seast\nThat the season of the seat of the state,\nAnd the se"
+        },
+        {
+          "input": " have been candle-cases, one buckled,\nanother laced, an old rusty sword ta'en out of the\ntown-ar",
+          "output": "mory, with a broken hilt, and chapeless;\nwith two broken points:",
+          "metadata_example_idx": 12,
+          "metadata_start_token": 22272,
+          "predict_cwa": "e the world of the state, and the state, the\nstate of the strang",
+          "predict_gelu": "ments, and the world of the sea of the world\nof the seas of the ",
+          "predict_cwa_100xlr": "e the seat of the state of the state, and\nthe seat of the street"
+        },
+        {
+          "input": " sir.\n\nPETRUCHIO:\nAnd yet I come not well.\n\nBAPTISTA:\nAnd yet you halt not.\n\nTRANIO:\nNot so well",
+          "output": " apparell'd\nAs I wish you were.\n\nPETRUCHIO:\nWere it better, I sh",
+          "metadata_example_idx": 13,
+          "metadata_start_token": 24128,
+          "predict_cwa": " the sentence of the state of the state,\nAnd the strength of the",
+          "predict_gelu": ".\n\nGREMIO:\nNot so, sir, it is not to see the sea.\n\nGREMIO:\nI thi",
+          "predict_cwa_100xlr": " the heart of the world of the state,\nAnd the seat of the street"
+        },
+        {
+          "input": "h to bring to pass,\nAs I before unparted to your worship,\nI am to get a man,--whate'er he be,\nIt",
+          "output": " skills not much. we'll fit him to our turn,--\nAnd he shall be V",
+          "metadata_example_idx": 14,
+          "metadata_start_token": 25984,
+          "predict_cwa": " is a sent to the strange of the state,\nAnd the sea the strange ",
+          "predict_gelu": " is a man of the world of the world.\n\nKING RICHARD III:\nThe cour",
+          "predict_cwa_100xlr": " shall be the strange of the seasion,\nAnd the seat of the state "
+        },
+        {
+          "input": " carousing to his mates\nAfter a storm; quaff'd off the muscadel\nAnd threw the sops all in the se",
+          "output": "xton's face;\nHaving no other reason\nBut that his beard grew thin",
+          "metadata_example_idx": 15,
+          "metadata_start_token": 27840,
+          "predict_cwa": "asons of the state,\nAnd the season of the seasing of the state,\n",
+          "predict_gelu": "asy of the world.\n\nLEONTES:\nWhat is the world of the season of t",
+          "predict_cwa_100xlr": "asons of the seas\nThat the seasons of the seasion of the state,\n"
+        },
+        {
+          "input": "self:\n'Tis like you'll prove a jolly surly groom,\nThat take it on you at the first so roundly.\n\n",
+          "output": "PETRUCHIO:\nO Kate, content thee; prithee, be not angry.\n\nKATHARI",
+          "metadata_example_idx": 16,
+          "metadata_start_token": 29696,
+          "predict_cwa": "LADY ANNE:\nI will not so so so so soul be the world.\n\nGLOUCESTER",
+          "predict_gelu": "KING RICHARD II:\nThe state of the consuls of the court of the co",
+          "predict_cwa_100xlr": "LADY ANNE:\nI will not so shall be the state of the world.\n\nGLOUC"
+        },
+        {
+          "input": "'s go.\n\nGRUMIO:\nFie, fie on all tired jades, on all mad masters, and\nall foul ways! Was ever man",
+          "output": " so beaten? was ever\nman so rayed? was ever man so weary? I am s",
+          "metadata_example_idx": 17,
+          "metadata_start_token": 31552,
+          "predict_cwa": " a word soldiers souls,\nthe sea thou shalt be the strange of the",
+          "predict_gelu": " to the world?\n\nMARCIUS:\nI will not so.\n\nMARCIUS:\nI will not so ",
+          "predict_cwa_100xlr": " a word soldiers, and\nso shall be the state of the state of the "
+        },
+        {
+          "input": "I have caught extreme cold.\nWhere's the cook? is supper ready, the house\ntrimmed, rushes strewed",
+          "output": ", cobwebs swept; the\nserving-men in their new fustian, their whi",
+          "metadata_example_idx": 18,
+          "metadata_start_token": 33408,
+          "predict_cwa": " the company of the world, and\nthe seat of the state of the stat",
+          "predict_gelu": " the state of the court\nof the sea of the season of the court.\n\n",
+          "predict_cwa_100xlr": " the company of the state,\nthe seat of the strange of the state,"
+        },
+        {
+          "input": "garters of an indifferent knit: let them curtsy\nwith their left legs and not presume to touch a ",
+          "output": "hair\nof my master's horse-tail till they kiss their\nhands. Are t",
+          "metadata_example_idx": 19,
+          "metadata_start_token": 35264,
+          "predict_cwa": "man\nThe sea to the state of the state of the seas,\nAnd the seat ",
+          "predict_gelu": "man\nThat the sentence of the seas of the courtesy.\n\nSecond Murde",
+          "predict_cwa_100xlr": "grown\nThat the state of the state of the state,\nAnd the seat of "
+        },
+        {
+          "input": "e they come to meet you.\n\nPETRUCHIO:\nGo, rascals, go, and fetch my supper in.\nWhere is the life ",
+          "output": "that late I led--\nWhere are those--Sit down, Kate, and welcome.-",
+          "metadata_example_idx": 20,
+          "metadata_start_token": 37120,
+          "predict_cwa": "of the state? O the common of the\nshall be the strength of the w",
+          "predict_gelu": "of the field of the world,\nAnd there that the state of the peopl",
+          "predict_cwa_100xlr": "of the state? O the prince?\n\nSecond Murderer:\nA man that shall b"
+        },
+        {
+          "input": "me, I will bring thee to thy bridal chamber.\n\nNATHANIEL:\nPeter, didst ever see the like?\n\nPETER:",
+          "output": "\nHe kills her in her own humour.\n\nGRUMIO:\nWhere is he?\n\nCURTIS:\n",
+          "metadata_example_idx": 21,
+          "metadata_start_token": 38976,
+          "predict_cwa": "\nI will not so the world of the state of the seas,\nAnd the seat ",
+          "predict_gelu": "\nAy, sir, I will not so so so.\n\nKING RICHARD II:\nI will not so.\n",
+          "predict_cwa_100xlr": "\nWhat is the sentence of the seasing of the state?\n\nGLOUCESTER:\n"
+        },
+        {
+          "input": "And may you prove, sir, master of your art!\n\nLUCENTIO:\nWhile you, sweet dear, prove mistress of ",
+          "output": "my heart!\n\nHORTENSIO:\nQuick proceeders, marry! Now, tell me, I p",
+          "metadata_example_idx": 22,
+          "metadata_start_token": 40832,
+          "predict_cwa": "your honour,\nI have been to be so much a man of my soul,\nAnd so ",
+          "predict_gelu": "the court,\nAnd there that we are the world of the world.\n\nESCALU",
+          "predict_cwa_100xlr": "your honour,\nI will not the sense of your honour to him.\n\nLUCIO:"
+        },
+        {
+          "input": "O:\nI' faith, he'll have a lusty widow now,\nThat shall be wood and wedded in a day.\n\nBIANCA:\nGod ",
+          "output": "give him joy!\n\nTRANIO:\nAy, and he'll tame her.\n\nBIANCA:\nHe says ",
+          "metadata_example_idx": 23,
+          "metadata_start_token": 42688,
+          "predict_cwa": "to the sent of the state of the state,\nAnd the sea the seat of t",
+          "predict_gelu": "save you to me the common of the court.\n\nPOMPEY:\nI have no more ",
+          "predict_cwa_100xlr": "me the state of the state of the state,\nAnd the sea thou shalt b"
+        },
+        {
+          "input": " them.\n\nTRANIO:\nWell, sir, to do you courtesy,\nThis will I do, and this I will advise you:\nFirst",
+          "output": ", tell me, have you ever been at Pisa?\n\nPedant:\nAy, sir, in Pisa",
+          "metadata_example_idx": 24,
+          "metadata_start_token": 44544,
+          "predict_cwa": " thou have a man of the princes of the state,\nAnd the prince of ",
+          "predict_gelu": " thou art thou shalt not shall be so much a\nThou art thou art th",
+          "predict_cwa_100xlr": " thou have a part of the prince of your hands,\nAnd the prince of"
+        },
+        {
+          "input": "lse present death.\nI prithee go and get me some repast;\nI care not what, so it be wholesome food",
+          "output": ".\n\nGRUMIO:\nWhat say you to a neat's foot?\n\nKATHARINA:\n'Tis passi",
+          "metadata_example_idx": 25,
+          "metadata_start_token": 46400,
+          "predict_cwa": ",\nAnd she shall be so seem to the state of the state,\nAnd the se",
+          "predict_gelu": ",\nThat we shall be so straight the sea of me.\n\nKING RICHARD II:\n",
+          "predict_cwa_100xlr": ",\nAnd she shall be so seem to the strength,\nAnd the seat of the "
+        },
+        {
+          "input": "hy, 'tis a cockle or a walnut-shell,\nA knack, a toy, a trick, a baby's cap:\nAway with it! come, ",
+          "output": "let me have a bigger.\n\nKATHARINA:\nI'll have no bigger: this doth",
+          "metadata_example_idx": 26,
+          "metadata_start_token": 48256,
+          "predict_cwa": "the seas of the state,\nThat we shall be the seat of the seat of ",
+          "predict_gelu": "the senate of the court\nTo see the sea of the courtest of the wo",
+          "predict_cwa_100xlr": "the seas of the state,\nThat we shall be the seat of the seat\nTha"
+        },
+        {
+          "input": " thread,\nthou thimble,\nThou yard, three-quarters, half-yard, quarter, nail!\nThou flea, thou nit,",
+          "output": " thou winter-cricket thou!\nBraved in mine own house with a skein",
+          "metadata_example_idx": 27,
+          "metadata_start_token": 50112,
+          "predict_cwa": " the sent that thou shalt the stay\nThat thou art the promise of ",
+          "predict_gelu": " thou art thou art the world.\n\nLADY GREY:\nWhat says thou shalt n",
+          "predict_cwa_100xlr": " and the content that stands\nThat thou shalt the be so service o"
+        },
+        {
+          "input": " is not for me.\n\nGRUMIO:\nYou are i' the right, sir: 'tis for my mistress.\n\nPETRUCHIO:\nGo, take i",
+          "output": "t up unto thy master's use.\n\nGRUMIO:\nVillain, not for thy life: ",
+          "metadata_example_idx": 28,
+          "metadata_start_token": 51968,
+          "predict_cwa": "t is the common of the state,\nAnd the strength of the sea to the",
+          "predict_gelu": "t not to me the prince of the country.\n\nMONTAGUE:\nI think you ha",
+          "predict_cwa_100xlr": "t is the content that see the straight\nThat I should be the stra"
+        },
+        {
+          "input": "ptista may remember me,\nNear twenty years ago, in Genoa,\nWhere we were lodgers at the Pegasus.\n\n",
+          "output": "TRANIO:\n'Tis well; and hold your own, in any case,\nWith such aus",
+          "metadata_example_idx": 29,
+          "metadata_start_token": 53824,
+          "predict_cwa": "LEONTES:\nWhat shall I see the strange of the world short?\n\nPOLIX",
+          "predict_gelu": "KING RICHARD III:\nThe common of the country of the court.\n\nKING ",
+          "predict_cwa_100xlr": "LEONTES:\nThe senates of the state, the seas of the state,\nAnd th"
+        },
+        {
+          "input": "consent.\n\nTRANIO:\nI thank you, sir. Where then do you know best\nWe be affied and such assurance ",
+          "output": "ta'en\nAs shall with either part's agreement stand?\n\nBAPTISTA:\nNo",
+          "metadata_example_idx": 30,
+          "metadata_start_token": 55680,
+          "predict_cwa": "to your honours,\nAnd so shall be the bear of the world of your h",
+          "predict_gelu": "to the country.\n\nBUCKINGHAM:\nWhy, then you are the common of the",
+          "predict_cwa_100xlr": "to your honour?\n\nCORIOLANUS:\nI will not so the world of the stat"
+        },
+        {
+          "input": ",\n'cum privilegio ad imprimendum solum:' to the\nchurch; take the priest, clerk, and some suffici",
+          "output": "ent\nhonest witnesses: If this be not that you look for,\nI have n",
+          "metadata_example_idx": 31,
+          "metadata_start_token": 57536,
+          "predict_cwa": "ence, and the\nsend the strange of the state of the state, and th",
+          "predict_gelu": "ent stand\nthe seasy of the seas of the seasy of the sea\nshall be",
+          "predict_cwa_100xlr": "ence, and they\nsentence the strength of the seas of the state, t"
+        },
+        {
+          "input": "thy ways; the field is won.\n\nPETRUCHIO:\nWell, forward, forward! thus the bowl should run,\nAnd no",
+          "output": "t unluckily against the bias.\nBut, soft! company is coming here.",
+          "metadata_example_idx": 32,
+          "metadata_start_token": 59392,
+          "predict_cwa": "t the sea to the state of the state,\nAnd the sea the sea that th",
+          "predict_gelu": "t the seas of the seas of the sea\nTo see the seate of the seas o",
+          "predict_cwa_100xlr": "t the sea that should be so stand the seas,\nAnd the sea the stra"
+        },
+        {
+          "input": " and of worthy birth;\nBeside, so qualified as may beseem\nThe spouse of any noble gentleman.\nLet ",
+          "output": "me embrace with old Vincentio,\nAnd wander we to see thy honest s",
+          "metadata_example_idx": 33,
+          "metadata_start_token": 61248,
+          "predict_cwa": "me that I shall be the straight of the state,\nAnd the sea the se",
+          "predict_gelu": "me that we have seen the seasy of the world\nThat the senate of t",
+          "predict_cwa_100xlr": "me that the seat of the strange of the state,\nAnd the sea the se"
+        },
+        {
+          "input": ".\n\nPedant:\nThou liest: his father is come from Padua and here\nlooking out at the window.\n\nVINCEN",
+          "output": "TIO:\nArt thou his father?\n\nPedant:\nAy, sir; so his mother says, ",
+          "metadata_example_idx": 34,
+          "metadata_start_token": 63104,
+          "predict_cwa": "IUS:\nI will not so so so so so so sound of the state,\nthe seal o",
+          "predict_gelu": "IUS:\nI would the prince of the courteous of the court\nof the sea",
+          "predict_cwa_100xlr": "IUS:\nI will not so show the state of the seas,\nAnd the sentence "
+        },
+        {
+          "input": "NTIO:\nHis name! as if I knew not his name: I have brought\nhim up ever since he was three years o",
+          "output": "ld, and his\nname is Tranio.\n\nPedant:\nAway, away, mad ass! his na",
+          "metadata_example_idx": 35,
+          "metadata_start_token": 64960,
+          "predict_cwa": "f his son\nTo his father's son and so some souls and the state\nTh",
+          "predict_gelu": "f the world.\n\nLUCIO:\nI will not so be so so.\n\nLUCIO:\nI will not ",
+          "predict_cwa_100xlr": "f his son\nTo see his father and the state of the strength,\nAnd t"
+        },
+        {
+          "input": " my countenance in the town;\nAnd happily I have arrived at the last\nUnto the wished haven of my ",
+          "output": "bliss.\nWhat Tranio did, myself enforced him to;\nThen pardon him,",
+          "metadata_example_idx": 36,
+          "metadata_start_token": 66816,
+          "predict_cwa": "son and son\nThe state of the seasing of the state,\nAnd the seate",
+          "predict_gelu": "son and sound.\n\nKING RICHARD II:\nThe prince of the season of the",
+          "predict_cwa_100xlr": "son and the sea\nTo the sea the strange of the state of the state"
+        },
+        {
+          "input": "ere true.\n\nPETRUCHIO:\nNow, for my life, Hortensio fears his widow.\n\nWidow:\nThen never trust me, ",
+          "output": "if I be afeard.\n\nPETRUCHIO:\nYou are very sensible, and yet you m",
+          "metadata_example_idx": 37,
+          "metadata_start_token": 68672,
+          "predict_cwa": "and the senate of his son\nthat will be so so seen to the streets",
+          "predict_gelu": "and the state of heaven,\nAnd there the state of the state of the",
+          "predict_cwa_100xlr": "and the sentence of the seas\nthat the season of the streets of t"
+        },
+        {
+          "input": "UCHIO:\nA good swift simile, but something currish.\n\nTRANIO:\n'Tis well, sir, that you hunted for ",
+          "output": "yourself:\n'Tis thought your deer does hold you at a bay.\n\nBAPTIS",
+          "metadata_example_idx": 38,
+          "metadata_start_token": 70528,
+          "predict_cwa": "the world.\n\nROMEO:\nI have seen the streets of the state of the s",
+          "predict_gelu": "the common of the\nshall be so strange to the sea of his life.\n\nC",
+          "predict_cwa_100xlr": "the world.\n\nROMEO:\nI will not so show the consent that the state"
+        },
+        {
+          "input": "\nWorse and worse; she will not come! O vile,\nIntolerable, not to be endured!\nSirrah Grumio, go t",
+          "output": "o your mistress;\nSay, I command her to come to me.\n\nHORTENSIO:\nI",
+          "metadata_example_idx": 39,
+          "metadata_start_token": 72384,
+          "predict_cwa": "o the sea to the state,\nAnd the sea the sea to the strong of the",
+          "predict_gelu": "o the prince of the strong\nThat the senate of the season of the ",
+          "predict_cwa_100xlr": "o the sea thing shall be the sea\nThat the seat of the season of "
+        },
+        {
+          "input": ":\nCome, come, you're mocking: we will have no telling.\n\nPETRUCHIO:\nCome on, I say; and first beg",
+          "output": "in with her.\n\nWidow:\nShe shall not.\n\nPETRUCHIO:\nI say she shall:",
+          "metadata_example_idx": 40,
+          "metadata_start_token": 74240,
+          "predict_cwa": "in the straight\nThat I will be the strange of the state,\nAnd the",
+          "predict_gelu": "gar and so far\nThat the prince of the seasy of the court.\n\nBUCKI",
+          "predict_cwa_100xlr": "in to the sea\nThat should be so seem to the strange of the state"
+        },
+        {
+          "input": "weak, our weakness past compare,\nThat seeming to be most which we indeed least are.\nThen vail yo",
+          "output": "ur stomachs, for it is no boot,\nAnd place your hands below your ",
+          "metadata_example_idx": 41,
+          "metadata_start_token": 76096,
+          "predict_cwa": "u that should be so so soul be so,\nAnd the sea to the sea the se",
+          "predict_gelu": "u are to the court?\n\nLEONTES:\nWhat is the prince of the common o",
+          "predict_cwa_100xlr": "u shall be so so be a prince,\nAnd then the sea that should be so"
+        },
+        {
+          "input": "r the mischance of\nthe hour, if it so hap. Cheerly, good hearts! Out\nof our way, I say.\n\nGONZALO",
+          "output": ":\nI have great comfort from this fellow: methinks he\nhath no dro",
+          "metadata_example_idx": 42,
+          "metadata_start_token": 77952,
+          "predict_cwa": ":\nI will not so so so so so so soul so soul\nto see the state of ",
+          "predict_gelu": ":\nI would the prince of the state of the court\nThat the strength",
+          "predict_cwa_100xlr": ":\nI will not so shall be the seat of the seas,\nthe seat of the s"
+        },
+        {
+          "input": "waters in this roar, allay them.\nThe sky, it seems, would pour down stinking pitch,\nBut that the",
+          "output": " sea, mounting to the welkin's cheek,\nDashes the fire out. O, I ",
+          "metadata_example_idx": 43,
+          "metadata_start_token": 79808,
+          "predict_cwa": " strange of the state of the seas,\nAnd the sea the strong of the",
+          "predict_gelu": " sea of the seasy of the sea,\nAnd therefore that the strange of ",
+          "predict_cwa_100xlr": " strong of the state of the state,\nAnd the sea thou shalt the be"
+        },
+        {
+          "input": "hat? by any other house or person?\nOf any thing the image tell me that\nHath kept with thy rememb",
+          "output": "rance.\n\nMIRANDA:\n'Tis far off\nAnd rather like a dream than an as",
+          "metadata_example_idx": 44,
+          "metadata_start_token": 81664,
+          "predict_cwa": "er that the stronger.\n\nFirst Senator:\nWhat shall be the better t",
+          "predict_gelu": "er that we should be so.\n\nKING RICHARD II:\nThen the shall be so ",
+          "predict_cwa_100xlr": "er that thou art there.\n\nSICINIUS:\nWhat shall I was thee that th"
+        },
+        {
+          "input": ", new created\nThe creatures that were mine, I say, or changed 'em,\nOr else new form'd 'em; havin",
+          "output": "g both the key\nOf officer and office, set all hearts i' the stat",
+          "metadata_example_idx": 45,
+          "metadata_start_token": 83520,
+          "predict_cwa": "g the seat of the\nTo see the seasing of the strange of the state",
+          "predict_gelu": "g the seas of him.\n\nKING RICHARD III:\nThe world of the court of ",
+          "predict_cwa_100xlr": "g the seat of the\nThat she shall be so seem the strength of the "
+        },
+        {
+          "input": "e inveterate, hearkens my brother's suit;\nWhich was, that he, in lieu o' the premises\nOf homage ",
+          "output": "and I know not how much tribute,\nShould presently extirpate me a",
+          "metadata_example_idx": 46,
+          "metadata_start_token": 85376,
+          "predict_cwa": "of the strange of the state,\nAnd the sea thou shalt be the seat ",
+          "predict_gelu": "the state of the state of the state,\nAnd the state that the stre",
+          "predict_cwa_100xlr": "to the sea the state of the state,\nAnd the sea thirst of the sta"
+        },
+        {
+          "input": "did give us, with\nRich garments, linens, stuffs and necessaries,\nWhich since have steaded much; ",
+          "output": "so, of his gentleness,\nKnowing I loved my books, he furnish'd me",
+          "metadata_example_idx": 47,
+          "metadata_start_token": 87232,
+          "predict_cwa": "and therefore\nThat the sent of the streets of the state,\nAnd the",
+          "predict_gelu": "and therefore them\nThat we shall be so strength the state of the",
+          "predict_cwa_100xlr": "and the season\nThe senate of the state of the state of the state"
+        },
+        {
+          "input": "ing the most mighty Neptune\nSeem to besiege and make his bold waves tremble,\nYea, his dread trid",
+          "output": "ent shake.\n\nPROSPERO:\nMy brave spirit!\nWho was so firm, so const",
+          "metadata_example_idx": 48,
+          "metadata_start_token": 89088,
+          "predict_cwa": "e and so speak of his son\nTo see his son and so so sound of the ",
+          "predict_gelu": "e to the court of his face.\n\nKING RICHARD II:\nThe prince of the ",
+          "predict_cwa_100xlr": "est that have been and his son\nThat he shall be so strength and "
+        },
+        {
+          "input": "l? Since thou dost give me pains,\nLet me remember thee what thou hast promised,\nWhich is not yet",
+          "output": " perform'd me.\n\nPROSPERO:\nHow now? moody?\nWhat is't thou canst d",
+          "metadata_example_idx": 49,
+          "metadata_start_token": 90944,
+          "predict_cwa": " to the senate, and the sea\nThat the sea to the strong of the se",
+          "predict_gelu": " to be the world of the world.\n\nKING RICHARD II:\nWhat is the sea",
+          "predict_cwa_100xlr": " to the sense of the state,\nAnd the seat of the strength of the "
+        },
+        {
+          "input": "as this island--\nSave for the son that she did litter here,\nA freckled whelp hag-born--not honou",
+          "output": "r'd with\nA human shape.\n\nARIEL:\nYes, Caliban her son.\n\nPROSPERO:",
+          "metadata_example_idx": 50,
+          "metadata_start_token": 92800,
+          "predict_cwa": "r the heart\nAnd the seat of the strange of the state,\nAnd the se",
+          "predict_gelu": "r shall be\nThe sea of the sea of the streets of the state,\nAnd t",
+          "predict_cwa_100xlr": "r the sea\nThat which he should be so so so seems of the state,\nA"
+        },
+        {
+          "input": "e'er my mother brush'd\nWith raven's feather from unwholesome fen\nDrop on you both! a south-west ",
+          "output": "blow on ye\nAnd blister you all o'er!\n\nPROSPERO:\nFor this, be sur",
+          "metadata_example_idx": 51,
+          "metadata_start_token": 94656,
+          "predict_cwa": "the seates,\nAnd so shall be the strange of the state,\nAnd the se",
+          "predict_gelu": "many soul,\nThat you shall be so so far a straight\nThat you have ",
+          "predict_cwa_100xlr": "the prince,\nAnd the prince of the state of your honour,\nAnd the "
+        },
+        {
+          "input": "; therefore wast thou\nDeservedly confined into this rock,\nWho hadst deserved more than a prison.",
+          "output": "\n\nCALIBAN:\nYou taught me language; and my profit on't\nIs, I know",
+          "metadata_example_idx": 52,
+          "metadata_start_token": 96512,
+          "predict_cwa": "\n\nFirst Servingman:\nWhat say you to the service of the state?\n\nC",
+          "predict_gelu": "\n\nKING RICHARD III:\nThe senators of the first of the season of t",
+          "predict_cwa_100xlr": "\n\nFirst Servingman:\nWhat shall I should be so so so so soul be s"
+        },
+        {
+          "input": "pirit.\n\nPROSPERO:\nNo, wench; it eats and sleeps and hath such senses\nAs we have, such. This gall",
+          "output": "ant which thou seest\nWas in the wreck; and, but he's something s",
+          "metadata_example_idx": 53,
+          "metadata_start_token": 98368,
+          "predict_cwa": "ands to the sea\nThat the sea to the seat of the state, and the\nT",
+          "predict_gelu": "and shall be so so.\n\nCAPULET:\nThe shall be so so so soul be so f",
+          "predict_cwa_100xlr": "and, the seasons of the\nsentence of the strength of the seat of "
+        },
+        {
+          "input": "ND:\nNo, as I am a man.\n\nMIRANDA:\nThere's nothing ill can dwell in such a temple:\nIf the ill spir",
+          "output": "it have so fair a house,\nGood things will strive to dwell with't",
+          "metadata_example_idx": 54,
+          "metadata_start_token": 100224,
+          "predict_cwa": "it of the strange of the sea\nThat the season of the strength of ",
+          "predict_gelu": "it in the state of the state,\nAnd there that the state of the se",
+          "predict_cwa_100xlr": "it the sea to the state of the state,\nAnd the seat of the strang"
+        },
+        {
+          "input": "ech: this is unwonted\nWhich now came from him.\n\nPROSPERO:\nThou shalt be free\nAs mountain winds: ",
+          "output": "but then exactly do\nAll points of my command.\n\nARIEL:\nTo the syl",
+          "metadata_example_idx": 55,
+          "metadata_start_token": 102080,
+          "predict_cwa": "therefore the common of the\nshall be the bear of the state of th",
+          "predict_gelu": "the shall be so straight\nThat the senate of the sea of the peopl",
+          "predict_cwa_100xlr": "the senators of the country\nThan the sea thing to the sea the se"
+        },
+        {
+          "input": "d.\n\nADRIAN:\nThe air breathes upon us here most sweetly.\n\nSEBASTIAN:\nAs if it had lungs and rotte",
+          "output": "n ones.\n\nANTONIO:\nOr as 'twere perfumed by a fen.\n\nGONZALO:\nHere",
+          "metadata_example_idx": 56,
+          "metadata_start_token": 103936,
+          "predict_cwa": "n to the state,\nAnd the sea thou shalt be the bear the state,\nAn",
+          "predict_gelu": "n to the world.\n\nGLOUCESTER:\nWhat should the sea of the country ",
+          "predict_cwa_100xlr": "n to the sea\nThat which is the strange of the state of the state"
+        },
+        {
+          "input": "TONIO:\nAnd, sowing the kernels of it in the sea, bring\nforth more islands.\n\nGONZALO:\nAy.\n\nANTONI",
+          "output": "O:\nWhy, in good time.\n\nGONZALO:\nSir, we were talking that our ga",
+          "metadata_example_idx": 57,
+          "metadata_start_token": 105792,
+          "predict_cwa": "O:\nI will not so so so so so sound of the seas,\nthe sea the seas",
+          "predict_gelu": "US:\nI will not so.\n\nMERCUTIO:\nI will not so.\n\nMERCUTIO:\nI will n",
+          "predict_cwa_100xlr": "O:\nI will not so shall be so so so so soul be the\nserved of the "
+        },
+        {
+          "input": "in them of this business' making\nThan we bring men to comfort them:\nThe fault's your own.\n\nALONS",
+          "output": "O:\nSo is the dear'st o' the loss.\n\nGONZALO:\nMy lord Sebastian,\nT",
+          "metadata_example_idx": 58,
+          "metadata_start_token": 107648,
+          "predict_cwa": ":\nI will not so much a man of my soul,\nAnd so shall be the seat ",
+          "predict_gelu": ":\nI will not so.\n\nPOMPEY:\nI say you do the sea of your honours a",
+          "predict_cwa_100xlr": ":\nI will not be the prince of the consent\nThat I have been to th"
+        },
+        {
+          "input": "asion to these gentlemen,\nwho are of such sensible and nimble lungs that\nthey always use to laug",
+          "output": "h at nothing.\n\nANTONIO:\n'Twas you we laughed at.\n\nGONZALO:\nWho i",
+          "metadata_example_idx": 59,
+          "metadata_start_token": 109504,
+          "predict_cwa": "h the proceed of the state\nThat the seat of the strength of the ",
+          "predict_gelu": "h the world of the world.\n\nLord Mayor:\nThe seases of the season ",
+          "predict_cwa_100xlr": "h the seat of the state,\nthe seate of the seasons of the state, "
+        }
+      ]
+    },
+    {
+      "dataset": "CWA_Training_Metrics",
+      "examples": [
+        {
+          "input": "Train char-GPT on Shakespeare: model=CWA, seed=0, 5000 steps cosine LR",
+          "output": "val_bpc=2.1958",
+          "predict_cwa_bpc": "2.195847",
+          "predict_gelu_bpc": "N/A",
+          "metadata_model": "CWA",
+          "metadata_seed": "0",
+          "metadata_final_J": "0.5217009286085764",
+          "metadata_final_J_s_bar": "0.20449538777271906"
+        },
+        {
+          "input": "Train char-GPT on Shakespeare: model=GELU, seed=0, 5000 steps cosine LR",
+          "output": "val_bpc=2.2223",
+          "predict_cwa_bpc": "N/A",
+          "predict_gelu_bpc": "2.222333",
+          "metadata_model": "GELU",
+          "metadata_seed": "0",
+          "metadata_final_J": "None",
+          "metadata_final_J_s_bar": "None"
+        },
+        {
+          "input": "Train char-GPT on Shakespeare: model=CWA, seed=1, 5000 steps cosine LR",
+          "output": "val_bpc=2.2250",
+          "predict_cwa_bpc": "2.224957",
+          "predict_gelu_bpc": "N/A",
+          "metadata_model": "CWA",
+          "metadata_seed": "1",
+          "metadata_final_J": "0.5147042870521545",
+          "metadata_final_J_s_bar": "0.20480758820970854"
+        },
+        {
+          "input": "Train char-GPT on Shakespeare: model=GELU, seed=1, 5000 steps cosine LR",
+          "output": "val_bpc=2.1694",
+          "predict_cwa_bpc": "N/A",
+          "predict_gelu_bpc": "2.169440",
+          "metadata_model": "GELU",
+          "metadata_seed": "1",
+          "metadata_final_J": "None",
+          "metadata_final_J_s_bar": "None"
+        },
+        {
+          "input": "Train char-GPT CWA 100x J-LR: seed=0, 5000 steps",
+          "output": "val_bpc=2.1961 J_moved=True |dJ|=0.3511",
+          "predict_cwa_100xlr_bpc": "2.196126",
+          "predict_cwa_bpc": "2.2104018177390596",
+          "metadata_seed": "0",
+          "metadata_J_movement": "0.35105828444163"
+        },
+        {
+          "input": "Train char-GPT CWA 100x J-LR: seed=1, 5000 steps",
+          "output": "val_bpc=2.2272 J_moved=True |dJ|=0.3075",
+          "predict_cwa_100xlr_bpc": "2.227158",
+          "predict_cwa_bpc": "2.2104018177390596",
+          "metadata_seed": "1",
+          "metadata_J_movement": "0.3074824810028076"
+        }
+      ]
+    }
+  ]
+}
